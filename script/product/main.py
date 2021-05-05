@@ -5,7 +5,7 @@ log = lib.get_event_logger()
 
 def main_sequencer():
     log.debug("welcome to main sequencer")
-    uut = lib.conn.UUT
+    uut = lib.get_uut(protocol="DUMMY")
     # uut.close()
     lib.set_display1("SERIAL:123456")
     uut.open()

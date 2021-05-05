@@ -1,0 +1,4 @@
+INFO    : main sequencer started @ [2021/05/05 12:38:15]
+INFO    : sequencer to be run in [DEVELOP] mode, by [kunlun]
+INFO    : welcome to main sequencer
+INFO    : main sequencer passed @ [2021/05/05 12:38:15]
