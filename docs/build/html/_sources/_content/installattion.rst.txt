@@ -1,0 +1,18 @@
+介绍
+====
+
+
+一些英文单词及简写的解释
+-----------------------
+* UUT: Unit Under Test,  指 **在测产品**.
+* uuttype: UUT Type, 指在测产品的类型, 一般以PN(part number)区分.
+* sernum: Serial Number, 指在测产品的序列号, 序列号是唯一的.
+* Station: 泛指一个测试工站, 具体指一类产品的测试工位的集合,  包含若干个Container.
+* Container: 指一个测试工位, 一个测试工位就是一个Container,  一次可以测试一个UUT.可调用若干个连接Connection.
+* Connection: 指一个连接, 一次可以连接上一个硬件设备.
+
+硬件连接方式
+------------
+
+用户测试界面
+------------

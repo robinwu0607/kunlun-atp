@@ -3,18 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to kunlun's documentation!
-==================================
+昆仑KunLun自动化平台 文档
+==========================
 
+主题
+====
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   _content/介绍
+   _content/安装
+   _content/测试脚本
