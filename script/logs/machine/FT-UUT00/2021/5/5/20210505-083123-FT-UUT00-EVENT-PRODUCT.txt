@@ -1,4 +1,0 @@
-INFO    : main sequencer started @ [2021/05/05 08:31:23]
-INFO    : sequencer to be run in [] mode, by []
-INFO    : welcome to main sequencer
-INFO    : main sequencer passed @ [2021/05/05 08:31:24]

@@ -1,8 +1,0 @@
-INFO    : main sequencer started @ [2021/05/05 00:32:28]
-INFO    : sequencer to be run in [PRODUCT] mode, by [kunlun]
-DEBUG   : welcome to main sequencer
-INFO    : ACQUIRING QUEUE[__ask_question_FIFO][False][180]
-INFO    : ACQUIRED QUEUE[__ask_question_FIFO] within 0s
-INFO    : RELEASED QUEUE[__ask_question_FIFO]
-DEBUG   : scdfg
-INFO    : main sequencer passed @ [2021/05/05 00:32:33]
