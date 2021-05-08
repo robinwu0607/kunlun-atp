@@ -21,8 +21,8 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-    if "runserver" not in sys.argv:
-        sys.argv += ["runserver", "0.0.0.0:9000", "--noreload"]
+    # if "runserver" not in sys.argv:
+        # sys.argv += ["runserver", "0.0.0.0:9000", "--noreload"]
         # sys.argv += ["runserver", "0.0.0.0:9000"]
     execute_from_command_line(sys.argv)
 
