@@ -4,5 +4,5 @@ log = lib.get_event_logger()
 
 
 def main_sequencer():
-    log.info("welcome to main sequencer")
+    log.info("DEVELOP mode has nothing.")
     return
