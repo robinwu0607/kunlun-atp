@@ -1,0 +1,19 @@
+安装指南
+========
+
+安装Python3.7
+-------------
+https://www.python.org/downloads/release/python-378/
+
+git clone https://github.com/robinwu0607/kunlun-atp.git
+
+
+
+从Gitee克隆项目
+-----------------------
+
+相关文件/文件夹说明
+-------------------
+
+启动软件
+----------

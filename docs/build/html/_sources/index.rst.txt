@@ -12,5 +12,6 @@
    :maxdepth: 2
 
    _content/介绍
-   _content/安装
-   _content/测试脚本
+   _content/安装指南
+   _content/用户界面
+   _content/接口函数
