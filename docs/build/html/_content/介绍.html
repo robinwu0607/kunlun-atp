@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>介绍 &mdash; kunlun v0.0.1 documentation</title>
+  <title>介绍 &mdash; KunLun测试自动化平台 v0.0.1 documentation</title>
   
 
   
@@ -39,7 +39,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="安装指南" href="%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.html" />
-    <link rel="prev" title="昆仑KunLun自动化平台 文档" href="../index.html" /> 
+    <link rel="prev" title="KunLun测试自动化平台" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -53,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> kunlun
+            <a href="../index.html" class="icon icon-home"> KunLun测试自动化平台
           
 
           
@@ -86,12 +86,13 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">介绍</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">名词解释</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">写一个自动化测试用例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">测试主界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">测试用例示例</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.html">安装指南</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html">用户界面</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91.html">代码开发</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%8E%A5%E5%8F%A3%E5%87%BD%E6%95%B0.html">接口函数</a></li>
 </ul>
 
@@ -108,7 +109,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">kunlun</a>
+          <a href="../index.html">KunLun测试自动化平台</a>
         
       </nav>
 
@@ -162,16 +163,83 @@
             
   <div class="section" id="id1">
 <h1>介绍<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>KunLun ATP是KunLun Automatic Test Platform的缩写，是电子产品功能测试自动化平台。</p>
+<p>本平台的基础功能：通过协议连接（SSH/TELNET/串口/GPIB等）待测产品，使用命令行对产品进行激励，
+并自动收集产品的输出日志，用户根据对日志的解析结果，决策下一次激励的形式，如此反复。</p>
+<p>本平台在基础功能上，提供网页化的操作界面，自动保存日志，高度封装的协议函数与命令行函数，方便用户快速二次开发。</p>
 <div class="section" id="id2">
-<h2>名词解释<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>UUT: Unit Under Test,  指 <strong>在测产品</strong>.</p></li>
-<li><p>uuttype: UUT Type, 指在测产品的类型, 一般以PN(part number)区分.</p></li>
-<li><p>sernum: Serial Number, 指在测产品的序列号, 序列号是唯一的.</p></li>
-</ul>
+<h2>测试主界面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/介绍1.png" src="../_images/介绍1.png" />
+<p>本平台采用两层结构表述测试环境架构，分别是：Station(工序)-&gt;Container(工位)，一个工序可以包含多个工位。
+图中展示的是Container工位界面。</p>
+<p>Station工序：一台物理测试主机可以展开多种不同的测试任务，一种测试任务的集合称为工序。
+Container工位：工位承载测试任务，多个测试任务可以并行处理，即同时测试多个产品。</p>
 </div>
 <div class="section" id="id3">
-<h2>写一个自动化测试用例<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>测试用例示例<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>一个测试用例包括：
+1. 连接产品，设置测试环境
+2. 发送一系列测试命令行
+3. 对产品输出的日志进行解析处理，判断测试通过还是失败
+4. 清理测试环境，关闭连接</p>
+<p>举例测试用例：进入Python交互界面，查询当前主机的操作系统类型，并打印结果:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_event_logger</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+    <span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_uut</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;python</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;import sys</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;sys.platform</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">uut</span><span class="o">.</span><span class="n">buf</span><span class="p">)</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;exit()</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p>以上是此测试用例的测试代码。接下来对代码进行分段解释。
+从本平台导入接口函数库:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+</pre></div>
+</div>
+<p>实例化”事件日志”，获得实例log，后续可用log.debug(), log.error()记录事件日志:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_event_logger</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>定义入口函数，入口函数必须命名为main_sequencer, 用户的程序将从这里开始:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+</pre></div>
+</div>
+<p>定义一个连接，协议为DUMMY, 并打开此连接:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_uut</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
+<span class="n">uut</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>本平台支持多种连接协议，详细使用方法参考接口函数。
+1. DUMMY：调用cmd.exe，获取windows的命令行界面。
+2. SSH：根据提供的ip地址，用户名，密码，连接到产品。
+3. TELNET：根据提供的ip地址，端口号，连接到产品。
+4. SERIAL：根据提供的串口地址，波特率，连接到产品。</p>
+<p>发送命令行至连接，连接将转发至产品，以下两条指令为测试环境准备:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;python</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;import sys</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>持续发送测试指令至产品，并获取产品的输出uut.buf，打印至事件日志界面:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;sys.platform</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">uut</span><span class="o">.</span><span class="n">buf</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>清理测试环境，并关闭连接:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;exit()</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">uut</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>将入口函数main_sequencer()以及测试代码保存于D:\kunlun-data\product\main.py，并在测试主界面上点击”开始”按钮，
+即可以调用入口函数。</p>
 </div>
 </div>
 
@@ -182,7 +250,7 @@
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.html" class="btn btn-neutral float-right" title="安装指南" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../index.html" class="btn btn-neutral float-left" title="昆仑KunLun自动化平台 文档" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="KunLun测试自动化平台" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

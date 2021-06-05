@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-昆仑KunLun自动化平台 文档
-==========================
+KunLun测试自动化平台
+====================
 
 主题
 ====
@@ -14,4 +14,5 @@
    _content/介绍
    _content/安装指南
    _content/用户界面
+   _content/代码开发
    _content/接口函数

@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'kunlun'
+project = 'KunLun测试自动化平台'
 copyright = '2021, robinwu'
 author = 'robinwu'
 

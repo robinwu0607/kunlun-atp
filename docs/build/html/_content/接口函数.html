@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>接口函数 &mdash; kunlun v0.0.1 documentation</title>
+  <title>接口函数 &mdash; KunLun测试自动化平台 v0.0.1 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="用户界面" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html" /> 
+    <link rel="prev" title="代码开发" href="%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +52,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> kunlun
+            <a href="../index.html" class="icon icon-home"> KunLun测试自动化平台
           
 
           
@@ -87,12 +87,15 @@
 <li class="toctree-l1"><a class="reference internal" href="%E4%BB%8B%E7%BB%8D.html">介绍</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.html">安装指南</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html">用户界面</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91.html">代码开发</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">接口函数</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">生产模式与开发模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">获取连接</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">发送指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">处理字符串</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">接口函数说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-get-uut">lib.get_uut()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-get-ref">lib.get_ref()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-ask-question">lib.ask_question()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-set-display1-2-3">lib.set_display1/2/3()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-get-container-name">lib.get_container_name()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-add-test-data">lib.add_test_data()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-get-mode">lib.get_mode()</a></li>
 </ul>
 </li>
 </ul>
@@ -110,7 +113,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">kunlun</a>
+          <a href="../index.html">KunLun测试自动化平台</a>
         
       </nav>
 
@@ -164,20 +167,83 @@
             
   <div class="section" id="id1">
 <h1>接口函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>生产模式与开发模式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="lib-get-uut">
+<h2>lib.get_uut()<a class="headerlink" href="#lib-get-uut" title="Permalink to this headline">¶</a></h2>
+<p>此接口函数可以获取连接。通过传入不同的协议以及变量，获取相应连接，连接接收到的日志将打印至网页界面的UUT窗口。</p>
+<ul>
+<li><p>获取DUMMY连接:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_uut</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="id3">
-<h2>获取连接<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</li>
+<li><p>获取串口SERIAL连接:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_uut</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;SERIAL&quot;</span><span class="p">,</span> <span class="n">serial</span><span class="o">=</span><span class="s2">&quot;COM1&quot;</span><span class="p">,</span> <span class="n">baud</span><span class="o">=</span><span class="mi">115200</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="id4">
-<h2>发送指令<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+</li>
+<li><p>获取SSH连接:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_uut</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;SSH&quot;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.2.10&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="id5">
-<h2>处理字符串<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+</li>
+<li><p>获取TELNET连接:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_uut</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;TELNET&quot;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.2.10&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">2005</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="id6">
-<h2>接口函数说明<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+</li>
+</ul>
+<p>获取连接后，连接实例保存在变量uut中，实例有以下几种使用方法:</p>
+<ol class="arabic simple">
+<li><p>uut.open()：打开连接</p></li>
+<li><p>uut.close()：关闭连接</p></li>
+<li><p>uut.send(): 向连接传递命令行.</p></li>
+<li><p>uut.buf：保存最近一条send()语句发送后，产品回馈的日志。</p></li>
+</ol>
+<p>uut.send()是传递命令行的唯一方式，使用方法如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;python</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>对此语句的解释：发送命令行”python”，并带回车符”\r”，并期望在timeout的10秒钟内，收到字符”&gt;&gt;&gt;”。
+若收到，此语句正常完成，产品反馈的日志将以字符串形式保存在uut.buf中，并执行下一条语句。
+若未收到，出发异常，测试结束。</p>
+</div>
+<div class="section" id="lib-get-ref">
+<h2>lib.get_ref()<a class="headerlink" href="#lib-get-ref" title="Permalink to this headline">¶</a></h2>
+<p>此接口函数使用方法与lib.get_uut()完全一致。唯一不同点，连接接收到的日志将打印至网页界面的REF窗口。</p>
+</div>
+<div class="section" id="lib-ask-question">
+<h2>lib.ask_question()<a class="headerlink" href="#lib-ask-question" title="Permalink to this headline">¶</a></h2>
+<p>此接口函数提供一个用户交互方法，调用此函数后，网页界面将弹出对话框，用户可以在对话框输入字符串，传递给测试代码使用.</p>
+<p>举例：弹出对话框，要求输入序列号:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">serial</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;请输入序列号SERIAL：&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>用户输入的数据将保存在serial中。</p>
+</div>
+<div class="section" id="lib-set-display1-2-3">
+<h2>lib.set_display1/2/3()<a class="headerlink" href="#lib-set-display1-2-3" title="Permalink to this headline">¶</a></h2>
+<p>此接口函数可以定制化测试工位上的显示，display1/2/3分别对应工位面板的上/中/下显示。
+使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_display1</span><span class="p">(</span><span class="s2">&quot;序列号:12345678&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lib-get-container-name">
+<h2>lib.get_container_name()<a class="headerlink" href="#lib-get-container-name" title="Permalink to this headline">¶</a></h2>
+<p>此接口函数根据启动测试的工位，返回工位的名字。例：在FT:UUT00上开始测试，此函数返回字符串”FT:UUT00”。</p>
+</div>
+<div class="section" id="lib-add-test-data">
+<h2>lib.add_test_data()<a class="headerlink" href="#lib-add-test-data" title="Permalink to this headline">¶</a></h2>
+<p>在测试过程中，调用此接口函数，可以做一笔测试记录，此记录默认为”S”（Start）开始记录。
+测试完成后，根据测试结果成功或是失败，自动记录一笔”P”（Pass）或是”F”（Fail）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">add_test_data</span><span class="p">(</span><span class="n">sernum</span><span class="o">=</span><span class="n">serial</span><span class="p">,</span> <span class="n">uuttype</span><span class="o">=</span><span class="n">uuttype</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="s2">&quot;FT&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>此接口函数最少需要3个参数，sernum为产品条码, uuttype为产品类型, area为测试工站。</p>
+</div>
+<div class="section" id="lib-get-mode">
+<h2>lib.get_mode()<a class="headerlink" href="#lib-get-mode" title="Permalink to this headline">¶</a></h2>
+<p>此接口函数根据测试的模式，返回”PRODUCT”或者是”DEVELOP”。</p>
 </div>
 </div>
 
@@ -187,7 +253,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html" class="btn btn-neutral float-left" title="用户界面" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91.html" class="btn btn-neutral float-left" title="代码开发" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
