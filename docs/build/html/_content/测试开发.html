@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>安装指南 &mdash; KunLun测试自动化平台 v0.0.1 documentation</title>
+  <title>测试开发 &mdash; KunLun测试自动化平台 v0.0.1 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="用户界面" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html" />
-    <link rel="prev" title="介绍" href="%E4%BB%8B%E7%BB%8D.html" /> 
+    <link rel="next" title="接口函数" href="%E6%8E%A5%E5%8F%A3%E5%87%BD%E6%95%B0.html" />
+    <link rel="prev" title="用户界面" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,15 +86,13 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="%E4%BB%8B%E7%BB%8D.html">介绍</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">安装指南</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">操作系统要求</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">安装包下载</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">安装过程说明</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">软件启动/关闭</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.html">安装指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html">用户界面</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">测试开发</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#kunlun-data">kunlun-data文件夹</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">开发者模式与生产模式</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html">用户界面</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91.html">测试开发</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%8E%A5%E5%8F%A3%E5%87%BD%E6%95%B0.html">接口函数</a></li>
 </ul>
 
@@ -144,13 +142,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>安装指南</li>
+      <li>测试开发</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/_content/安装指南.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_content/测试开发.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -164,39 +162,24 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>安装指南<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>测试开发<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="kunlun-data">
+<h2>kunlun-data文件夹<a class="headerlink" href="#kunlun-data" title="Permalink to this headline">¶</a></h2>
+<p>首次安装，启动本平台软件，会自动创建 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data</span></code> 文件夹，
+并在文件夹内创建数据库 <code class="docutils literal notranslate"><span class="pre">db.sqlite3</span></code> ，以及文件夹 <code class="docutils literal notranslate"><span class="pre">product</span></code> , <code class="docutils literal notranslate"><span class="pre">develop</span></code> 与 <code class="docutils literal notranslate"><span class="pre">logs</span></code> .</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">db.sqlite3</span></code> ：数据库文件，保存测试记录。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logs</span></code> ：测试日志文件夹，保存测试过程中产生的测试日志，以及保存一些临时文件。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">product</span></code> ：生产模式将调用此文件夹下的代码。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">develop</span></code> : 开发模式将调用此文件夹下的代码。</p></li>
+</ol>
+</div>
 <div class="section" id="id2">
-<h2>操作系统要求<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>本平台要求安装在Windows 10操作系统。暂不支持Linux操作系统。</p>
-</div>
-<div class="section" id="id3">
-<h2>安装包下载<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>请从以下地址下载最新安装包:</p>
-<p><a class="reference external" href="https://gitee.com/robinwu0607/kunlun-atp/releases">https://gitee.com/robinwu0607/kunlun-atp/releases</a></p>
-</div>
-<div class="section" id="id4">
-<h2>安装过程说明<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>下载安装包，右键以管理员权限安装，安装过程如以下所示：</p>
-<img alt="../_images/setup1.png" src="../_images/setup1.png" />
-<p>安装目录必须为：”C:Program Files (x86)KunLun ATP”，不要修改默认设置。</p>
-<img alt="../_images/setup2.png" src="../_images/setup2.png" />
-<p>选择创建桌面快捷方式。</p>
-<img alt="../_images/setup3.png" src="../_images/setup3.png" />
-<img alt="../_images/setup4.png" src="../_images/setup4.png" />
-<img alt="../_images/setup5.png" src="../_images/setup5.png" />
-<p>点击Finish，安装完成。</p>
-<img alt="../_images/setup6.png" src="../_images/setup6.png" />
-<img alt="../_images/setup7.png" src="../_images/setup7.png" />
-</div>
-<div class="section" id="id5">
-<h2>软件启动/关闭<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>安装完成后，本平台将在桌面自动创建快捷方式，以便快速启动/关闭本平台服务。</p>
-<img alt="../_images/shortcuts.png" src="../_images/shortcuts.png" />
-<p>双击Start Kunlun快捷方式，启动平台的过程中，如果出现请求权限的弹窗，需选择”允许”或是”同意”。
-本平台服务运行过程中，不能关闭此窗口，若不小心关闭，需重新启动。</p>
-<img alt="../_images/start.png" src="../_images/start.png" />
-<p>双击Stop Kunlun快捷方式，关闭本平台所有服务，</p>
-<img alt="../_images/stop.png" src="../_images/stop.png" />
+<h2>开发者模式与生产模式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在测试主界面，可以切换生产模式与开发模式，本平台后台将根据选择的模式，
+自动调用 <code class="docutils literal notranslate"><span class="pre">product</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">develop</span></code> 文件夹下测试代码。</p>
+<img alt="../_images/product-mode.png" src="../_images/product-mode.png" />
+<img alt="../_images/develop-mode.png" src="../_images/develop-mode.png" />
 </div>
 </div>
 
@@ -206,8 +189,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html" class="btn btn-neutral float-right" title="用户界面" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="%E4%BB%8B%E7%BB%8D.html" class="btn btn-neutral float-left" title="介绍" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E6%8E%A5%E5%8F%A3%E5%87%BD%E6%95%B0.html" class="btn btn-neutral float-right" title="接口函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html" class="btn btn-neutral float-left" title="用户界面" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

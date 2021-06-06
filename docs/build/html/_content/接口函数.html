@@ -169,7 +169,7 @@
 <h1>接口函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="lib-get-uut">
 <h2>lib.get_uut()<a class="headerlink" href="#lib-get-uut" title="Permalink to this headline">¶</a></h2>
-<p>此接口函数可以获取连接。通过传入不同的协议以及变量，获取相应连接，连接接收到的日志将打印至网页界面的UUT窗口。</p>
+<p>此接口函数可以获取连接。通过传入不同的协议以及变量，获取相应连接，连接接收到的日志将打印至网页界面的 <strong>UUT</strong> 窗口。</p>
 <ul>
 <li><p>获取DUMMY连接:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_uut</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
@@ -194,22 +194,30 @@
 </ul>
 <p>获取连接后，连接实例保存在变量uut中，实例有以下几种使用方法:</p>
 <ol class="arabic simple">
-<li><p>uut.open()：打开连接</p></li>
-<li><p>uut.close()：关闭连接</p></li>
-<li><p>uut.send(): 向连接传递命令行.</p></li>
-<li><p>uut.buf：保存最近一条send()语句发送后，产品回馈的日志。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.open()</span></code> ：打开连接</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.close()</span></code> ：关闭连接</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> : 向连接传递命令行.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> ：保存最近一条 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 语句发送后，产品回馈的日志。</p></li>
 </ol>
-<p>uut.send()是传递命令行的唯一方式，使用方法如下:</p>
+<p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 是传递命令行的唯一方式，使用方法如下:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;python</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>对此语句的解释：发送命令行”python”，并带回车符”\r”，并期望在timeout的10秒钟内，收到字符”&gt;&gt;&gt;”。
-若收到，此语句正常完成，产品反馈的日志将以字符串形式保存在uut.buf中，并执行下一条语句。
+<p>对此语句的解释：发送命令行 <code class="docutils literal notranslate"><span class="pre">python</span></code> ，并带回车符 <code class="docutils literal notranslate"><span class="pre">\r</span></code> ，并期望在 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 的10秒钟内，收到字符 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> 。
+若收到，此语句正常完成，产品反馈的日志将以字符串形式保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 中，并执行下一条语句。
 若未收到，出发异常，测试结束。</p>
+<p>每次 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 前会自动清空 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> , 每次 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 完成后，收到的字符自动保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 。
+本例中 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 后，如果使用 <code class="docutils literal notranslate"><span class="pre">log.debug(uut.buf)</span></code> 将打印出如下字符:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span>
+<span class="n">Python</span> <span class="mf">3.7.8</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="mf">.7.8</span><span class="p">:</span><span class="mi">4</span><span class="n">b47a5b6ba</span><span class="p">,</span> <span class="n">Jun</span> <span class="mi">28</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">08</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">46</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="mf">.1916</span> <span class="mi">64</span> <span class="n">bit</span> <span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="lib-get-ref">
 <h2>lib.get_ref()<a class="headerlink" href="#lib-get-ref" title="Permalink to this headline">¶</a></h2>
-<p>此接口函数使用方法与lib.get_uut()完全一致。唯一不同点，连接接收到的日志将打印至网页界面的REF窗口。</p>
+<p>此接口函数使用方法与 <code class="docutils literal notranslate"><span class="pre">lib.get_uut()</span></code> 完全一致。唯一不同点，连接接收到的日志将打印至网页界面的 <strong>REF</strong> 窗口。</p>
 </div>
 <div class="section" id="lib-ask-question">
 <h2>lib.ask_question()<a class="headerlink" href="#lib-ask-question" title="Permalink to this headline">¶</a></h2>
@@ -218,7 +226,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">serial</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;请输入序列号SERIAL：&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>用户输入的数据将保存在serial中。</p>
+<p>用户输入的数据将保存在 <code class="docutils literal notranslate"><span class="pre">serial</span></code> 中。</p>
 </div>
 <div class="section" id="lib-set-display1-2-3">
 <h2>lib.set_display1/2/3()<a class="headerlink" href="#lib-set-display1-2-3" title="Permalink to this headline">¶</a></h2>
@@ -230,20 +238,20 @@
 </div>
 <div class="section" id="lib-get-container-name">
 <h2>lib.get_container_name()<a class="headerlink" href="#lib-get-container-name" title="Permalink to this headline">¶</a></h2>
-<p>此接口函数根据启动测试的工位，返回工位的名字。例：在FT:UUT00上开始测试，此函数返回字符串”FT:UUT00”。</p>
+<p>此接口函数根据启动测试的工位，返回工位的名字。例：在 <strong>FT:UUT00</strong> 上开始测试，此函数返回字符串 <code class="docutils literal notranslate"><span class="pre">FT:UUT00</span></code> 。</p>
 </div>
 <div class="section" id="lib-add-test-data">
 <h2>lib.add_test_data()<a class="headerlink" href="#lib-add-test-data" title="Permalink to this headline">¶</a></h2>
-<p>在测试过程中，调用此接口函数，可以做一笔测试记录，此记录默认为”S”（Start）开始记录。
-测试完成后，根据测试结果成功或是失败，自动记录一笔”P”（Pass）或是”F”（Fail）:</p>
+<p>在测试过程中，调用此接口函数，可以做一笔测试记录，此记录默认为 <code class="docutils literal notranslate"><span class="pre">S</span></code> （Start）开始记录。
+测试完成后，根据测试结果成功或是失败，自动记录一笔 <code class="docutils literal notranslate"><span class="pre">P</span></code> （Pass）或是 <code class="docutils literal notranslate"><span class="pre">F</span></code> （Fail）:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">add_test_data</span><span class="p">(</span><span class="n">sernum</span><span class="o">=</span><span class="n">serial</span><span class="p">,</span> <span class="n">uuttype</span><span class="o">=</span><span class="n">uuttype</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="s2">&quot;FT&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>此接口函数最少需要3个参数，sernum为产品条码, uuttype为产品类型, area为测试工站。</p>
+<p>此接口函数最少需要3个参数， <code class="docutils literal notranslate"><span class="pre">sernum</span></code> 为产品条码,  <code class="docutils literal notranslate"><span class="pre">uuttype</span></code> 为产品类型,  <code class="docutils literal notranslate"><span class="pre">area</span></code> 为测试工站。</p>
 </div>
 <div class="section" id="lib-get-mode">
 <h2>lib.get_mode()<a class="headerlink" href="#lib-get-mode" title="Permalink to this headline">¶</a></h2>
-<p>此接口函数根据测试的模式，返回”PRODUCT”或者是”DEVELOP”。</p>
+<p>此接口函数根据测试的模式，返回 <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> 或者是 <code class="docutils literal notranslate"><span class="pre">DEVELOP</span></code> 。</p>
 </div>
 </div>
 

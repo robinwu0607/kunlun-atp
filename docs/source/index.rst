@@ -14,5 +14,5 @@ KunLun测试自动化平台
    _content/介绍
    _content/安装指南
    _content/用户界面
-   _content/代码开发
+   _content/测试开发
    _content/接口函数

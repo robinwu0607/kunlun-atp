@@ -22,6 +22,7 @@ Container工位：工位承载测试任务，多个测试任务可以并行处�
 -----------
 
 一个测试用例包括：
+
 1. 连接产品，设置测试环境
 2. 发送一系列测试命令行
 3. 对产品输出的日志进行解析处理，判断测试通过还是失败
@@ -50,31 +51,32 @@ Container工位：工位承载测试任务，多个测试任务可以并行处�
 
     from libs import lib
 
-实例化"事件日志"，获得实例log，后续可用log.debug(), log.error()记录事件日志::
+实例化"事件日志"，获得实例log，后续可用 ``log.debug()`` ,  ``log.error()`` 记录事件日志::
 
     log = lib.get_event_logger()
 
-定义入口函数，入口函数必须命名为main_sequencer, 用户的程序将从这里开始::
+定义入口函数，入口函数必须命名为 ``main_sequencer`` , 用户的程序将从这里开始::
 
     def main_sequencer():
 
-定义一个连接，协议为DUMMY, 并打开此连接::
+定义一个连接，协议为 ``DUMMY`` , 并打开此连接::
 
     uut = lib.get_uut(protocol="DUMMY")
     uut.open()
 
 本平台支持多种连接协议，详细使用方法参考接口函数。
-1. DUMMY：调用cmd.exe，获取windows的命令行界面。
-2. SSH：根据提供的ip地址，用户名，密码，连接到产品。
-3. TELNET：根据提供的ip地址，端口号，连接到产品。
-4. SERIAL：根据提供的串口地址，波特率，连接到产品。
+
+1. ``DUMMY`` ：调用cmd.exe，获取windows的命令行界面。
+2. ``SSH`` ：根据提供的ip地址，用户名，密码，连接到产品。
+3. ``TELNET`` ：根据提供的ip地址，端口号，连接到产品。
+4. ``SERIAL`` ：根据提供的串口地址，波特率，连接到产品。
 
 发送命令行至连接，连接将转发至产品，以下两条指令为测试环境准备::
 
     uut.send("python\r", expect=">>>", timeout=10)
     uut.send("import sys\r", expect=">>>", timeout=10)
 
-持续发送测试指令至产品，并获取产品的输出uut.buf，打印至事件日志界面::
+持续发送测试指令至产品，并获取产品的输出 ``uut.buf`` ，打印至事件日志界面::
 
     uut.send("sys.platform\r", expect=">>>", timeout=10)
     log.debug(uut.buf)
@@ -84,5 +86,5 @@ Container工位：工位承载测试任务，多个测试任务可以并行处�
         uut.send("exit()\r", expect=">", timeout=10)
         uut.close()
 
-将入口函数main_sequencer()以及测试代码保存于D:\\kunlun-data\\product\\main.py，并在测试主界面上点击"开始"按钮，
-即可以调用入口函数。
+将入口函数 ``main_sequencer()`` 以及测试代码保存于 ``D:\kunlun-data\product\main.py`` ，
+并在测试主界面上点击"开始"按钮，即可以调用入口函数。

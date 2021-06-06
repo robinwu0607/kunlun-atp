@@ -16,5 +16,5 @@ kunlun-data文件夹
 在测试主界面，可以切换生产模式与开发模式，本平台后台将根据选择的模式，
 自动调用 ``product`` 或是 ``develop`` 文件夹下测试代码。
 
-.. image:: ../_static/安装指南/production-mode.png
-.. image:: ../_static/安装指南/develop-mode.png
+.. image:: ../_static/用户界面/product-mode.png
+.. image:: ../_static/用户界面/develop-mode.png
