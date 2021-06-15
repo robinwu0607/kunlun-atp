@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="代码开发" href="%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91.html" /> 
+    <link rel="prev" title="测试开发" href="%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,7 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="%E4%BB%8B%E7%BB%8D.html">介绍</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.html">安装指南</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html">用户界面</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91.html">代码开发</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91.html">测试开发</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">接口函数</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-uut">lib.get_uut()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-ref">lib.get_ref()</a></li>
@@ -197,7 +197,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.open()</span></code> ：打开连接</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.close()</span></code> ：关闭连接</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> : 向连接传递命令行.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> ：保存最近一条 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 语句发送后，产品回馈的日志。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> ：保存最近一条 <em>uut.send()</em> 语句发送后，产品回馈的日志。</p></li>
 </ol>
 <p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 是传递命令行的唯一方式，使用方法如下:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;python</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -205,7 +205,7 @@
 </div>
 <p>对此语句的解释：发送命令行 <code class="docutils literal notranslate"><span class="pre">python</span></code> ，并带回车符 <code class="docutils literal notranslate"><span class="pre">\r</span></code> ，并期望在 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 的10秒钟内，收到字符 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> 。
 若收到，此语句正常完成，产品反馈的日志将以字符串形式保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 中，并执行下一条语句。
-若未收到，出发异常，测试结束。</p>
+若未收到，触发异常，测试结束。</p>
 <p>每次 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 前会自动清空 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> , 每次 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 完成后，收到的字符自动保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 。
 本例中 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 后，如果使用 <code class="docutils literal notranslate"><span class="pre">log.debug(uut.buf)</span></code> 将打印出如下字符:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span>
@@ -261,7 +261,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91.html" class="btn btn-neutral float-left" title="代码开发" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91.html" class="btn btn-neutral float-left" title="测试开发" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

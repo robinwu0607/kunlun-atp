@@ -17,7 +17,7 @@ https://gitee.com/robinwu0607/kunlun-atp/releases
 
 .. image:: ../_static/安装指南/setup1.png
 
-安装目录必须为："C:\Program Files (x86)\KunLun ATP"，不要修改默认设置。
+安装目录必须为: ``C:\Program Files (x86)\KunLun ATP`` ，不要修改默认设置。
 
 .. image:: ../_static/安装指南/setup2.png
 
