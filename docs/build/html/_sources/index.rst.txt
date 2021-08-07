@@ -17,3 +17,4 @@ KunLun测试自动化平台
    _content/测试开发
    _content/接口函数
    _content/常见问题
+   _content/变更记录
