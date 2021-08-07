@@ -86,5 +86,4 @@ Container工位：工位承载测试任务，多个测试任务可以并行处�
         uut.send("exit()\r", expect=">", timeout=10)
         uut.close()
 
-将入口函数 ``main_sequencer()`` 以及测试代码保存于 ``D:\kunlun-data\product\main.py`` ，
-并在测试主界面上点击"开始"按钮，即可以调用入口函数。
+测试用例开发参考 **测试开发** 章节.

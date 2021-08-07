@@ -173,6 +173,34 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">product</span></code> ：生产模式将调用此文件夹下的代码。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">develop</span></code> : 开发模式将调用此文件夹下的代码。</p></li>
 </ol>
+<p>其中, <code class="docutils literal notranslate"><span class="pre">product</span></code> 文件夹中包含两个DEMO子文件夹，它们是：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">project</span></code> : DEMO演示项目，其中的 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 中提供DEMO代码。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hostname</span></code> : 界面配置文件夹，提供接口配置界面上的测试工站/工位/连接的数量（DEMO场景下有约束）。</p></li>
+</ol>
+<p>用户的代码，可以以项目的形式，保存在 <code class="docutils literal notranslate"><span class="pre">product</span></code> 目录下。项目必须包含 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 文件，平台执行任务时，
+将自动调用 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 中的函数 <code class="docutils literal notranslate"><span class="pre">main_sequencer()</span></code> ，作为入口函数。</p>
+<p>平台启动时，平台会自动调用 <code class="docutils literal notranslate"><span class="pre">hostname</span></code> 文件夹下，以 <strong>主机名称</strong> 命名的python文件(如： <code class="docutils literal notranslate"><span class="pre">desktop123.py</span></code> )，
+标准的 <strong>主机名称</strong> 可以如下界面中获取。</p>
+<img alt="../_images/hostname.png" src="../_images/hostname.png" />
+<p>启动平台时，可以在界面上看到如下提示，代表已正常调用 <code class="docutils literal notranslate"><span class="pre">主机名称.py</span></code> 文件。</p>
+<img alt="../_images/hostname2.png" src="../_images/hostname2.png" />
+<p><code class="docutils literal notranslate"><span class="pre">主机名称.py</span></code> 文件的内容示例如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GUI_CONFIG</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;DEMO&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;仅用于演示&quot;</span><span class="p">,</span> <span class="n">uut</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sequencer</span><span class="o">=</span><span class="s2">&quot;project.main&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.0.100&quot;</span><span class="p">))</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">GUI_CONFIG</span></code> 是一个列表，列表的每一个元素代表一个工站Station。示例中的</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> 定义工站名字。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">desc</span></code> 对工站进行描述。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut</span></code> 代表工站下面的工位数量。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 定义此工站绑定的用户的代码。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">params</span></code> 定义此工站的硬件配置参数。</p></li>
+</ol>
+<p>其中，DEMO中的 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 把 <strong>DEMO工站</strong> 与 <code class="docutils literal notranslate"><span class="pre">project.main</span></code> 关联起来了，因此 <strong>DEMO工站</strong> 下执行
+的测试任务，会自动调用 <code class="docutils literal notranslate"><span class="pre">project</span></code> 项目下的 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 文件中的 <code class="docutils literal notranslate"><span class="pre">main_sequencer</span></code> 函数。</p>
 </div>
 <div class="section" id="id2">
 <h2>开发者模式与生产模式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -180,6 +208,7 @@
 自动调用 <code class="docutils literal notranslate"><span class="pre">product</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">develop</span></code> 文件夹下测试代码。</p>
 <img alt="../_images/product-mode.png" src="../_images/product-mode.png" />
 <img alt="../_images/develop-mode.png" src="../_images/develop-mode.png" />
+<p><strong>注意</strong> : DEMO版本只有生产模式。</p>
 </div>
 </div>
 
