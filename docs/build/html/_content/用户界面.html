@@ -88,11 +88,10 @@
 <li class="toctree-l1"><a class="reference internal" href="%E4%BB%8B%E7%BB%8D.html">介绍</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.html">安装指南</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">用户界面</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#station">Station测试工序界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#station">Station测试工站界面</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#container">Container测试工位界面</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">Container工位设置界面</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">测试代码开发调试界面</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">测试数据查询下载界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">测试代码开发调试界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">测试数据查询下载界面</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91.html">测试开发</a></li>
@@ -171,9 +170,9 @@
 <p>本平台使用网页化的用户操作界面，用户可以通过网络远程连接，远程调试与协助。</p>
 <p><strong>注意</strong> ：随着平台版本升级，本文档内容可能存在滞后更新的情况，望理解。</p>
 <div class="section" id="station">
-<h2>Station测试工序界面<a class="headerlink" href="#station" title="Permalink to this headline">¶</a></h2>
-<p>Station测试工序，是用来分不同的测试任务集合。
-例如不同产品采用不同的Station，或是同一产品的不同工序采用不同的Station.</p>
+<h2>Station测试工站界面<a class="headerlink" href="#station" title="Permalink to this headline">¶</a></h2>
+<p>Station测试工站，是用来分不同的测试任务集合。
+例如不同产品采用不同的Station，或是同一产品的不同工站采用不同的Station.</p>
 <img alt="../_images/station.png" src="../_images/station.png" />
 </div>
 <div class="section" id="container">
@@ -181,21 +180,15 @@
 <p>Container测试工位，是执行具体测试任务主体，每个测试工位根据测试代码，
 可以执行相同的测试任务，也可以执行不同的测试任务。</p>
 <p>测试工位面板会以不同颜色代表不同的测试状态。</p>
-<img alt="../_images/container-2.png" src="../_images/container-2.png" />
+<img alt="../_images/container.png" src="../_images/container.png" />
 </div>
 <div class="section" id="id2">
-<h2>Container工位设置界面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>在测试工位设置界面，可以根据测试策略的需要，增肌或是减少测试工位的数量。</p>
-<img alt="../_images/set-container-1.png" src="../_images/set-container-1.png" />
-<img alt="../_images/set-container.png" src="../_images/set-container.png" />
-</div>
-<div class="section" id="id3">
-<h2>测试代码开发调试界面<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>测试代码开发调试界面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>测试代码开发调试界面，将会实时展示测试过程中产生的产品日志，事件日志。</p>
 <img alt="../_images/connection.png" src="../_images/connection.png" />
 </div>
-<div class="section" id="id4">
-<h2>测试数据查询下载界面<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>测试数据查询下载界面<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>数据数据查询下载界面，可以查询历史测试记录，并下载与之关联的测试日志。</p>
 <p>注意：可以使用接口函数 <cite>lib.add_test_data()</cite> 保存测试记录。</p>
 <img alt="../_images/data-search-2.png" src="../_images/data-search-2.png" />

@@ -5,10 +5,10 @@
 
 **注意** ：随着平台版本升级，本文档内容可能存在滞后更新的情况，望理解。
 
-Station测试工序界面
+Station测试工站界面
 -------------------
-Station测试工序，是用来分不同的测试任务集合。
-例如不同产品采用不同的Station，或是同一产品的不同工序采用不同的Station.
+Station测试工站，是用来分不同的测试任务集合。
+例如不同产品采用不同的Station，或是同一产品的不同工站采用不同的Station.
 
 .. image:: ../_static/用户界面/station.png
 
@@ -19,15 +19,7 @@ Container测试工位，是执行具体测试任务主体，每个测试工位�
 
 测试工位面板会以不同颜色代表不同的测试状态。
 
-.. image:: ../_static/用户界面/container-2.png
-
-Container工位设置界面
---------------------
-
-在测试工位设置界面，可以根据测试策略的需要，增肌或是减少测试工位的数量。
-
-.. image:: ../_static/用户界面/set-container-1.png
-.. image:: ../_static/用户界面/set-container.png
+.. image:: ../_static/用户界面/container.png
 
 测试代码开发调试界面
 ------------------

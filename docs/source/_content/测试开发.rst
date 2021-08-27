@@ -24,10 +24,6 @@ kunlun-data文件夹
 
 .. image:: ../_static/用户界面/hostname.png
 
-启动平台时，可以在界面上看到如下提示，代表已正常调用 ``主机名称.py`` 文件。
-
-.. image:: ../_static/用户界面/hostname2.png
-
 ``主机名称.py`` 文件的内容示例如下::
 
     GUI_CONFIG = [
