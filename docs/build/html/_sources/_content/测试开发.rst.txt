@@ -30,6 +30,10 @@ kunlun-data文件夹
         dict(name="DEMO", desc="仅用于演示", uut=1, sequencer="project.main", params=dict(host="192.168.0.100"))
     ]
 
+    def main():
+        return GUI_CONFIG
+
+
 ``GUI_CONFIG`` 是一个列表，列表的每一个元素代表一个工站Station。示例中的
 
 1. ``name`` 定义工站名字。

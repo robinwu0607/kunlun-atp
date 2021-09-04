@@ -28,7 +28,7 @@ lib.get_uut()
 3. ``uut.send()`` : 向连接传递命令行.
 4. ``uut.buf`` ：保存最近一条 *uut.send()* 语句发送后，产品回馈的日志。
 
-``uut.send()`` 是传递命令行的唯一方式，使用方法如下::
+``send()`` 是传递命令行的唯一方式，使用方法如下::
 
     uut.send("python\r", expect=">>>", timeout=10)
 
@@ -43,6 +43,8 @@ lib.get_uut()
     Python 3.7.8 (tags/v3.7.8:4b47a5b6ba, Jun 28 2020, 08:53:46) [MSC v.1916 64 bit (AMD64)] on win32
     Type "help", "copyright", "credits" or "license" for more information.
     >>>
+
+当调用 ``lib.get_uut(protocol="SSH")`` 后，可以在其他函数中使用 ``lib.conn.UUT`` 获取连接实例，以便持续使用 ``uut.send()`` 发送指令。
 
 lib.get_ref()
 ---------------
@@ -65,6 +67,13 @@ lib.set_display1/2/3()
 
     lib.set_display1("序列号:12345678")
 
+lib.set_test_name()
+---------------
+设置当前测试项的名字，若此测试项FAIL，则测试记录自动用此名字作为测试失败项。
+使用示例::
+
+    lib.set_test_name("run cpu test")
+
 lib.get_container_name()
 --------------------------
 此接口函数根据启动测试的工位，返回工位的名字。例：在 **FT:UUT00** 上开始测试，此函数返回字符串 ``FT:UUT00`` 。
@@ -81,3 +90,25 @@ lib.add_test_data()
 lib.get_mode()
 ---------------
 此接口函数根据测试的模式，返回 ``PRODUCT`` 或者是 ``DEVELOP`` 。
+
+lib.get_allocation_params()
+------------------------------
+获取 ``hostname.py`` 中相应工站的 ``params`` 的值，返回一个字典。
+
+lib.get_project_name()
+-----------------------
+获取当前项目(测试方案)的文件夹名字，即文件夹 ``D:\kunlun-data\product`` 目录下的项目文件夹名字。
+
+lib.get_sequencer_definition()
+------------------------------
+获取 ``sequencer`` 实例，用此实例编排测试序列，测试过程中，可以在 **调试界面** 的 ``STEP`` 窗口查看测试序列流程图。
+使用示例::
+
+    seq = lib.get_sequencer_definition()
+    seq.add_step(run_test1, name="RUN TEST1")
+    seq.add_step(run_test1, name="RUN TEST11")
+    seq.add_step(run_test1, name="RUN TEST12", in_parallel=True)
+    seq1 = seq.add_sequencer("SUB SEQUENCER")
+    seq1.add_step(run_test2, name="RUN TEST2")
+
+注意：``add_step()`` 后要跟函数或方法的名字，``免小括号()`` 。

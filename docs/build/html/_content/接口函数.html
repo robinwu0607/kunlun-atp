@@ -94,9 +94,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-ref">lib.get_ref()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-ask-question">lib.ask_question()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-set-display1-2-3">lib.set_display1/2/3()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-set-test-name">lib.set_test_name()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-container-name">lib.get_container_name()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-add-test-data">lib.add_test_data()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-mode">lib.get_mode()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-get-allocation-params">lib.get_allocation_params()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-get-project-name">lib.get_project_name()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-get-sequencer-definition">lib.get_sequencer_definition()</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html">常见问题</a></li>
@@ -202,7 +206,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> : 向连接传递命令行.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> ：保存最近一条 <em>uut.send()</em> 语句发送后，产品回馈的日志。</p></li>
 </ol>
-<p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 是传递命令行的唯一方式，使用方法如下:</p>
+<p><code class="docutils literal notranslate"><span class="pre">send()</span></code> 是传递命令行的唯一方式，使用方法如下:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;python</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -217,6 +221,7 @@
 <span class="o">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
+<p>当调用 <code class="docutils literal notranslate"><span class="pre">lib.get_uut(protocol=&quot;SSH&quot;)</span></code> 后，可以在其他函数中使用 <code class="docutils literal notranslate"><span class="pre">lib.conn.UUT</span></code> 获取连接实例，以便持续使用 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 发送指令。</p>
 </div>
 <div class="section" id="lib-get-ref">
 <h2>lib.get_ref()<a class="headerlink" href="#lib-get-ref" title="Permalink to this headline">¶</a></h2>
@@ -239,6 +244,14 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="lib-set-test-name">
+<h2>lib.set_test_name()<a class="headerlink" href="#lib-set-test-name" title="Permalink to this headline">¶</a></h2>
+<p>设置当前测试项的名字，若此测试项FAIL，则测试记录自动用此名字作为测试失败项。
+使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_test_name</span><span class="p">(</span><span class="s2">&quot;run cpu test&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="lib-get-container-name">
 <h2>lib.get_container_name()<a class="headerlink" href="#lib-get-container-name" title="Permalink to this headline">¶</a></h2>
 <p>此接口函数根据启动测试的工位，返回工位的名字。例：在 <strong>FT:UUT00</strong> 上开始测试，此函数返回字符串 <code class="docutils literal notranslate"><span class="pre">FT:UUT00</span></code> 。</p>
@@ -255,6 +268,28 @@
 <div class="section" id="lib-get-mode">
 <h2>lib.get_mode()<a class="headerlink" href="#lib-get-mode" title="Permalink to this headline">¶</a></h2>
 <p>此接口函数根据测试的模式，返回 <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> 或者是 <code class="docutils literal notranslate"><span class="pre">DEVELOP</span></code> 。</p>
+</div>
+<div class="section" id="lib-get-allocation-params">
+<h2>lib.get_allocation_params()<a class="headerlink" href="#lib-get-allocation-params" title="Permalink to this headline">¶</a></h2>
+<p>获取 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中相应工站的 <code class="docutils literal notranslate"><span class="pre">params</span></code> 的值，返回一个字典。</p>
+</div>
+<div class="section" id="lib-get-project-name">
+<h2>lib.get_project_name()<a class="headerlink" href="#lib-get-project-name" title="Permalink to this headline">¶</a></h2>
+<p>获取当前项目(测试方案)的文件夹名字，即文件夹 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product</span></code> 目录下的项目文件夹名字。</p>
+</div>
+<div class="section" id="lib-get-sequencer-definition">
+<h2>lib.get_sequencer_definition()<a class="headerlink" href="#lib-get-sequencer-definition" title="Permalink to this headline">¶</a></h2>
+<p>获取 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 实例，用此实例编排测试序列，测试过程中，可以在 <strong>调试界面</strong> 的 <code class="docutils literal notranslate"><span class="pre">STEP</span></code> 窗口查看测试序列流程图。
+使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">()</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST11&quot;</span><span class="p">)</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST12&quot;</span><span class="p">,</span> <span class="n">in_parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">seq1</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;SUB SEQUENCER&quot;</span><span class="p">)</span>
+<span class="n">seq1</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注意：<code class="docutils literal notranslate"><span class="pre">add_step()</span></code> 后要跟函数或方法的名字，<code class="docutils literal notranslate"><span class="pre">免小括号()</span></code> 。</p>
 </div>
 </div>
 
