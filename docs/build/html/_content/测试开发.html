@@ -187,7 +187,7 @@
 <img alt="../_images/hostname.png" src="../_images/hostname.png" />
 <p><code class="docutils literal notranslate"><span class="pre">主机名称.py</span></code> 文件的内容示例如下:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GUI_CONFIG</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;DEMO&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;仅用于演示&quot;</span><span class="p">,</span> <span class="n">uut</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sequencer</span><span class="o">=</span><span class="s2">&quot;project.main&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.0.100&quot;</span><span class="p">))</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;FT&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;仅用于演示&quot;</span><span class="p">,</span> <span class="n">uut</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sequencer</span><span class="o">=</span><span class="s2">&quot;project.main&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">))</span>
 <span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
@@ -200,9 +200,9 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">desc</span></code> 对工站进行描述。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut</span></code> 代表工站下面的工位数量。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 定义此工站绑定的用户的代码。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">params</span></code> 定义此工站的硬件配置参数。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">params</span></code> 定义此工站的硬件参数，用户代码中使用 <code class="docutils literal notranslate"><span class="pre">lib.get_params()</span></code> 调用。</p></li>
 </ol>
-<p>其中，DEMO中的 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 把 <strong>DEMO工站</strong> 与 <code class="docutils literal notranslate"><span class="pre">project.main</span></code> 关联起来了，因此 <strong>DEMO工站</strong> 下执行
+<p>其中，以上示例中的 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 把 <strong>FT工站</strong> 与 <code class="docutils literal notranslate"><span class="pre">project.main</span></code> 关联起来了，因此 <strong>FT工站</strong> 下执行
 的测试任务，会自动调用 <code class="docutils literal notranslate"><span class="pre">project</span></code> 项目下的 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 文件中的 <code class="docutils literal notranslate"><span class="pre">main_sequencer</span></code> 函数。</p>
 </div>
 <div class="section" id="id2">
@@ -211,7 +211,6 @@
 自动调用 <code class="docutils literal notranslate"><span class="pre">product</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">develop</span></code> 文件夹下测试代码。</p>
 <img alt="../_images/product-mode.png" src="../_images/product-mode.png" />
 <img alt="../_images/develop-mode.png" src="../_images/develop-mode.png" />
-<p><strong>注意</strong> : DEMO版本只有生产模式。</p>
 </div>
 </div>
 

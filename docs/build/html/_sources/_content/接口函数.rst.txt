@@ -91,7 +91,7 @@ lib.get_mode()
 ---------------
 此接口函数根据测试的模式，返回 ``PRODUCT`` 或者是 ``DEVELOP`` 。
 
-lib.get_allocation_params()
+lib.get_params()
 ------------------------------
 获取 ``hostname.py`` 中相应工站的 ``params`` 的值，返回一个字典。
 
