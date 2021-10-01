@@ -101,6 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-params">lib.get_params()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-project-name">lib.get_project_name()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-sequencer-definition">lib.get_sequencer_definition()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-get-xlsx-params">lib.get_xlsx_params()</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html">常见问题</a></li>
@@ -230,7 +231,7 @@
 <div class="section" id="lib-ask-question">
 <h2>lib.ask_question()<a class="headerlink" href="#lib-ask-question" title="Permalink to this headline">¶</a></h2>
 <p>此接口函数提供一个用户交互方法，调用此函数后，网页界面将弹出对话框，用户可以在对话框输入字符串，传递给测试代码使用.</p>
-<p>举例：弹出对话框，要求输入序列号:</p>
+<p>使用示例：弹出对话框，要求输入序列号:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">serial</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;请输入序列号SERIAL：&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -238,7 +239,7 @@
 </div>
 <div class="section" id="lib-set-display1-2-3">
 <h2>lib.set_display1/2/3()<a class="headerlink" href="#lib-set-display1-2-3" title="Permalink to this headline">¶</a></h2>
-<p>此接口函数可以定制化测试工位上的显示，display1/2/3分别对应工位面板的上/中/下显示。
+<p>设置及测试工位上的显示，display1/2/3分别对应工位面板的上/中/下显示。
 使用示例:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_display1</span><span class="p">(</span><span class="s2">&quot;序列号:12345678&quot;</span><span class="p">)</span>
 </pre></div>
@@ -246,7 +247,7 @@
 </div>
 <div class="section" id="lib-set-test-name">
 <h2>lib.set_test_name()<a class="headerlink" href="#lib-set-test-name" title="Permalink to this headline">¶</a></h2>
-<p>设置当前测试项的名字，若此测试项FAIL，则测试记录自动用此名字作为测试失败项。
+<p>设置当前测试用例, 若此测试项FAIL, 则测试记录自动用此名字作为测试失败项, PASS则不记录。
 使用示例:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_test_name</span><span class="p">(</span><span class="s2">&quot;run cpu test&quot;</span><span class="p">)</span>
 </pre></div>
@@ -254,11 +255,11 @@
 </div>
 <div class="section" id="lib-get-container-name">
 <h2>lib.get_container_name()<a class="headerlink" href="#lib-get-container-name" title="Permalink to this headline">¶</a></h2>
-<p>此接口函数根据启动测试的工位，返回工位的名字。例：在 <strong>FT:UUT00</strong> 上开始测试，此函数返回字符串 <code class="docutils literal notranslate"><span class="pre">FT:UUT00</span></code> 。</p>
+<p>返回当前的测试工位名字。例：在 <code class="docutils literal notranslate"><span class="pre">FT:UUT00</span></code> 上点击开始测试，返回值为字符串 <code class="docutils literal notranslate"><span class="pre">FT:UUT00</span></code> 。</p>
 </div>
 <div class="section" id="lib-add-test-data">
 <h2>lib.add_test_data()<a class="headerlink" href="#lib-add-test-data" title="Permalink to this headline">¶</a></h2>
-<p>在测试过程中，调用此接口函数，可以做一笔测试记录，此记录默认为 <code class="docutils literal notranslate"><span class="pre">S</span></code> （Start）开始记录。
+<p>在测试过程中，调用此接口函数，登记一次测试记录。
 测试完成后，根据测试结果成功或是失败，自动记录一笔 <code class="docutils literal notranslate"><span class="pre">P</span></code> （Pass）或是 <code class="docutils literal notranslate"><span class="pre">F</span></code> （Fail）:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">add_test_data</span><span class="p">(</span><span class="n">sernum</span><span class="o">=</span><span class="n">serial</span><span class="p">,</span> <span class="n">uuttype</span><span class="o">=</span><span class="n">uuttype</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="s2">&quot;FT&quot;</span><span class="p">)</span>
 </pre></div>
@@ -267,29 +268,63 @@
 </div>
 <div class="section" id="lib-get-mode">
 <h2>lib.get_mode()<a class="headerlink" href="#lib-get-mode" title="Permalink to this headline">¶</a></h2>
-<p>此接口函数根据测试的模式，返回 <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> 或者是 <code class="docutils literal notranslate"><span class="pre">DEVELOP</span></code> 。</p>
+<p>返回当前测试的模式，值为 <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">DEVELOP</span></code> 。</p>
 </div>
 <div class="section" id="lib-get-params">
 <h2>lib.get_params()<a class="headerlink" href="#lib-get-params" title="Permalink to this headline">¶</a></h2>
-<p>获取 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中相应工站的 <code class="docutils literal notranslate"><span class="pre">params</span></code> 的值，返回一个字典。</p>
+<p>返回 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中相应工站的 <code class="docutils literal notranslate"><span class="pre">params</span></code> 的值，是一个字典。
+例: 如设置 <code class="docutils literal notranslate"><span class="pre">params=dict(host=&quot;192.168.1.1&quot;,</span> <span class="pre">port=2003)</span></code>，则返回值为 <code class="docutils literal notranslate"><span class="pre">{&quot;host&quot;:</span> <span class="pre">&quot;192.168.1.1&quot;,</span> <span class="pre">&quot;port&quot;:</span> <span class="pre">2003}</span></code> 。</p>
 </div>
 <div class="section" id="lib-get-project-name">
 <h2>lib.get_project_name()<a class="headerlink" href="#lib-get-project-name" title="Permalink to this headline">¶</a></h2>
-<p>获取当前项目(测试方案)的文件夹名字，即文件夹 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product</span></code> 目录下的项目文件夹名字。</p>
+<p>返回 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中相应工站的 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 的第一个值(以 <strong>.</strong> 点号分开)，是一个字符串。
+例: 如设置 <code class="docutils literal notranslate"><span class="pre">sequencer=&quot;demo.main&quot;</span></code>, 则返回值为 <code class="docutils literal notranslate"><span class="pre">demo</span></code> 。</p>
 </div>
 <div class="section" id="lib-get-sequencer-definition">
 <h2>lib.get_sequencer_definition()<a class="headerlink" href="#lib-get-sequencer-definition" title="Permalink to this headline">¶</a></h2>
-<p>获取 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 实例，用此实例编排测试序列，测试过程中，可以在 <strong>调试界面</strong> 的 <code class="docutils literal notranslate"><span class="pre">STEP</span></code> 窗口查看测试序列流程图。
+<p>返回 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 实例，用此实例编排测试序列，测试过程中，可以在 <strong>调试界面</strong> 的 <code class="docutils literal notranslate"><span class="pre">STEP</span></code> 窗口查看测试序列流程图。
 使用示例:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">()</span>
-<span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
-<span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST11&quot;</span><span class="p">)</span>
-<span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST12&quot;</span><span class="p">,</span> <span class="n">in_parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">seq1</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;SUB SEQUENCER&quot;</span><span class="p">)</span>
-<span class="n">seq1</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">()</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST11&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST12&quot;</span><span class="p">,</span> <span class="n">in_parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">seq1</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;SUB SEQUENCER&quot;</span><span class="p">)</span>
+    <span class="n">seq1</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seq</span>
 </pre></div>
 </div>
 <p>注意：<code class="docutils literal notranslate"><span class="pre">add_step()</span></code> 后要跟函数或方法的名字，<code class="docutils literal notranslate"><span class="pre">免小括号()</span></code> 。</p>
+</div>
+<div class="section" id="lib-get-xlsx-params">
+<h2>lib.get_xlsx_params()<a class="headerlink" href="#lib-get-xlsx-params" title="Permalink to this headline">¶</a></h2>
+<p>返回当前项目下的XLSX(Excel)文件中的值, XLSX的命名必须是 <code class="docutils literal notranslate"><span class="pre">params.xlsx</span></code> ,
+如当前项目为 <code class="docutils literal notranslate"><span class="pre">demo</span></code>, 则XLSX的路径为 <code class="docutils literal notranslate"><span class="pre">demo/params.xlsx</span></code> 。</p>
+<p>其内容格式如下:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 71%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>param1</p></td>
+<td><p>1234</p></td>
+</tr>
+<tr class="row-odd"><td><p>param2</p></td>
+<td><p>4567</p></td>
+</tr>
+<tr class="row-even"><td><p>param3</p></td>
+<td><p>8765</p></td>
+</tr>
+</tbody>
+</table>
+<p>使用示例: 假设XLSX当前的Sheet名为 <code class="docutils literal notranslate"><span class="pre">Sheet1</span></code> , 若要获取 <code class="docutils literal notranslate"><span class="pre">param2</span></code> 的值,
+则调用 <code class="docutils literal notranslate"><span class="pre">lib.get_xlsx_params(&quot;Sheet1&quot;,</span> <span class="pre">&quot;param2&quot;)</span></code>， 即返回字符串 <code class="docutils literal notranslate"><span class="pre">4567</span></code> 。</p>
 </div>
 </div>
 

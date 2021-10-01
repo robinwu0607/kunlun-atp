@@ -54,7 +54,7 @@ lib.ask_question()
 ------------------
 此接口函数提供一个用户交互方法，调用此函数后，网页界面将弹出对话框，用户可以在对话框输入字符串，传递给测试代码使用.
 
-举例：弹出对话框，要求输入序列号::
+使用示例：弹出对话框，要求输入序列号::
 
     serial = lib.ask_question("请输入序列号SERIAL：", timeout=60 * 3)
 
@@ -62,25 +62,25 @@ lib.ask_question()
 
 lib.set_display1/2/3()
 -----------------------
-此接口函数可以定制化测试工位上的显示，display1/2/3分别对应工位面板的上/中/下显示。
+设置及测试工位上的显示，display1/2/3分别对应工位面板的上/中/下显示。
 使用示例::
 
     lib.set_display1("序列号:12345678")
 
 lib.set_test_name()
 ---------------
-设置当前测试项的名字，若此测试项FAIL，则测试记录自动用此名字作为测试失败项。
+设置当前测试用例, 若此测试项FAIL, 则测试记录自动用此名字作为测试失败项, PASS则不记录。
 使用示例::
 
     lib.set_test_name("run cpu test")
 
 lib.get_container_name()
 --------------------------
-此接口函数根据启动测试的工位，返回工位的名字。例：在 **FT:UUT00** 上开始测试，此函数返回字符串 ``FT:UUT00`` 。
+返回当前的测试工位名字。例：在 ``FT:UUT00`` 上点击开始测试，返回值为字符串 ``FT:UUT00`` 。
 
 lib.add_test_data()
 ----------------------
-在测试过程中，调用此接口函数，可以做一笔测试记录，此记录默认为 ``S`` （Start）开始记录。
+在测试过程中，调用此接口函数，登记一次测试记录。
 测试完成后，根据测试结果成功或是失败，自动记录一笔 ``P`` （Pass）或是 ``F`` （Fail）::
 
     lib.add_test_data(sernum=serial, uuttype=uuttype, area="FT")
@@ -89,26 +89,50 @@ lib.add_test_data()
 
 lib.get_mode()
 ---------------
-此接口函数根据测试的模式，返回 ``PRODUCT`` 或者是 ``DEVELOP`` 。
+返回当前测试的模式，值为 ``PRODUCT`` 或是 ``DEVELOP`` 。
 
 lib.get_params()
 ------------------------------
-获取 ``hostname.py`` 中相应工站的 ``params`` 的值，返回一个字典。
+返回 ``hostname.py`` 中相应工站的 ``params`` 的值，是一个字典。
+例: 如设置 ``params=dict(host="192.168.1.1", port=2003)``，则返回值为 ``{"host": "192.168.1.1", "port": 2003}`` 。
 
 lib.get_project_name()
 -----------------------
-获取当前项目(测试方案)的文件夹名字，即文件夹 ``D:\kunlun-data\product`` 目录下的项目文件夹名字。
+返回 ``hostname.py`` 中相应工站的 ``sequencer`` 的第一个值(以 **.** 点号分开)，是一个字符串。
+例: 如设置 ``sequencer="demo.main"``, 则返回值为 ``demo`` 。
 
 lib.get_sequencer_definition()
 ------------------------------
-获取 ``sequencer`` 实例，用此实例编排测试序列，测试过程中，可以在 **调试界面** 的 ``STEP`` 窗口查看测试序列流程图。
+返回 ``sequencer`` 实例，用此实例编排测试序列，测试过程中，可以在 **调试界面** 的 ``STEP`` 窗口查看测试序列流程图。
 使用示例::
 
-    seq = lib.get_sequencer_definition()
-    seq.add_step(run_test1, name="RUN TEST1")
-    seq.add_step(run_test1, name="RUN TEST11")
-    seq.add_step(run_test1, name="RUN TEST12", in_parallel=True)
-    seq1 = seq.add_sequencer("SUB SEQUENCER")
-    seq1.add_step(run_test2, name="RUN TEST2")
+    def main_sequencer():
+        seq = lib.get_sequencer_definition()
+        seq.add_step(run_test1, name="RUN TEST1")
+        seq.add_step(run_test1, name="RUN TEST11")
+        seq.add_step(run_test1, name="RUN TEST12", in_parallel=True)
+        seq1 = seq.add_sequencer("SUB SEQUENCER")
+        seq1.add_step(run_test2, name="RUN TEST2")
+        return seq
 
 注意：``add_step()`` 后要跟函数或方法的名字，``免小括号()`` 。
+
+lib.get_xlsx_params()
+-----------------------
+返回当前项目下的XLSX(Excel)文件中的值, XLSX的命名必须是 ``params.xlsx`` ,
+如当前项目为 ``demo``, 则XLSX的路径为 ``demo/params.xlsx`` 。
+
+其内容格式如下:
+
++---------+----------------------+
+| name    | value                |
++=========+======================+
+| param1  | 1234                 |
++---------+----------------------+
+| param2  | 4567                 |
++---------+----------------------+
+| param3  | 8765                 |
++---------+----------------------+
+
+使用示例: 假设XLSX当前的Sheet名为 ``Sheet1`` , 若要获取 ``param2`` 的值,
+则调用 ``lib.get_xlsx_params("Sheet1", "param2")``， 即返回字符串 ``4567`` 。
