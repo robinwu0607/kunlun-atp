@@ -15,17 +15,27 @@ Station测试工站，是用来分不同的测试任务集合。
 Container测试工位界面
 --------------------
 Container测试工位，是执行具体测试任务主体，每个测试工位根据测试代码，
-可以执行相同的测试任务，也可以执行不同的测试任务。
+可以同时执行相同的测试任务，也可以同时执行不同的测试任务。
 
 测试工位面板会以不同颜色代表不同的测试状态。
 
 .. image:: ../_static/用户界面/container.png
 
-测试代码开发调试界面
+Connection开发调试界面
 ------------------
-测试代码开发调试界面，将会实时展示测试过程中产生的产品日志，事件日志。
+Connection开发调试，实时展示测试过程中产生的产品日志，事件日志。
 
 .. image:: ../_static/用户界面/connection.png
+
+Ask Question交互界面
+--------------------
+调用接口函数 ``lib.ask_question()`` 与 ``lib.ask_questions()`` 可以在Container界面与Connection界面弹出交互窗口, 采集用户输入。
+
+* ``lib.ask_question()`` 提出一个问题，一般仅采集一条数据。
+.. image:: ../_static/用户界面/ask-question.png
+
+* ``lib.ask_questions()`` 提出多个问题，可以同时采集多条数据。
+.. image:: ../_static/用户界面/ask-questions.png
 
 测试数据查询界面
 --------------------
@@ -33,7 +43,10 @@ Container测试工位，是执行具体测试任务主体，每个测试工位�
 
 注意：可以使用接口函数 `lib.add_test_data()` 保存测试记录。
 
-.. image:: ../_static/用户界面/data-search-2.png
+.. image:: ../_static/用户界面/data-search.png
+
+点击后可以下载测试日志。
+
 .. image:: ../_static/用户界面/data-search-log.png
 
 测试参数配置界面

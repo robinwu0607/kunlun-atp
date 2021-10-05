@@ -90,9 +90,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">用户界面</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#station">Station测试工站界面</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#container">Container测试工位界面</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">测试代码开发调试界面</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">测试数据查询界面</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">测试参数配置界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connection">Connection开发调试界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ask-question">Ask Question交互界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">测试数据查询界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">测试参数配置界面</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91.html">测试开发</a></li>
@@ -179,24 +180,37 @@
 <div class="section" id="container">
 <h2>Container测试工位界面<a class="headerlink" href="#container" title="Permalink to this headline">¶</a></h2>
 <p>Container测试工位，是执行具体测试任务主体，每个测试工位根据测试代码，
-可以执行相同的测试任务，也可以执行不同的测试任务。</p>
+可以同时执行相同的测试任务，也可以同时执行不同的测试任务。</p>
 <p>测试工位面板会以不同颜色代表不同的测试状态。</p>
 <img alt="../_images/container.png" src="../_images/container.png" />
 </div>
-<div class="section" id="id2">
-<h2>测试代码开发调试界面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>测试代码开发调试界面，将会实时展示测试过程中产生的产品日志，事件日志。</p>
+<div class="section" id="connection">
+<h2>Connection开发调试界面<a class="headerlink" href="#connection" title="Permalink to this headline">¶</a></h2>
+<p>Connection开发调试，实时展示测试过程中产生的产品日志，事件日志。</p>
 <img alt="../_images/connection.png" src="../_images/connection.png" />
 </div>
-<div class="section" id="id3">
-<h2>测试数据查询界面<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ask-question">
+<h2>Ask Question交互界面<a class="headerlink" href="#ask-question" title="Permalink to this headline">¶</a></h2>
+<p>调用接口函数 <code class="docutils literal notranslate"><span class="pre">lib.ask_question()</span></code> 与 <code class="docutils literal notranslate"><span class="pre">lib.ask_questions()</span></code> 可以在Container界面与Connection界面弹出交互窗口, 采集用户输入。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lib.ask_question()</span></code> 提出一个问题，一般仅采集一条数据。</p></li>
+</ul>
+<img alt="../_images/ask-question.png" src="../_images/ask-question.png" />
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lib.ask_questions()</span></code> 提出多个问题，可以同时采集多条数据。</p></li>
+</ul>
+<img alt="../_images/ask-questions.png" src="../_images/ask-questions.png" />
+</div>
+<div class="section" id="id2">
+<h2>测试数据查询界面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>此界面可以查询历史测试记录，并下载与之关联的测试日志。</p>
 <p>注意：可以使用接口函数 <cite>lib.add_test_data()</cite> 保存测试记录。</p>
-<img alt="../_images/data-search-2.png" src="../_images/data-search-2.png" />
+<img alt="../_images/data-search.png" src="../_images/data-search.png" />
+<p>点击后可以下载测试日志。</p>
 <img alt="../_images/data-search-log.png" src="../_images/data-search-log.png" />
 </div>
-<div class="section" id="id4">
-<h2>测试参数配置界面<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>测试参数配置界面<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>此界面可以配置项目下的XLSX文件 <code class="docutils literal notranslate"><span class="pre">params.xlsx</span></code>，使用网页对XLSX文件进行增删改查, 支撑远程调试。</p>
 <img alt="../_images/params-setting.png" src="../_images/params-setting.png" />
 </div>

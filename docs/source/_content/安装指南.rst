@@ -32,7 +32,7 @@ https://gitee.com/robinwu0607/kunlun-atp/releases
 .. image:: ../_static/安装指南/setup6.png
 
 平台应用启动/关闭
--------------
+------------------
 
 安装完成后，本平台将在桌面自动创建快捷方式，以便快速启动本平台管理面板。
 

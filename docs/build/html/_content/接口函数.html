@@ -93,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-uut">lib.get_uut()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-ref">lib.get_ref()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-ask-question">lib.ask_question()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-ask-questions">lib.ask_questions()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-set-display1-2-3">lib.set_display1/2/3()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-set-test-name">lib.set_test_name()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-container-name">lib.get_container_name()</a></li>
@@ -230,12 +231,21 @@
 </div>
 <div class="section" id="lib-ask-question">
 <h2>lib.ask_question()<a class="headerlink" href="#lib-ask-question" title="Permalink to this headline">¶</a></h2>
-<p>此接口函数提供一个用户交互方法，调用此函数后，网页界面将弹出对话框，用户可以在对话框输入字符串，传递给测试代码使用.</p>
-<p>使用示例：弹出对话框，要求输入序列号:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">serial</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;请输入序列号SERIAL：&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+<p>此接口函数提供一个用户交互方法，调用此函数后，网页界面将弹出对话框，用户可以在对话框应答一个问题，并返回答案(字符串).</p>
+<p>使用示例：弹出对话框，要求应答一个问题:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;请输入序列号SERIAL：&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>用户输入的数据将保存在 <code class="docutils literal notranslate"><span class="pre">serial</span></code> 中。</p>
+<p>答案将保存在 <code class="docutils literal notranslate"><span class="pre">ans</span></code> 中。</p>
+</div>
+<div class="section" id="lib-ask-questions">
+<h2>lib.ask_questions()<a class="headerlink" href="#lib-ask-questions" title="Permalink to this headline">¶</a></h2>
+<p>此接口函数提供一个用户交互方法，调用此函数后，网页界面将弹出对话框，用户可以在对话框同时应答多个问题，并返回答案(列表).</p>
+<p>使用示例：弹出对话框，要求应答多个问题:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_questions</span><span class="p">([</span><span class="s2">&quot;请输入序列号SERIAL：&quot;</span><span class="p">,</span> <span class="s2">&quot;请输入UUTTYPE：&quot;</span><span class="p">,</span> <span class="s2">&quot;请输入员工工号：&quot;</span><span class="p">],</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>答案将保存在 <code class="docutils literal notranslate"><span class="pre">ans</span></code> 中。</p>
 </div>
 <div class="section" id="lib-set-display1-2-3">
 <h2>lib.set_display1/2/3()<a class="headerlink" href="#lib-set-display1-2-3" title="Permalink to this headline">¶</a></h2>

@@ -187,7 +187,14 @@
 <img alt="../_images/hostname.png" src="../_images/hostname.png" />
 <p><code class="docutils literal notranslate"><span class="pre">主机名称.py</span></code> 文件的内容示例如下:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GUI_CONFIG</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;FT&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;仅用于演示&quot;</span><span class="p">,</span> <span class="n">uut</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">sequencer</span><span class="o">=</span><span class="s2">&quot;project.main&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">))</span>
+    <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;FT&quot;</span><span class="p">,</span>
+        <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;仅用于演示&quot;</span><span class="p">,</span>
+        <span class="n">uut</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+        <span class="n">sequencer</span><span class="o">=</span><span class="s2">&quot;project.main&quot;</span><span class="p">,</span>
+        <span class="n">recycle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
 <span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
@@ -200,6 +207,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">desc</span></code> 对工站进行描述。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut</span></code> 代表工站下面的工位数量。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 定义此工站绑定的用户的代码。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">recycle</span></code> 如果为 <code class="docutils literal notranslate"><span class="pre">True</span></code>, 测试 <code class="docutils literal notranslate"><span class="pre">pass</span></code> 后将自动重新运行程序, 免重复点击 <code class="docutils literal notranslate"><span class="pre">start</span></code> 按钮。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">params</span></code> 定义此工站的硬件参数，用户代码中使用 <code class="docutils literal notranslate"><span class="pre">lib.get_params()</span></code> 调用。</p></li>
 </ol>
 <p>其中，以上示例中的 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 把 <strong>FT工站</strong> 与 <code class="docutils literal notranslate"><span class="pre">project.main</span></code> 关联起来了，因此 <strong>FT工站</strong> 下执行

@@ -27,7 +27,14 @@ kunlun-data文件夹
 ``主机名称.py`` 文件的内容示例如下::
 
     GUI_CONFIG = [
-        dict(name="FT", desc="仅用于演示", uut=8, sequencer="project.main", params=dict(ip="192.168.0.1"))
+        dict(
+            name="FT",
+            desc="仅用于演示",
+            uut=8,
+            sequencer="project.main",
+            recycle=True,
+            params=dict(ip="192.168.0.1")
+        )
     ]
 
     def main():
@@ -40,7 +47,8 @@ kunlun-data文件夹
 2. ``desc`` 对工站进行描述。
 3. ``uut`` 代表工站下面的工位数量。
 4. ``sequencer`` 定义此工站绑定的用户的代码。
-5. ``params`` 定义此工站的硬件参数，用户代码中使用 ``lib.get_params()`` 调用。
+5. ``recycle`` 如果为 ``True``, 测试 ``pass`` 后将自动重新运行程序, 免重复点击 ``start`` 按钮。
+6. ``params`` 定义此工站的硬件参数，用户代码中使用 ``lib.get_params()`` 调用。
 
 其中，以上示例中的 ``sequencer`` 把 **FT工站** 与 ``project.main`` 关联起来了，因此 **FT工站** 下执行
 的测试任务，会自动调用 ``project`` 项目下的 ``main.py`` 文件中的 ``main_sequencer`` 函数。
