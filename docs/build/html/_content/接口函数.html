@@ -102,6 +102,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-params">lib.get_params()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-project-name">lib.get_project_name()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-sequencer-definition">lib.get_sequencer_definition()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-set-sequencer-data">lib.set_sequencer_data()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-get-sequencer-data">lib.get_sequencer_data()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-xlsx-params">lib.get_xlsx_params()</a></li>
 </ul>
 </li>
@@ -293,18 +295,128 @@
 <div class="section" id="lib-get-sequencer-definition">
 <h2>lib.get_sequencer_definition()<a class="headerlink" href="#lib-get-sequencer-definition" title="Permalink to this headline">¶</a></h2>
 <p>返回 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 实例，用此实例编排测试序列，测试过程中，可以在 <strong>调试界面</strong> 的 <code class="docutils literal notranslate"><span class="pre">STEP</span></code> 窗口查看测试序列流程图。
-使用示例:</p>
+假设测试代码中定义有如下函数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_test</span><span class="p">():</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;welcome to main sequencer&quot;</span><span class="p">)</span>
+    <span class="n">container_name</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_container_name</span><span class="p">()</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
+    <span class="k">return</span>
+
+<span class="k">def</span> <span class="nf">run_test1</span><span class="p">():</span>
+    <span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_uut</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>  <span class="c1"># open the connection</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test1: dir&quot;</span><span class="p">)</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;dir</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span>
+
+<span class="k">def</span> <span class="nf">run_test2</span><span class="p">():</span>
+    <span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">UUT</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test2: cd&quot;</span><span class="p">)</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;cd</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">return</span>
+
+<span class="k">def</span> <span class="nf">run_test3</span><span class="p">():</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">add_test_data</span><span class="p">(</span><span class="n">sernum</span><span class="o">=</span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span> <span class="n">uuttype</span><span class="o">=</span><span class="s2">&quot;DEMO&quot;</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="s2">&quot;DEMO&quot;</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test3: finalize set True.&quot;</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 的基本使用示例:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
-    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">()</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span><span class="s2">&quot;SEQ&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST&quot;</span><span class="p">)</span>
     <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
-    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST11&quot;</span><span class="p">)</span>
-    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST12&quot;</span><span class="p">,</span> <span class="n">in_parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">seq1</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;SUB SEQUENCER&quot;</span><span class="p">)</span>
-    <span class="n">seq1</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">seq</span>
 </pre></div>
 </div>
 <p>注意：<code class="docutils literal notranslate"><span class="pre">add_step()</span></code> 后要跟函数或方法的名字，<code class="docutils literal notranslate"><span class="pre">免小括号()</span></code> 。</p>
+<p><code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 形式的代码编排，为测试策略的实施提供了便利，以下是当前支持的策略，更多策略持续增加中。</p>
+<ol class="arabic simple">
+<li><p>通过设置 <code class="docutils literal notranslate"><span class="pre">in_parallel=True</span></code> 可以实施 <strong>平行测试</strong> 策略。</p></li>
+</ol>
+<p>使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">()</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">,</span> <span class="n">in_parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">seq1</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;SUB SEQUENCER&quot;</span><span class="p">)</span>
+    <span class="n">seq1</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">)</span>
+    <span class="n">seq1</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">)</span>
+    <span class="n">seq1</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST4&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seq</span>
+</pre></div>
+</div>
+<p>2. 通过设置 <code class="docutils literal notranslate"><span class="pre">continue_on_error=True</span></code> 可以实施 <strong>测试失败不中断</strong> 策略，最终测试仍以失败结束。
+若有多个step被施加此策略，最终测试失败项自动选择第一个失败的step。</p>
+<p>使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># re-define run_test2() function.</span>
+<span class="k">def</span> <span class="nf">run_test2</span><span class="p">():</span>
+    <span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">UUT</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test2: cd&quot;</span><span class="p">)</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;cd</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;run test2 failed&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span><span class="s2">&quot;SEQ&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">,</span> <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seq</span>
+</pre></div>
+</div>
+<p>3. 通过设置 <code class="docutils literal notranslate"><span class="pre">finalize=True</span></code> 可以实施 <strong>测试失败后清理</strong> 策略。若 <code class="docutils literal notranslate"><span class="pre">run_test2</span></code> 测试失败，会自动运行最后一个step，即 <code class="docutils literal notranslate"><span class="pre">run_test3</span></code>。
+若最后一个step测试失败，则不会再次运行最后一个step。</p>
+<p>使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span><span class="s2">&quot;SEQ&quot;</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seq</span>
+</pre></div>
+</div>
+<p>3. 通过设置 <code class="docutils literal notranslate"><span class="pre">loop_on_error=3</span></code> 可以实施 <strong>测试失败后重测</strong> 策略。若 <code class="docutils literal notranslate"><span class="pre">run_test2</span></code> 测试失败，会自动重测3次，其中任何一次pass，
+此step为pass。</p>
+<p>使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span><span class="s2">&quot;SEQ&quot;</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">,</span> <span class="n">loop_on_error</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seq</span>
+</pre></div>
+</div>
+<p>注意：一个step可以实施单一策略，也可以实施组合策略。 优先级 <code class="docutils literal notranslate"><span class="pre">loop_on_error</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">continue_on_error</span></code> 。
+<code class="docutils literal notranslate"><span class="pre">in_parallel</span></code> 和 <code class="docutils literal notranslate"><span class="pre">finalize</span></code> 为独立策略，与其他策略无冲突。</p>
+</div>
+<div class="section" id="lib-set-sequencer-data">
+<h2>lib.set_sequencer_data()<a class="headerlink" href="#lib-set-sequencer-data" title="Permalink to this headline">¶</a></h2>
+<p>为当前的step增加sequencer数据，sequencer数据可以通过 <code class="docutils literal notranslate"><span class="pre">lib.get_sequencer_data()</span></code> 获得。</p>
+<p>例如在函数 <code class="docutils literal notranslate"><span class="pre">run_test2()</span></code> 中调用此接口函数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_sequencer_data</span><span class="p">(</span><span class="n">param1</span><span class="o">=</span><span class="mi">1234</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="mi">5434</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">2344</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lib-get-sequencer-data">
+<h2>lib.get_sequencer_data()<a class="headerlink" href="#lib-get-sequencer-data" title="Permalink to this headline">¶</a></h2>
+<p>获取sequencer数据，例如在函数 <code class="docutils literal notranslate"><span class="pre">run_test3()</span></code> 中调用此接口函数:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_data</span><span class="p">()</span>
+
+<span class="c1"># could get below sequencer data.</span>
+<span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;RUN_TEST&#39;</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="s1">&#39;PASS&#39;</span><span class="p">,</span> <span class="s1">&#39;time_cost&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;RUN_TEST1&#39;</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="s1">&#39;PASS&#39;</span><span class="p">,</span> <span class="s1">&#39;time_cost&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;RUN_TEST2&#39;</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="s1">&#39;FAIL&#39;</span><span class="p">,</span> <span class="s1">&#39;time_cost&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;param1&#39;</span><span class="p">:</span> <span class="mi">1234</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="mi">5434</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;2344&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;RUN_TEST3&#39;</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="s1">&#39;PASS&#39;</span><span class="p">,</span> <span class="s1">&#39;time_cost&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="lib-get-xlsx-params">
 <h2>lib.get_xlsx_params()<a class="headerlink" href="#lib-get-xlsx-params" title="Permalink to this headline">¶</a></h2>

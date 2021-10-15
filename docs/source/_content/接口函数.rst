@@ -114,18 +114,131 @@ lib.get_project_name()
 lib.get_sequencer_definition()
 ------------------------------
 返回 ``sequencer`` 实例，用此实例编排测试序列，测试过程中，可以在 **调试界面** 的 ``STEP`` 窗口查看测试序列流程图。
+假设测试代码中定义有如下函数::
+
+    def run_test():
+        log.debug("welcome to main sequencer")
+        container_name = lib.get_container_name()
+        log.debug(container_name)
+        return
+
+    def run_test1():
+        uut = lib.get_uut(protocol="DUMMY")
+        uut.open()  # open the connection
+        log.debug("run test1: dir")
+        uut.send("dir\r", expect=">", timeout=10)
+        time.sleep(1)
+        return
+
+    def run_test2():
+        uut = lib.conn.UUT
+        log.debug("run test2: cd")
+        uut.send("cd\r", expect=">", timeout=10)
+        return
+
+    def run_test3():
+        lib.add_test_data(sernum="1234567890", uuttype="DEMO", area="DEMO")
+        log.debug("run test3: finalize set True.")
+        return
+
+``sequencer`` 的基本使用示例::
+
+    def main_sequencer():
+        seq = lib.get_sequencer_definition("SEQ")
+        seq.add_step(run_test, name="RUN TEST")
+        seq.add_step(run_test1, name="RUN TEST1")
+        seq.add_step(run_test2, name="RUN TEST2")
+        seq.add_step(run_test3, name="RUN TEST3")
+        return seq
+
+注意：``add_step()`` 后要跟函数或方法的名字，``免小括号()`` 。
+
+``sequencer`` 形式的代码编排，为测试策略的实施提供了便利，以下是当前支持的策略，更多策略持续增加中。
+
+1. 通过设置 ``in_parallel=True`` 可以实施 **平行测试** 策略。
+
 使用示例::
 
     def main_sequencer():
         seq = lib.get_sequencer_definition()
-        seq.add_step(run_test1, name="RUN TEST1")
-        seq.add_step(run_test1, name="RUN TEST11")
-        seq.add_step(run_test1, name="RUN TEST12", in_parallel=True)
+        seq.add_step(run_test, name="RUN TEST")
+        seq.add_step(run_test1, name="RUN TEST1", in_parallel=True)
         seq1 = seq.add_sequencer("SUB SEQUENCER")
         seq1.add_step(run_test2, name="RUN TEST2")
+        seq1.add_step(run_test3, name="RUN TEST3")
+        seq1.add_step(run_test4, name="RUN TEST4")
         return seq
 
-注意：``add_step()`` 后要跟函数或方法的名字，``免小括号()`` 。
+2. 通过设置 ``continue_on_error=True`` 可以实施 **测试失败不中断** 策略，最终测试仍以失败结束。
+若有多个step被施加此策略，最终测试失败项自动选择第一个失败的step。
+
+使用示例::
+
+    # re-define run_test2() function.
+    def run_test2():
+        uut = lib.conn.UUT
+        log.debug("run test2: cd")
+        uut.send("cd\r", expect=">", timeout=10)
+        raise Exception("run test2 failed")
+
+    def main_sequencer():
+        seq = lib.get_sequencer_definition("SEQ")
+        seq.add_step(run_test, name="RUN TEST")
+        seq.add_step(run_test1, name="RUN TEST1")
+        seq.add_step(run_test2, name="RUN TEST2", continue_on_error=True)
+        seq.add_step(run_test3, name="RUN TEST3")
+        return seq
+
+3. 通过设置 ``finalize=True`` 可以实施 **测试失败后清理** 策略。若 ``run_test2`` 测试失败，会自动运行最后一个step，即 ``run_test3``。
+若最后一个step测试失败，则不会再次运行最后一个step。
+
+使用示例::
+
+    def main_sequencer():
+        seq = lib.get_sequencer_definition("SEQ", finalize=True)
+        seq.add_step(run_test, name="RUN TEST")
+        seq.add_step(run_test1, name="RUN TEST1")
+        seq.add_step(run_test2, name="RUN TEST2")
+        seq.add_step(run_test3, name="RUN TEST3")
+        return seq
+
+3. 通过设置 ``loop_on_error=3`` 可以实施 **测试失败后重测** 策略。若 ``run_test2`` 测试失败，会自动重测3次，其中任何一次pass，
+此step为pass。
+
+使用示例::
+
+    def main_sequencer():
+        seq = lib.get_sequencer_definition("SEQ", finalize=True)
+        seq.add_step(run_test, name="RUN TEST")
+        seq.add_step(run_test1, name="RUN TEST1")
+        seq.add_step(run_test2, name="RUN TEST2", loop_on_error=3)
+        seq.add_step(run_test3, name="RUN TEST3")
+        return seq
+
+注意：一个step可以实施单一策略，也可以实施组合策略。 优先级 ``loop_on_error`` > ``continue_on_error`` 。
+``in_parallel`` 和 ``finalize`` 为独立策略，与其他策略无冲突。
+
+lib.set_sequencer_data()
+------------------------
+为当前的step增加sequencer数据，sequencer数据可以通过 ``lib.get_sequencer_data()`` 获得。
+
+例如在函数 ``run_test2()`` 中调用此接口函数::
+
+    lib.set_sequencer_data(param1=1234, test=5434, value=2344)
+
+lib.get_sequencer_data()
+------------------------
+获取sequencer数据，例如在函数 ``run_test3()`` 中调用此接口函数::
+
+    lib.get_sequencer_data()
+
+    # could get below sequencer data.
+    [
+        {'index': 1, 'name': 'RUN_TEST', 'result': 'PASS', 'time_cost': 0},
+        {'index': 2, 'name': 'RUN_TEST1', 'result': 'PASS', 'time_cost': 4},
+        {'index': 3, 'name': 'RUN_TEST2', 'result': 'FAIL', 'time_cost': 0, 'param1': 1234, 'test': 5434, 'value': '2344'},
+        {'index': 4, 'name': 'RUN_TEST3', 'result': 'PASS', 'time_cost': 0}
+    ]
 
 lib.get_xlsx_params()
 -----------------------

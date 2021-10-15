@@ -1,5 +1,11 @@
 变更记录
 ============
+v1.10.2
+---------
+1. 更新接口函数 ``lib.get_sequencer_definition()``, 可支持若干测试策略。
+2. 增加接口函数 ``lib.set_sequencer_data()``, 增加当前step的sequencer数据。
+3. 增加接口函数 ``lib.get_sequencer_data()``，获取 ``sequencer`` 的执行数据, json格式。
+
 v1.10.1
 ---------
 1. (TODO)使用Jupyter Lab作为web IDE, 支撑远程开发测试程序.
