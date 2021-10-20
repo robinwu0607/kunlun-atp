@@ -53,4 +53,10 @@ Ask Question交互界面
 -----------------
 此界面可以配置项目下的XLSX文件 ``params.xlsx``，使用网页对XLSX文件进行增删改查, 支撑远程调试。
 
-.. image:: ../_static/用户界面/params-setting.png
+.. image:: ../_static/用户界面/params.png
+
+指标数据配置界面
+-----------------
+此界面可以配置项目下的XLSX文件 ``meas.xlsx``，使用网页对XLSX文件进行增删改查, 支撑远程调试。
+
+.. image:: ../_static/用户界面/meas.png
