@@ -41,16 +41,18 @@ https://gitee.com/robinwu0607/kunlun-atp/releases
 点击 **Start Engine** 按钮，启动平台服务，启动过程中，如果出现请求权限的弹窗，需选择"允许"或是"同意"。
 当所有Server的状态都为 **running** 时，平台服务成功启动。
 
-.. image:: ../_static/安装指南/platform1.png
+.. image:: ../_static/安装指南/platform2.png
 
 点击 **Stop Engine** 按钮，关闭本平台所有服务，
 当所有Server的状态都为 **down** 时，平台服务成功关闭。
 
-.. image:: ../_static/安装指南/platform2.png
+.. image:: ../_static/安装指南/platform1.png
 
-点击 **Open GUI** 按钮，将自动打开浏览器，并导航至 ``http://localhost:9000`` 地址。
+点击 **Open GUI** 按钮，将自动打开浏览器，并导航至 ``https://localhost`` 地址。
 平台要求按照使用 ``Google Chrome`` 浏览器（88版本或以上）或者是 ``Edge`` 浏览器。
 
 点击菜单栏 ``File``，选择 ``Exit`` 后可以退出管理界面。
+
+点击菜单栏 ``View``，选择 ``KL Event`` 后可以查看平台加载 ``hostname.py`` 时产生的事件错误日志。
 
 **注意：由于管理平台界面功能有待优化，启动/关闭平台服务时，需要一点点耐心。**

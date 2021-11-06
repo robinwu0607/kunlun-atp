@@ -1,11 +1,20 @@
 变更记录
 ============
+
+v1.11.0
+---------
+1. 增加接口函数 ``lib.ud`` , ud代表userdict, 是一个用户字典, 可以使用 ``.`` 来随意增加键值对。
+2. 更新接口函数 ``lib.get_xlsx_params(sheet, name)`` , 当name以通配符  ``*``  起始或结尾, 或等于时, 返回一个字典。
+3. XLSX文件(params.xlsx & meas.xlsx)增加 ``desc`` 字段，用来描述 ``name`` 的实际意义。
+4. ``add_step()`` 可以接受 ``kwargs`` 参数。
+5. 引入https。
+
 v1.10.2
 ---------
-1. 更新接口函数 ``lib.get_sequencer_definition()``, 可支持若干测试策略。
-2. 增加接口函数 ``lib.set_sequencer_data()``, 增加当前step的sequencer数据。
-3. 增加接口函数 ``lib.get_sequencer_data()``，获取 ``sequencer`` 的执行数据, json格式。
-4. 增加接口函数 ``lib.xlsx_measure()``, 根据XLSX ``meas.xlsx`` 中指标数据对实际测量值进行检查。
+1. 更新接口函数 ``lib.get_sequencer_definition()`` , 可支持若干测试策略。
+2. 增加接口函数 ``lib.set_sequencer_data()`` , 增加当前step的sequencer数据。
+3. 增加接口函数 ``lib.get_sequencer_data()`` ，获取 ``sequencer`` 的执行数据, json格式。
+4. 增加接口函数 ``lib.xlsx_measure()`` , 根据XLSX ``meas.xlsx`` 中指标数据对实际测量值进行检查。
 
 v1.10.1
 ---------

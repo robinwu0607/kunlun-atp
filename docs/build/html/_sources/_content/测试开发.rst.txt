@@ -10,14 +10,12 @@ kunlun-data文件夹
 2. ``logs`` ：测试日志文件夹，保存测试过程中产生的测试日志，以及保存一些临时文件。
 3. ``product`` ：生产模式将调用此文件夹下的代码。
 4. ``develop`` : 开发模式将调用此文件夹下的代码。
+5. ``hostname.pem`` : 用户主机的唯一ID，用来制作license，例如 ``desktop1tp185d.pem`` 。
 
-其中, ``product`` 文件夹中包含两个DEMO子文件夹，它们是：
+``product`` 文件夹中包含两个DEMO子文件夹，它们是：
 
 1. ``project`` : DEMO演示项目，其中的 ``main.py`` 中提供DEMO代码。
-2. ``hostname`` : 界面配置文件夹，提供接口配置界面上的测试工站/工位/连接的数量（DEMO场景下有约束）。
-
-用户的代码，可以以项目的形式，保存在 ``product`` 目录下。项目必须包含 ``main.py`` 文件，平台执行任务时，
-将自动调用 ``main.py`` 中的函数 ``main_sequencer()`` ，作为入口函数。
+2. ``hostname`` : 界面配置文件夹，提供接口配置界面上的测试工站/工位/连接的数量。
 
 平台启动时，平台会自动调用 ``hostname`` 文件夹下，以 **主机名称** 命名的python文件(如： ``desktop123.py`` )，
 标准的 **主机名称** 可以如下界面中获取。
@@ -50,8 +48,8 @@ kunlun-data文件夹
 5. ``recycle`` 如果为 ``True``, 测试 ``pass`` 后将自动重新运行程序, 免重复点击 ``start`` 按钮。
 6. ``params`` 定义此工站的硬件参数，用户代码中使用 ``lib.get_params()`` 调用。
 
-其中，以上示例中的 ``sequencer`` 把 **FT工站** 与 ``project.main`` 关联起来了，因此 **FT工站** 下执行
-的测试任务，会自动调用 ``project`` 项目下的 ``main.py`` 文件中的 ``main_sequencer`` 函数。
+其中，以上示例中的 ``sequencer`` 将 **FT工站** 与 ``project.main`` 进行关联， **FT工站** 下执行
+的测试任务，会自动调用 ``project`` 项目下的 ``main.py`` 文件中的 ``main_sequencer`` 函数作为入口函数。
 
 开发者模式与生产模式
 --------------------

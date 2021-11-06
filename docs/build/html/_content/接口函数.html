@@ -1,70 +1,31 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>接口函数 &mdash; KunLun测试自动化平台 v0.1.5 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>接口函数 &mdash; KunLun命令行测试自动化 v1.11.0 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="常见问题" href="%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html" />
     <link rel="prev" title="测试开发" href="%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../index.html" class="icon icon-home"> KunLun测试自动化平台
-          
-
-          
+            <a href="../index.html" class="icon icon-home"> KunLun命令行测试自动化
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -72,18 +33,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="%E4%BB%8B%E7%BB%8D.html">介绍</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.html">安装指南</a></li>
@@ -106,77 +56,38 @@
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-sequencer-data">lib.get_sequencer_data()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-xlsx-params">lib.get_xlsx_params()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-xlsx-measure">lib.xlsx_measure()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-ud">lib.ud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-conn">lib.conn</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html">常见问题</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%8F%98%E6%9B%B4%E8%AE%B0%E5%BD%95.html">变更记录</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">KunLun测试自动化平台</a>
-        
+          <a href="../index.html">KunLun命令行测试自动化</a>
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>接口函数</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/_content/接口函数.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="id1">
 <h1>接口函数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="lib-get-uut">
@@ -303,10 +214,10 @@
     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
     <span class="k">return</span>
 
-<span class="k">def</span> <span class="nf">run_test1</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">run_test1</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_uut</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
     <span class="n">uut</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>  <span class="c1"># open the connection</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test1: dir&quot;</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test1: dir, name: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;dir</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span>
@@ -327,13 +238,13 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
     <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span><span class="s2">&quot;SEQ&quot;</span><span class="p">)</span>
     <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST&quot;</span><span class="p">)</span>
-    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gps test&quot;</span><span class="p">})</span>
     <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">)</span>
     <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">seq</span>
 </pre></div>
 </div>
-<p>注意：<code class="docutils literal notranslate"><span class="pre">add_step()</span></code> 后要跟函数或方法的名字，<code class="docutils literal notranslate"><span class="pre">免小括号()</span></code> 。</p>
+<p>注意：<code class="docutils literal notranslate"><span class="pre">add_step()</span></code> 后要跟函数或方法的名字，<code class="docutils literal notranslate"><span class="pre">免小括号()</span></code>。若使用 <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> 参数，则 对应的方法 <code class="docutils literal notranslate"><span class="pre">run_test1</span></code> 需要定义入参 <code class="docutils literal notranslate"><span class="pre">name</span></code> 。</p>
 <p><code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 形式的代码编排，为测试策略的实施提供了便利，以下是当前支持的策略，更多策略持续增加中。</p>
 <ol class="arabic simple">
 <li><p>通过设置 <code class="docutils literal notranslate"><span class="pre">in_parallel=True</span></code> 可以实施 <strong>平行测试</strong> 策略。</p></li>
@@ -426,29 +337,37 @@
 <p>其内容格式如下:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 29%" />
-<col style="width: 71%" />
+<col style="width: 30%" />
+<col style="width: 37%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>name</p></th>
 <th class="head"><p>value</p></th>
+<th class="head"><p>desc</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>param1</p></td>
 <td><p>1234</p></td>
+<td><p>demo</p></td>
 </tr>
 <tr class="row-odd"><td><p>param2</p></td>
 <td><p>4567</p></td>
+<td><p>test</p></td>
 </tr>
 <tr class="row-even"><td><p>param3</p></td>
 <td><p>8765</p></td>
+<td><p>test2</p></td>
 </tr>
 </tbody>
 </table>
 <p>使用示例:</p>
 <p>假设XLSX当前的Sheet名为 <code class="docutils literal notranslate"><span class="pre">Sheet1</span></code> , 若要获取 <code class="docutils literal notranslate"><span class="pre">param2</span></code> 的值,
 则调用 <code class="docutils literal notranslate"><span class="pre">lib.get_xlsx_params(&quot;Sheet1&quot;,</span> <span class="pre">&quot;param2&quot;)</span></code>， 即返回字符串 <code class="docutils literal notranslate"><span class="pre">4567</span></code> 。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">lib.get_xlsx_params(&quot;Sheet1&quot;,</span> <span class="pre">&quot;param*&quot;)</span></code>，返回所有以 <code class="docutils literal notranslate"><span class="pre">param</span></code> <strong>起始</strong> 的参数，以字典形式返回。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">lib.get_xlsx_params(&quot;Sheet1&quot;,</span> <span class="pre">&quot;*param&quot;)</span></code>，返回所有以 <code class="docutils literal notranslate"><span class="pre">param</span></code> <strong>结尾</strong> 的参数，以字典形式返回。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">lib.get_xlsx_params(&quot;Sheet1&quot;,</span> <span class="pre">&quot;*&quot;)</span></code>，返回 <strong>所有</strong> 参数，以字典形式返回。</p>
 </div>
 <div class="section" id="lib-xlsx-measure">
 <h2>lib.xlsx_measure()<a class="headerlink" href="#lib-xlsx-measure" title="Permalink to this headline">¶</a></h2>
@@ -457,28 +376,33 @@
 <p>其内容格式如下:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 30%" />
-<col style="width: 33%" />
-<col style="width: 37%" />
+<col style="width: 22%" />
+<col style="width: 24%" />
+<col style="width: 27%" />
+<col style="width: 27%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>name</p></th>
 <th class="head"><p>lower</p></th>
 <th class="head"><p>upper</p></th>
+<th class="head"><p>desc</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>meas1</p></td>
 <td><p>20</p></td>
 <td><p>50</p></td>
+<td><p>rf</p></td>
 </tr>
 <tr class="row-odd"><td><p>meas2</p></td>
 <td><p>40</p></td>
 <td><p>78.9</p></td>
+<td><p>gps</p></td>
 </tr>
 <tr class="row-even"><td><p>meas3</p></td>
 <td><p>-35</p></td>
 <td><p>35.9</p></td>
+<td><p>ground</p></td>
 </tr>
 </tbody>
 </table>
@@ -488,54 +412,51 @@
 upper(指标上限)为 <code class="docutils literal notranslate"><span class="pre">50</span></code> , 因为 <code class="docutils literal notranslate"><span class="pre">20&lt;=30&lt;=50</span></code> , 所以指标检查通过。</p>
 <p>若实际测量值为 <code class="docutils literal notranslate"><span class="pre">60</span></code> ，则指标检查失败，将触发异常，测试失败。</p>
 </div>
+<div class="section" id="lib-ud">
+<h2>lib.ud<a class="headerlink" href="#lib-ud" title="Permalink to this headline">¶</a></h2>
+<p>一个全局字典userdict，可以在测试代码的任意位置使用。</p>
+<p>使用示例:</p>
+<p><code class="docutils literal notranslate"><span class="pre">lib.ud.test_spec</span> <span class="pre">=</span> <span class="pre">123</span></code> 设置 <code class="docutils literal notranslate"><span class="pre">test_spec</span></code> 值为 <code class="docutils literal notranslate"><span class="pre">123</span></code> 。</p>
+<p><code class="docutils literal notranslate"><span class="pre">spec</span> <span class="pre">=</span> <span class="pre">lib.ud.test_spec</span></code> 获取 <code class="docutils literal notranslate"><span class="pre">test_spec</span></code> 的值，并保存在变量 <code class="docutils literal notranslate"><span class="pre">spec</span></code> 。</p>
+</div>
+<div class="section" id="lib-conn">
+<h2>lib.conn<a class="headerlink" href="#lib-conn" title="Permalink to this headline">¶</a></h2>
+<p>连接池，保存着用户为某个 <code class="docutils literal notranslate"><span class="pre">container</span></code> 定义的所有连接。</p>
+<p>使用示例:</p>
+<p>假设用户定义的连接conn的名字为 <code class="docutils literal notranslate"><span class="pre">UUT</span></code> ，则使用 <code class="docutils literal notranslate"><span class="pre">lib.conn.UUT</span></code> 可以获取此连接。</p>
+<p>假设用户定义的连接conn的名字为 <code class="docutils literal notranslate"><span class="pre">REF</span></code> ，则使用 <code class="docutils literal notranslate"><span class="pre">lib.conn.REF</span></code> 可以获取此连接。</p>
+</div>
 </div>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html" class="btn btn-neutral float-right" title="常见问题" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91.html" class="btn btn-neutral float-left" title="测试开发" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html" class="btn btn-neutral float-right" title="常见问题" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, robinwu.
-
-    </p>
+    <p>&#169; Copyright 2021, robinwu.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

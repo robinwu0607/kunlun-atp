@@ -17,12 +17,12 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'KunLun测试自动化平台'
+project = 'KunLun命令行测试自动化'
 copyright = '2021, robinwu'
 author = 'robinwu'
 
 # The full version, including alpha/beta/rc tags
-release = 'v0.1.5'
+release = 'v1.11.0'
 
 
 # -- General configuration ---------------------------------------------------

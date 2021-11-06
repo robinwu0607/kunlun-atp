@@ -1,70 +1,31 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>测试开发 &mdash; KunLun测试自动化平台 v0.1.5 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>测试开发 &mdash; KunLun命令行测试自动化 v1.11.0 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="接口函数" href="%E6%8E%A5%E5%8F%A3%E5%87%BD%E6%95%B0.html" />
     <link rel="prev" title="用户界面" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../index.html" class="icon icon-home"> KunLun测试自动化平台
-          
-
-          
+            <a href="../index.html" class="icon icon-home"> KunLun命令行测试自动化
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -72,18 +33,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="%E4%BB%8B%E7%BB%8D.html">介绍</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97.html">安装指南</a></li>
@@ -98,71 +48,30 @@
 <li class="toctree-l1"><a class="reference internal" href="%E5%8F%98%E6%9B%B4%E8%AE%B0%E5%BD%95.html">变更记录</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">KunLun测试自动化平台</a>
-        
+          <a href="../index.html">KunLun命令行测试自动化</a>
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>测试开发</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/_content/测试开发.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="id1">
 <h1>测试开发<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="kunlun-data">
@@ -174,14 +83,13 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">logs</span></code> ：测试日志文件夹，保存测试过程中产生的测试日志，以及保存一些临时文件。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">product</span></code> ：生产模式将调用此文件夹下的代码。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">develop</span></code> : 开发模式将调用此文件夹下的代码。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hostname.pem</span></code> : 用户主机的唯一ID，用来制作license，例如 <code class="docutils literal notranslate"><span class="pre">desktop1tp185d.pem</span></code> 。</p></li>
 </ol>
-<p>其中, <code class="docutils literal notranslate"><span class="pre">product</span></code> 文件夹中包含两个DEMO子文件夹，它们是：</p>
+<p><code class="docutils literal notranslate"><span class="pre">product</span></code> 文件夹中包含两个DEMO子文件夹，它们是：</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">project</span></code> : DEMO演示项目，其中的 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 中提供DEMO代码。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">hostname</span></code> : 界面配置文件夹，提供接口配置界面上的测试工站/工位/连接的数量（DEMO场景下有约束）。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hostname</span></code> : 界面配置文件夹，提供接口配置界面上的测试工站/工位/连接的数量。</p></li>
 </ol>
-<p>用户的代码，可以以项目的形式，保存在 <code class="docutils literal notranslate"><span class="pre">product</span></code> 目录下。项目必须包含 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 文件，平台执行任务时，
-将自动调用 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 中的函数 <code class="docutils literal notranslate"><span class="pre">main_sequencer()</span></code> ，作为入口函数。</p>
 <p>平台启动时，平台会自动调用 <code class="docutils literal notranslate"><span class="pre">hostname</span></code> 文件夹下，以 <strong>主机名称</strong> 命名的python文件(如： <code class="docutils literal notranslate"><span class="pre">desktop123.py</span></code> )，
 标准的 <strong>主机名称</strong> 可以如下界面中获取。</p>
 <img alt="../_images/hostname.png" src="../_images/hostname.png" />
@@ -210,8 +118,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">recycle</span></code> 如果为 <code class="docutils literal notranslate"><span class="pre">True</span></code>, 测试 <code class="docutils literal notranslate"><span class="pre">pass</span></code> 后将自动重新运行程序, 免重复点击 <code class="docutils literal notranslate"><span class="pre">start</span></code> 按钮。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">params</span></code> 定义此工站的硬件参数，用户代码中使用 <code class="docutils literal notranslate"><span class="pre">lib.get_params()</span></code> 调用。</p></li>
 </ol>
-<p>其中，以上示例中的 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 把 <strong>FT工站</strong> 与 <code class="docutils literal notranslate"><span class="pre">project.main</span></code> 关联起来了，因此 <strong>FT工站</strong> 下执行
-的测试任务，会自动调用 <code class="docutils literal notranslate"><span class="pre">project</span></code> 项目下的 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 文件中的 <code class="docutils literal notranslate"><span class="pre">main_sequencer</span></code> 函数。</p>
+<p>其中，以上示例中的 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 将 <strong>FT工站</strong> 与 <code class="docutils literal notranslate"><span class="pre">project.main</span></code> 进行关联， <strong>FT工站</strong> 下执行
+的测试任务，会自动调用 <code class="docutils literal notranslate"><span class="pre">project</span></code> 项目下的 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 文件中的 <code class="docutils literal notranslate"><span class="pre">main_sequencer</span></code> 函数作为入口函数。</p>
 </div>
 <div class="section" id="id2">
 <h2>开发者模式与生产模式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
@@ -224,50 +132,33 @@
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="%E6%8E%A5%E5%8F%A3%E5%87%BD%E6%95%B0.html" class="btn btn-neutral float-right" title="接口函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html" class="btn btn-neutral float-left" title="用户界面" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E6%8E%A5%E5%8F%A3%E5%87%BD%E6%95%B0.html" class="btn btn-neutral float-right" title="接口函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, robinwu.
-
-    </p>
+    <p>&#169; Copyright 2021, robinwu.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

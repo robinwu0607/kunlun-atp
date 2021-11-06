@@ -122,10 +122,10 @@ lib.get_sequencer_definition()
         log.debug(container_name)
         return
 
-    def run_test1():
+    def run_test1(name):
         uut = lib.get_uut(protocol="DUMMY")
         uut.open()  # open the connection
-        log.debug("run test1: dir")
+        log.debug("run test1: dir, name: {}".format(name)
         uut.send("dir\r", expect=">", timeout=10)
         time.sleep(1)
         return
@@ -146,12 +146,12 @@ lib.get_sequencer_definition()
     def main_sequencer():
         seq = lib.get_sequencer_definition("SEQ")
         seq.add_step(run_test, name="RUN TEST")
-        seq.add_step(run_test1, name="RUN TEST1")
+        seq.add_step(run_test1, name="RUN TEST1", kwargs={"name": "gps test"})
         seq.add_step(run_test2, name="RUN TEST2")
         seq.add_step(run_test3, name="RUN TEST3")
         return seq
 
-注意：``add_step()`` 后要跟函数或方法的名字，``免小括号()`` 。
+注意：``add_step()`` 后要跟函数或方法的名字，``免小括号()``。若使用 ``kwargs`` 参数，则 对应的方法 ``run_test1`` 需要定义入参 ``name`` 。
 
 ``sequencer`` 形式的代码编排，为测试策略的实施提供了便利，以下是当前支持的策略，更多策略持续增加中。
 
@@ -247,20 +247,26 @@ lib.get_xlsx_params()
 
 其内容格式如下:
 
-+---------+----------------------+
-| name    | value                |
-+=========+======================+
-| param1  | 1234                 |
-+---------+----------------------+
-| param2  | 4567                 |
-+---------+----------------------+
-| param3  | 8765                 |
-+---------+----------------------+
++---------+-----------+----------+
+| name    | value     |    desc  |
++=========+===========+==========+
+| param1  | 1234      |    demo  |
++---------+-----------+----------+
+| param2  | 4567      |    test  |
++---------+-----------+----------+
+| param3  | 8765      |    test2 |
++---------+-----------+----------+
 
 使用示例:
 
 假设XLSX当前的Sheet名为 ``Sheet1`` , 若要获取 ``param2`` 的值,
 则调用 ``lib.get_xlsx_params("Sheet1", "param2")``， 即返回字符串 ``4567`` 。
+
+使用 ``lib.get_xlsx_params("Sheet1", "param*")``，返回所有以 ``param`` **起始** 的参数，以字典形式返回。
+
+使用 ``lib.get_xlsx_params("Sheet1", "*param")``，返回所有以 ``param`` **结尾** 的参数，以字典形式返回。
+
+使用 ``lib.get_xlsx_params("Sheet1", "*")``，返回 **所有** 参数，以字典形式返回。
 
 lib.xlsx_measure()
 -----------------------
@@ -269,15 +275,15 @@ lib.xlsx_measure()
 
 其内容格式如下:
 
-+---------+----------+-----------+
-| name    | lower    |   upper   |
-+=========+==========+===========+
-| meas1   | 20       |    50     |
-+---------+----------+-----------+
-| meas2   | 40       |    78.9   |
-+---------+----------+-----------+
-| meas3   | -35      |     35.9  |
-+---------+----------+-----------+
++---------+----------+-----------+-----------+
+| name    | lower    |   upper   |    desc   |
++=========+==========+===========+===========+
+| meas1   | 20       |    50     |    rf     |
++---------+----------+-----------+-----------+
+| meas2   | 40       |    78.9   |    gps    |
++---------+----------+-----------+-----------+
+| meas3   | -35      |    35.9   |    ground |
++---------+----------+-----------+-----------+
 
 使用示例:
 
@@ -286,3 +292,23 @@ lib.xlsx_measure()
 upper(指标上限)为 ``50`` , 因为 ``20<=30<=50`` , 所以指标检查通过。
 
 若实际测量值为 ``60`` ，则指标检查失败，将触发异常，测试失败。
+
+lib.ud
+-------
+一个全局字典userdict，可以在测试代码的任意位置使用。
+
+使用示例:
+
+``lib.ud.test_spec = 123`` 设置 ``test_spec`` 值为 ``123`` 。
+
+``spec = lib.ud.test_spec`` 获取 ``test_spec`` 的值，并保存在变量 ``spec`` 。
+
+lib.conn
+---------
+连接池，保存着用户为某个 ``container`` 定义的所有连接。
+
+使用示例:
+
+假设用户定义的连接conn的名字为 ``UUT`` ，则使用 ``lib.conn.UUT`` 可以获取此连接。
+
+假设用户定义的连接conn的名字为 ``REF`` ，则使用 ``lib.conn.REF`` 可以获取此连接。
