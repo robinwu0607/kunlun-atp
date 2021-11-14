@@ -41,6 +41,12 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">测试开发</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#kunlun-data">kunlun-data文件夹</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">开发者模式与生产模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">定制化界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">测试服务</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ftp">FTP服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tftp">TFTP服务</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%8E%A5%E5%8F%A3%E5%87%BD%E6%95%B0.html">接口函数</a></li>
@@ -127,6 +133,27 @@
 自动调用 <code class="docutils literal notranslate"><span class="pre">product</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">develop</span></code> 文件夹下测试代码。</p>
 <img alt="../_images/product-mode.png" src="../_images/product-mode.png" />
 <img alt="../_images/develop-mode.png" src="../_images/develop-mode.png" />
+</div>
+<div class="section" id="id3">
+<h2>定制化界面<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>用户在 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中调用接口函数 <code class="docutils literal notranslate"><span class="pre">lib.get_allocation()</span></code> 可以深度定制化界面，
+相较于 <code class="docutils literal notranslate"><span class="pre">GUI_CONFIG</span></code> 用法，接口函数用法更灵活，可以针对每一个 <code class="docutils literal notranslate"><span class="pre">container</span></code> 进行精细化配置。</p>
+<p>详细见接口函数章节。</p>
+</div>
+<div class="section" id="id4">
+<h2>测试服务<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>平台提供 <code class="docutils literal notranslate"><span class="pre">FTP</span></code> 与 <code class="docutils literal notranslate"><span class="pre">TFTP</span></code> 服务。</p>
+<div class="section" id="ftp">
+<h3>FTP服务<a class="headerlink" href="#ftp" title="Permalink to this headline">¶</a></h3>
+<p>用户在定制界面时，若设置 <code class="docutils literal notranslate"><span class="pre">lib.get_allocation(ftp=True)</span></code> ，启动平台时，FTP服务也将启动。</p>
+<p>FTP的默认文件夹是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\tftpboot</span></code> ，用户名密码为： <code class="docutils literal notranslate"><span class="pre">klat/klat</span></code> 。</p>
+</div>
+<div class="section" id="tftp">
+<h3>TFTP服务<a class="headerlink" href="#tftp" title="Permalink to this headline">¶</a></h3>
+<p>用户在定制界面时，若设置 <code class="docutils literal notranslate"><span class="pre">lib.get_allocation(tftp=True)</span></code> ，启动平台时，TFTP服务也将启动。</p>
+<p>FTP的默认文件夹是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\tftpboot</span></code> 。</p>
+<p>注意: 当 <code class="docutils literal notranslate"><span class="pre">lib.get_allocation(ftp=True,</span> <span class="pre">tftp=True)</span></code> 时，FTP服务与TFTP服务将同时启动。</p>
+</div>
 </div>
 </div>
 

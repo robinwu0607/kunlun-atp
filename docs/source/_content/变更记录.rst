@@ -1,6 +1,13 @@
 变更记录
 ============
 
+v1.11.1
+---------
+1. 增加 ``ftp`` & ``tftp`` 服务。
+2. 增加 ``hostname.py`` 加载错误提示。
+3. 增加接口函数 ``lib.start_container_test()`` , 可以使用一个container启动另一个container测试。
+3. 增加接口函数 ``lib.get_allocation()`` , 更精细化的配置用户界面。
+
 v1.11.0
 ---------
 1. 增加接口函数 ``lib.ud`` , ud代表userdict, 是一个用户字典, 可以使用 ``.`` 来随意增加键值对。

@@ -41,7 +41,6 @@
 <li class="toctree-l1"><a class="reference internal" href="%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91.html">测试开发</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">接口函数</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-uut">lib.get_uut()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lib-get-ref">lib.get_ref()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-ask-question">lib.ask_question()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-ask-questions">lib.ask_questions()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-set-display1-2-3">lib.set_display1/2/3()</a></li>
@@ -56,6 +55,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-sequencer-data">lib.get_sequencer_data()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-xlsx-params">lib.get_xlsx_params()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-xlsx-measure">lib.xlsx_measure()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-start-container-test">lib.start_container_test()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-get-allocation">lib.get_allocation()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-ud">lib.ud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-conn">lib.conn</a></li>
 </ul>
@@ -139,10 +140,6 @@
 </div>
 <p>当调用 <code class="docutils literal notranslate"><span class="pre">lib.get_uut(protocol=&quot;SSH&quot;)</span></code> 后，可以在其他函数中使用 <code class="docutils literal notranslate"><span class="pre">lib.conn.UUT</span></code> 获取连接实例，以便持续使用 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 发送指令。</p>
 </div>
-<div class="section" id="lib-get-ref">
-<h2>lib.get_ref()<a class="headerlink" href="#lib-get-ref" title="Permalink to this headline">¶</a></h2>
-<p>此接口函数使用方法与 <code class="docutils literal notranslate"><span class="pre">lib.get_uut()</span></code> 完全一致。唯一不同点，连接接收到的日志将打印至网页界面的 <strong>REF</strong> 窗口。</p>
-</div>
 <div class="section" id="lib-ask-question">
 <h2>lib.ask_question()<a class="headerlink" href="#lib-ask-question" title="Permalink to this headline">¶</a></h2>
 <p>此接口函数提供一个用户交互方法，调用此函数后，网页界面将弹出对话框，用户可以在对话框应答一个问题，并返回答案(字符串).</p>
@@ -214,10 +211,10 @@
     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
     <span class="k">return</span>
 
-<span class="k">def</span> <span class="nf">run_test1</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">run_test1</span><span class="p">(</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_uut</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
     <span class="n">uut</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>  <span class="c1"># open the connection</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test1: dir, name: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test1: dir, name: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">))</span>
     <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;dir</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span>
@@ -244,7 +241,7 @@
     <span class="k">return</span> <span class="n">seq</span>
 </pre></div>
 </div>
-<p>注意：<code class="docutils literal notranslate"><span class="pre">add_step()</span></code> 后要跟函数或方法的名字，<code class="docutils literal notranslate"><span class="pre">免小括号()</span></code>。若使用 <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> 参数，则 对应的方法 <code class="docutils literal notranslate"><span class="pre">run_test1</span></code> 需要定义入参 <code class="docutils literal notranslate"><span class="pre">name</span></code> 。</p>
+<p>注意：<code class="docutils literal notranslate"><span class="pre">add_step()</span></code> 后要跟函数或方法的名字，<code class="docutils literal notranslate"><span class="pre">免小括号()</span></code>。若使用 <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> 参数，则 对应的方法 <code class="docutils literal notranslate"><span class="pre">run_test1</span></code> 需要定义入参(字典) <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> 。</p>
 <p><code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 形式的代码编排，为测试策略的实施提供了便利，以下是当前支持的策略，更多策略持续增加中。</p>
 <ol class="arabic simple">
 <li><p>通过设置 <code class="docutils literal notranslate"><span class="pre">in_parallel=True</span></code> 可以实施 <strong>平行测试</strong> 策略。</p></li>
@@ -411,6 +408,39 @@
 调用 <code class="docutils literal notranslate"><span class="pre">lib.xlsx_measure(&quot;Sheet1&quot;,</span> <span class="pre">&quot;meas1&quot;,</span> <span class="pre">30)</span></code>,  XLSX文件中 <code class="docutils literal notranslate"><span class="pre">meas1</span></code> 的lower(指标下限)为 <code class="docutils literal notranslate"><span class="pre">20</span></code> ,
 upper(指标上限)为 <code class="docutils literal notranslate"><span class="pre">50</span></code> , 因为 <code class="docutils literal notranslate"><span class="pre">20&lt;=30&lt;=50</span></code> , 所以指标检查通过。</p>
 <p>若实际测量值为 <code class="docutils literal notranslate"><span class="pre">60</span></code> ，则指标检查失败，将触发异常，测试失败。</p>
+</div>
+<div class="section" id="lib-start-container-test">
+<h2>lib.start_container_test()<a class="headerlink" href="#lib-start-container-test" title="Permalink to this headline">¶</a></h2>
+<p>使用一个 <code class="docutils literal notranslate"><span class="pre">container</span></code> 启动其他 <code class="docutils literal notranslate"><span class="pre">container</span></code> 测试。</p>
+<p>使用示例：</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">lib.start_container_test(&quot;DEMO:UUT01&quot;)</span></code> 启动 <code class="docutils literal notranslate"><span class="pre">DEMO:UUT01</span></code> 测试。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">lib.start_container_test([&quot;DEMO:UUT01&quot;,</span> <span class="pre">&quot;DEMO:UUT02&quot;])</span></code> 连续启动多个 <code class="docutils literal notranslate"><span class="pre">container</span></code> 测试。</p>
+</div>
+<div class="section" id="lib-get-allocation">
+<h2>lib.get_allocation()<a class="headerlink" href="#lib-get-allocation" title="Permalink to this headline">¶</a></h2>
+<p>在 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中调用此接口函数，可以更精细化定制用户界面。</p>
+<p>使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">kl</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_allocation</span><span class="p">()</span>
+    <span class="n">station</span> <span class="o">=</span> <span class="n">kl</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="s2">&quot;BST&quot;</span><span class="p">,</span> <span class="s2">&quot;功能测试&quot;</span><span class="p">,</span> <span class="n">recycle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">photo</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;project\bee.jpg&quot;</span><span class="p">)</span>
+    <span class="n">station</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;project.sequence&quot;</span><span class="p">)</span>
+    <span class="n">station</span><span class="o">.</span><span class="n">add_params_data</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">container</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">add_container</span><span class="p">(</span><span class="s2">&quot;UUT</span><span class="si">{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="n">container</span><span class="o">.</span><span class="n">add_params_data</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;192.168.1.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">test</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
+        <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UUT&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
+        <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;REF&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;TELNET&quot;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+    <span class="n">station</span> <span class="o">=</span> <span class="n">kl</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="s2">&quot;BP2&quot;</span><span class="p">,</span> <span class="s2">&quot;FT测试&quot;</span><span class="p">,</span> <span class="n">recycle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">station</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;project.sequence&quot;</span><span class="p">)</span>
+    <span class="n">station</span><span class="o">.</span><span class="n">add_params_data</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">container</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">add_container</span><span class="p">(</span><span class="s2">&quot;UUT</span><span class="si">{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UUT&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
+        <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;PWR&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;SSH&quot;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.0.2&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="lib-ud">
 <h2>lib.ud<a class="headerlink" href="#lib-ud" title="Permalink to this headline">¶</a></h2>

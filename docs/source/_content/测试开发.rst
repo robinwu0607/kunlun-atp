@@ -58,3 +58,28 @@ kunlun-data文件夹
 
 .. image:: ../_static/用户界面/product-mode.png
 .. image:: ../_static/用户界面/develop-mode.png
+
+定制化界面
+----------
+用户在 ``hostname.py`` 中调用接口函数 ``lib.get_allocation()`` 可以深度定制化界面，
+相较于 ``GUI_CONFIG`` 用法，接口函数用法更灵活，可以针对每一个 ``container`` 进行精细化配置。
+
+详细见接口函数章节。
+
+测试服务
+--------
+平台提供 ``FTP`` 与 ``TFTP`` 服务。
+
+FTP服务
+^^^^^^^
+用户在定制界面时，若设置 ``lib.get_allocation(ftp=True)`` ，启动平台时，FTP服务也将启动。
+
+FTP的默认文件夹是 ``D:\kunlun-data\tftpboot`` ，用户名密码为： ``klat/klat`` 。
+
+TFTP服务
+^^^^^^^^
+用户在定制界面时，若设置 ``lib.get_allocation(tftp=True)`` ，启动平台时，TFTP服务也将启动。
+
+FTP的默认文件夹是 ``D:\kunlun-data\tftpboot`` 。
+
+注意: 当 ``lib.get_allocation(ftp=True, tftp=True)`` 时，FTP服务与TFTP服务将同时启动。
