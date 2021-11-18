@@ -118,10 +118,10 @@ lib.get_sequencer_definition()
         log.debug(container_name)
         return
 
-    def run_test1(kwargs):
+    def run_test1(name):
         uut = lib.get_uut(protocol="DUMMY")
         uut.open()  # open the connection
-        log.debug("run test1: dir, name: {}".format(kwargs.get("name"))
+        log.debug("run test1: dir, name: {}".format(name)
         uut.send("dir\r", expect=">", timeout=10)
         time.sleep(1)
         return
@@ -147,7 +147,7 @@ lib.get_sequencer_definition()
         seq.add_step(run_test3, name="RUN TEST3")
         return seq
 
-注意：``add_step()`` 后要跟函数或方法的名字，``免小括号()``。若使用 ``kwargs`` 参数，则 对应的方法 ``run_test1`` 需要定义入参(字典) ``kwargs`` 。
+注意：``add_step()`` 后要跟函数或方法的名字，``免小括号()``。
 
 ``sequencer`` 形式的代码编排，为测试策略的实施提供了便利，以下是当前支持的策略，更多策略持续增加中。
 
@@ -198,7 +198,7 @@ lib.get_sequencer_definition()
         seq.add_step(run_test3, name="RUN TEST3")
         return seq
 
-3. 通过设置 ``loop_on_error=3`` 可以实施 **测试失败后重测** 策略。若 ``run_test2`` 测试失败，会自动重测3次，其中任何一次pass，
+4. 通过设置 ``loop_on_error=3`` 可以实施 **测试失败后重测** 策略。若 ``run_test2`` 测试失败，会自动重测3次，其中任何一次pass，
 此step为pass。
 
 使用示例::
