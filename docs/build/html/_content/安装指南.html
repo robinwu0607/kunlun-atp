@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>安装指南 &mdash; KunLun命令行测试自动化 v1.11.0 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>安装指南 &mdash; KLAT命令行测试自动化 v1.12.0 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -24,7 +24,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> KunLun命令行测试自动化
+            <a href="../index.html" class="icon icon-home"> KLAT命令行测试自动化
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -40,7 +40,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#id2">操作系统要求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">安装包下载</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id4">安装过程说明</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">平台应用启动/关闭</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">平台管理面板</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html">用户界面</a></li>
@@ -56,7 +56,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">KunLun命令行测试自动化</a>
+          <a href="../index.html">KLAT命令行测试自动化</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -78,7 +78,7 @@
 <h1>安装指南<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
 <h2>操作系统要求<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>本平台要求安装在Windows 10操作系统。暂不支持Linux操作系统。</p>
+<p>平台要求安装在Windows 10操作系统。暂不支持Linux操作系统。</p>
 </div>
 <div class="section" id="id3">
 <h2>安装包下载<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -97,22 +97,28 @@
 <img alt="../_images/setup5.png" src="../_images/setup5.png" />
 <p>选择启动应用程序，点击Finish按钮，按照完成。</p>
 <img alt="../_images/setup6.png" src="../_images/setup6.png" />
+<p>安装完成后，平台将在桌面自动创建快捷方式，方便快速启用平台管理面板。</p>
+<img alt="../_images/shortcut.png" src="../_images/shortcut.png" />
 </div>
 <div class="section" id="id5">
-<h2>平台应用启动/关闭<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>安装完成后，本平台将在桌面自动创建快捷方式，以便快速启动本平台管理面板。</p>
-<img alt="../_images/shortcut.png" src="../_images/shortcut.png" />
-<p>点击 <strong>Start Engine</strong> 按钮，启动平台服务，启动过程中，如果出现请求权限的弹窗，需选择”允许”或是”同意”。
-当所有Server的状态都为 <strong>running</strong> 时，平台服务成功启动。</p>
+<h2>平台管理面板<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>双击桌面快捷方式，打开平台管理面板。</p>
 <img alt="../_images/platform2.png" src="../_images/platform2.png" />
-<p>点击 <strong>Stop Engine</strong> 按钮，关闭本平台所有服务，
-当所有Server的状态都为 <strong>down</strong> 时，平台服务成功关闭。</p>
+<p>当平台启动后，管理平台面板将监控服务的运行状态。</p>
 <img alt="../_images/platform1.png" src="../_images/platform1.png" />
-<p>点击 <strong>Open GUI</strong> 按钮，将自动打开浏览器，并导航至 <code class="docutils literal notranslate"><span class="pre">https://localhost</span></code> 地址。
-平台要求按照使用 <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Chrome</span></code> 浏览器（88版本或以上）或者是 <code class="docutils literal notranslate"><span class="pre">Edge</span></code> 浏览器。</p>
-<p>点击菜单栏 <code class="docutils literal notranslate"><span class="pre">File</span></code>，选择 <code class="docutils literal notranslate"><span class="pre">Exit</span></code> 后可以退出管理界面。</p>
-<p>点击菜单栏 <code class="docutils literal notranslate"><span class="pre">View</span></code>，选择 <code class="docutils literal notranslate"><span class="pre">KL</span> <span class="pre">Event</span></code> 后可以查看平台加载 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 时产生的事件错误日志。</p>
-<p><strong>注意：由于管理平台界面功能有待优化，启动/关闭平台服务时，需要一点点耐心。</strong></p>
+<p>管理面板的功能说明如下：</p>
+<p>1. 点击 <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Engine</span></code> 按钮，启动平台服务。启动过程中，若出现请求权限的弹窗，需选择 <code class="docutils literal notranslate"><span class="pre">允许</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">同意</span></code> 。
+当 <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">Server</span></code> , <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">Server</span></code> 与 <code class="docutils literal notranslate"><span class="pre">E</span> <span class="pre">Server</span></code> 的状态都为 <strong>running</strong> 时，平台服务成功启动。</p>
+<p>需要说明的是，只有当用户配置了 <code class="docutils literal notranslate"><span class="pre">FTP服务</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">TFTP服务</span></code> 时, <code class="docutils literal notranslate"><span class="pre">FTP</span> <span class="pre">Server</span></code> 与 <code class="docutils literal notranslate"><span class="pre">TFTP</span> <span class="pre">Server</span></code> 才会启动。</p>
+<ol class="arabic simple" start="2">
+<li><p>点击 <code class="docutils literal notranslate"><span class="pre">Stop</span> <span class="pre">Engine</span></code> 按钮，关闭平台所有服务，当所有Server的状态都为 <strong>down</strong> 时，平台服务成功停止。</p></li>
+</ol>
+<p>3. 点击 <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">GUI</span></code> 按钮，将自动打开浏览器，并导航至 <code class="docutils literal notranslate"><span class="pre">https://localhost</span></code> 地址。
+平台要求测试主机使用 <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Chrome</span></code> 浏览器（88版本或以上）或者是 <code class="docutils literal notranslate"><span class="pre">Edge</span></code> 浏览器。</p>
+<ol class="arabic simple" start="4">
+<li><p>点击菜单栏 <code class="docutils literal notranslate"><span class="pre">File</span></code>，选择 <code class="docutils literal notranslate"><span class="pre">Exit</span></code> 后可以退出管理界面。</p></li>
+<li><p>点击菜单栏 <code class="docutils literal notranslate"><span class="pre">View</span></code>，选择 <code class="docutils literal notranslate"><span class="pre">KL</span> <span class="pre">Event</span></code> 后可以查看平台加载 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 时产生的事件错误日志。</p></li>
+</ol>
 </div>
 </div>
 

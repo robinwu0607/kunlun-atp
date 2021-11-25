@@ -17,12 +17,12 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'KunLun命令行测试自动化'
+project = 'KLAT命令行测试自动化'
 copyright = '2021, robinwu'
 author = 'robinwu'
 
 # The full version, including alpha/beta/rc tags
-release = 'v1.11.0'
+release = 'v1.12.0'
 
 
 # -- General configuration ---------------------------------------------------

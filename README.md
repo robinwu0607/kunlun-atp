@@ -5,4 +5,4 @@
 在线文档地址： https://kunlun-atp.readthedocs.io/en/latest/
 
 ### 当前版本
-#### v1.11.1
+#### v1.12.0
