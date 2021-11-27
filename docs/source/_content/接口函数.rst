@@ -27,11 +27,12 @@ lib.conn
 
 获取连接实例 ``uut`` 后，可以使用实例的以下几种属性:
 
-1. ``uut.open()`` ：打开连接
+1. ``uut.open()`` ：打开连接, 需要注意的是：每次 ``open()`` 前，会自动调用 ``close()`` 方法。
 2. ``uut.close()`` ：关闭连接
 3. ``uut.send()`` : 向连接传递命令行.
-4. ``uut.buf`` ：保存最近一条 *uut.send()* 语句发送后，产品回馈的日志。
-5. ``uut.capture()`` ：对 ``uut.buf`` 进行解析，获取想要的字符串片段。
+4. ``uut.buf`` ：保存 *uut.send()* 语句发送后，产品回馈的日志。
+5. ``uut.phrase`` ：保存 *uut.send()* 语句发送后，收到的 ``expect`` 字符串。
+6. ``uut.capture()`` ：对 ``uut.buf`` 进行解析，获取想要的字符串片段。
 
 需要强调的是：``uut.send()`` 是传递命令行至待测产品UUT的唯一方式，使用方法如下::
 
@@ -42,6 +43,15 @@ lib.conn
 若未收到字符串 ``>>>``，则触发异常(用户可以使用 ``try...except...`` 捕获此异常)。
 
 需要说明的是：
+
+* ``uut.send()`` 的 ``expect`` 可以接受 ``列表list``， 若 ``expect`` 为 ``列表`` ，当平台收到 ``列表`` 中的任意一元素时，``uut.send()`` 语句执行完成，收到的元素保存在 ``uut.phrase`` ::
+
+    uut.send("dir\r", expect=[">", "#", "$"], timeout=60)
+    log.debug(uut.phrase)
+    if uut.phrase in [">", "#"]:
+        pass
+    if uut.phrase in ["$"]:
+        raise Exception("Got '$', go to fail")
 
 * ``uut.send()`` 前会自动清空 ``uut.buf`` 内容,  ``uut.send()`` 完成后，收到的所有字符会自动保存在 ``uut.buf`` 。此例中 ``uut.send()`` 完成后，若使用 ``log.debug(uut.buf)`` ，将在事件日志窗口打印出如下字符::
 

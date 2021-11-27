@@ -113,10 +113,11 @@
 </ul>
 <p>获取连接实例 <code class="docutils literal notranslate"><span class="pre">uut</span></code> 后，可以使用实例的以下几种属性:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.open()</span></code> ：打开连接</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.open()</span></code> ：打开连接, 需要注意的是：每次 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 前，会自动调用 <code class="docutils literal notranslate"><span class="pre">close()</span></code> 方法。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.close()</span></code> ：关闭连接</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> : 向连接传递命令行.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> ：保存最近一条 <em>uut.send()</em> 语句发送后，产品回馈的日志。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> ：保存 <em>uut.send()</em> 语句发送后，产品回馈的日志。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.phrase</span></code> ：保存 <em>uut.send()</em> 语句发送后，收到的 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 字符串。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.capture()</span></code> ：对 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 进行解析，获取想要的字符串片段。</p></li>
 </ol>
 <p>需要强调的是：<code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 是传递命令行至待测产品UUT的唯一方式，使用方法如下:</p>
@@ -128,6 +129,16 @@
 若未收到字符串 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>，则触发异常(用户可以使用 <code class="docutils literal notranslate"><span class="pre">try...except...</span></code> 捕获此异常)。</p>
 <p>需要说明的是：</p>
 <ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 可以接受 <code class="docutils literal notranslate"><span class="pre">列表list</span></code>， 若 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 为 <code class="docutils literal notranslate"><span class="pre">列表</span></code> ，当平台收到 <code class="docutils literal notranslate"><span class="pre">列表</span></code> 中的任意一元素时，<code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 语句执行完成，收到的元素保存在 <code class="docutils literal notranslate"><span class="pre">uut.phrase</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;dir</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;$&quot;</span><span class="p">],</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">uut</span><span class="o">.</span><span class="n">phrase</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">uut</span><span class="o">.</span><span class="n">phrase</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="p">]:</span>
+    <span class="k">pass</span>
+<span class="k">if</span> <span class="n">uut</span><span class="o">.</span><span class="n">phrase</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;$&quot;</span><span class="p">]:</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Got &#39;$&#39;, go to fail&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 前会自动清空 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 内容,  <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 完成后，收到的所有字符会自动保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 。此例中 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 完成后，若使用 <code class="docutils literal notranslate"><span class="pre">log.debug(uut.buf)</span></code> ，将在事件日志窗口打印出如下字符:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span>
 <span class="n">Python</span> <span class="mf">3.7.8</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="mf">.7.8</span><span class="p">:</span><span class="mi">4</span><span class="n">b47a5b6ba</span><span class="p">,</span> <span class="n">Jun</span> <span class="mi">28</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">08</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">46</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="mf">.1916</span> <span class="mi">64</span> <span class="n">bit</span> <span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
