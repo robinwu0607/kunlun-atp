@@ -69,9 +69,15 @@ Ask Question交互界面
 
 * 用户在 ``输入框`` 内输入产品序列号后，可以直接 ``回车`` 进行查询，也可以点击 ``查询按钮`` 进行查询。
 
-.. image:: ../_static/用户界面/data-search-log.png
+测试报告查询界面
+-------------------
+通过点击 ``测试报告`` 按钮，可以查看对应测试记录的测试报告。
 
-* 测试日志保存在测试主机本地，保存位置为 ``D:\kunlun-data\logs`` 。
+.. image:: ../_static/用户界面/data-search-report1.png
+.. image:: ../_static/用户界面/data-search-report2.png
+.. image:: ../_static/用户界面/data-search-report3.png
+
+需要说明的是：测试日志保存在测试主机本地，保存位置为 ``D:\kunlun-data\logs`` 。
 
 测试参数配置界面
 -----------------

@@ -43,8 +43,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#connection">Connection测试连接界面</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ask-question">Ask Question交互界面</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">测试数据查询界面</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">测试参数配置界面</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">指标数据配置界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">测试报告查询界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">测试参数配置界面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">指标数据配置界面</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91.html">测试开发</a></li>
@@ -141,21 +142,25 @@
 <ul class="simple">
 <li><p>用户在 <code class="docutils literal notranslate"><span class="pre">输入框</span></code> 内输入产品序列号后，可以直接 <code class="docutils literal notranslate"><span class="pre">回车</span></code> 进行查询，也可以点击 <code class="docutils literal notranslate"><span class="pre">查询按钮</span></code> 进行查询。</p></li>
 </ul>
-<img alt="../_images/data-search-log.png" src="../_images/data-search-log.png" />
-<ul class="simple">
-<li><p>测试日志保存在测试主机本地，保存位置为 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\logs</span></code> 。</p></li>
-</ul>
 </div>
 <div class="section" id="id3">
-<h2>测试参数配置界面<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>测试报告查询界面<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>通过点击 <code class="docutils literal notranslate"><span class="pre">测试报告</span></code> 按钮，可以查看对应测试记录的测试报告。</p>
+<img alt="../_images/data-search-report1.png" src="../_images/data-search-report1.png" />
+<img alt="../_images/data-search-report2.png" src="../_images/data-search-report2.png" />
+<img alt="../_images/data-search-report3.png" src="../_images/data-search-report3.png" />
+<p>需要说明的是：测试日志保存在测试主机本地，保存位置为 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\logs</span></code> 。</p>
+</div>
+<div class="section" id="id4">
+<h2>测试参数配置界面<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>测试参数配置界面可以配置项目下的XLSX文件 <code class="docutils literal notranslate"><span class="pre">params.xlsx</span></code>，使用网页对XLSX文件进行增删改查, 支撑远程调试。</p>
 <img alt="../_images/params.png" src="../_images/params.png" />
 <ul class="simple">
 <li><p>在用户测试代码中，可以使用接口函数 <code class="docutils literal notranslate"><span class="pre">lib.get_xlsx_params()</span></code> 获取测试参数。</p></li>
 </ul>
 </div>
-<div class="section" id="id4">
-<h2>指标数据配置界面<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>指标数据配置界面<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>指标数据配置界面可以配置项目下的XLSX文件 <code class="docutils literal notranslate"><span class="pre">meas.xlsx</span></code>，使用网页对XLSX文件进行增删改查, 支撑远程调试。</p>
 <img alt="../_images/meas.png" src="../_images/meas.png" />
 <ul class="simple">

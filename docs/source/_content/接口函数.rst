@@ -144,7 +144,7 @@ lib.add_test_data()
 
 * ``label1, label2, label3, label4, label5``
 * ``version1, version1, version3, version4, version5``
-* ``str1, str2, str3, str4, str5, str6, str7, str8, str9``
+* ``str1, str2, str3, str4, str5, str6``
 
 lib.get_mode()
 ---------------
