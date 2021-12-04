@@ -269,15 +269,48 @@ lib.get_sequencer_definition()
 注意：一个step可以实施单一策略，也可以实施组合策略。 优先级 ``loop_on_error`` > ``continue_on_error`` 。
 ``in_parallel`` 和 ``finalize`` 为独立策略，与其他策略无冲突。
 
-lib.set_sequencer_data()
-------------------------
-为当前的step增加sequencer数据，sequencer数据可以通过 ``lib.get_sequencer_data()`` 获得。
+5. 通过设置 ``cycle_time=60 * 5`` 可以实施 **按时间循环测试** 策略。
+例子中 ``run_test2`` 每次测试完成后，会检查累计消耗时间，若小于 ``cycle_time``， 将再一次测试，其中任何一次fail，循环测试终止。
 
-例如在函数 ``run_test2()`` 中调用此接口函数::
+使用示例::
 
-    lib.set_sequencer_data(param1=1234, test=5434, value=2344)
+    def main_sequencer():
+        seq = lib.get_sequencer_definition("SEQ", finalize=True)
+        seq.add_step(run_test, name="RUN TEST")
+        seq.add_step(run_test1, name="RUN TEST1")
+        seq.add_step(run_test2, name="RUN TEST2", cycle_time=60 * 5)
+        seq.add_step(run_test3, name="RUN TEST3")
+        return seq
 
-**此接口函数正在重新设计，暂未启用**
+6. 通过设置 ``cycle_count=10`` 可以实施 **按次数循环测试** 策略。
+例子中 ``run_test2`` 每次测试完成后，会检查累计次数，若小于 ``cycle_count``， 将再一次测试，其中任何一次fail，循环测试终止。
+
+使用示例::
+
+    def main_sequencer():
+        seq = lib.get_sequencer_definition("SEQ", finalize=True)
+        seq.add_step(run_test, name="RUN TEST")
+        seq.add_step(run_test1, name="RUN TEST1")
+        seq.add_step(run_test2, name="RUN TEST2", cycle_count=10)
+        seq.add_step(run_test3, name="RUN TEST3")
+        return seq
+
+注意：当在一个 ``step`` 上同时使用 ``cycle_time`` 与 ``cycle_count`` 时，仅 ``cycle_time`` 生效。
+
+7. 通过设置 ``skip="lib.ud.version == '110'"`` 可以实施 **按条件跳过测试** 策略。
+例子中 ``run_test2`` 每次测试前，会检查 ``skip`` 条件是否满足，若满足，跳过本测试用例。
+
+使用示例::
+
+    def main_sequencer():
+        seq = lib.get_sequencer_definition("SEQ", finalize=True)
+        seq.add_step(run_test, name="RUN TEST")
+        seq.add_step(run_test1, name="RUN TEST1")
+        seq.add_step(run_test2, name="RUN TEST2", skip="lib.ud.version == '110'")
+        seq.add_step(run_test3, name="RUN TEST3")
+        return seq
+
+需要强调的是：``skip`` 的值只能为字符串, 平台会自动将字符串转换为表达式，然后进行判断。
 
 lib.get_sequencer_data()
 ------------------------

@@ -289,3 +289,57 @@ FTP的默认文件夹是 ``D:\kunlun-data\tftpboot`` 。
 需要说明的是： ``lib.get_sequencer_definition()`` 中可以承载较多的测试策略，用户可以将精力投入到测试业务代码本身，聚焦更有价值的部分，测试策略交给平台处理。
 
 需要注意的是: 入口函数 ``main_sequencer()`` 必须 ``return`` 根测试序列 ``seq`` 给到平台，否则平台将无法执行测试序列。
+
+测试用例自动编排
+^^^^^^^^^^^^^^^^
+测试用例自动编排方案可以自动发现用例，自动组织用例。自动编排是手工编排的一种精简模式，对于较少测试策略的测试方案来说，可以明显减少编排工作量。
+
+测试用例自动编排方案采用自动收集满足条件的测试用例，采用字母表方案对用例的函数名/方法名进行排序，依次执行。
+
+建议采用测试序列自动编排方案的是：
+
+1. 测试用例之间相互独立，无时序上的依赖关系。
+2. 测试用例函数名/方法名有规范约束，例如以 ``test_`` 或 ``run_`` 开头。
+
+以下截取部分代码片段供参考::
+
+    # main.py中定义入口函数
+    from libs import lib
+    from . import cases
+
+    def main_sequencer():
+        seq = lib.get_sequencer_definition(
+            name="MAIN SEQ",
+            finalize=True,  # 实施 测试后清理 测试策略
+            discovery=True,  # 启用自动发现模式
+            module=cases,  # 导入cases模块，即cases.py
+            prefix="test_",  # 收集cases模块中的所有以 test_ 开头的函数(测试用例)
+        )
+        return seq
+
+    # cases.py中定义测试用例
+    from libs import lib
+    import requests
+    import selenium
+
+    @lib.step(continue_on_error=True)
+    def test_step1():
+        pass
+
+    @lib.step(loop_on_error=3, cycle_count=4)
+    def test_step2():
+        pass
+
+    @lib.step(cycle_time=60)
+    def test_step4():
+        pass
+
+    def test_step3():
+        pass
+
+本例中用例的执行顺序是：``test_step1()`` -> ``test_step2()`` -> ``test_step3()`` -> ``test_step4()`` 。
+
+需要说明的是:
+
+* 使用 ``lib.step()`` 为测试用例实施测试策略。
+* 测试策略中不能实施 ``in_parallel`` 平行测试策略。

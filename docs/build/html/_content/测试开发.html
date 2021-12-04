@@ -50,6 +50,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#id5">测试代码开发方案</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id6">小型项目快速开发</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">大型项目测试编排</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">测试用例自动编排</a></li>
 </ul>
 </li>
 </ul>
@@ -362,6 +363,58 @@
 </div>
 <p>需要说明的是： <code class="docutils literal notranslate"><span class="pre">lib.get_sequencer_definition()</span></code> 中可以承载较多的测试策略，用户可以将精力投入到测试业务代码本身，聚焦更有价值的部分，测试策略交给平台处理。</p>
 <p>需要注意的是: 入口函数 <code class="docutils literal notranslate"><span class="pre">main_sequencer()</span></code> 必须 <code class="docutils literal notranslate"><span class="pre">return</span></code> 根测试序列 <code class="docutils literal notranslate"><span class="pre">seq</span></code> 给到平台，否则平台将无法执行测试序列。</p>
+</div>
+<div class="section" id="id8">
+<h3>测试用例自动编排<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>测试用例自动编排方案可以自动发现用例，自动组织用例。自动编排是手工编排的一种精简模式，对于较少测试策略的测试方案来说，可以明显减少编排工作量。</p>
+<p>测试用例自动编排方案采用自动收集满足条件的测试用例，采用字母表方案对用例的函数名/方法名进行排序，依次执行。</p>
+<p>建议采用测试序列自动编排方案的是：</p>
+<ol class="arabic simple">
+<li><p>测试用例之间相互独立，无时序上的依赖关系。</p></li>
+<li><p>测试用例函数名/方法名有规范约束，例如以 <code class="docutils literal notranslate"><span class="pre">test_</span></code> 或 <code class="docutils literal notranslate"><span class="pre">run_</span></code> 开头。</p></li>
+</ol>
+<p>以下截取部分代码片段供参考:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py中定义入口函数</span>
+<span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">cases</span>
+
+<span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MAIN SEQ&quot;</span><span class="p">,</span>
+        <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 实施 测试后清理 测试策略</span>
+        <span class="n">discovery</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 启用自动发现模式</span>
+        <span class="n">module</span><span class="o">=</span><span class="n">cases</span><span class="p">,</span>  <span class="c1"># 导入cases模块，即cases.py</span>
+        <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;test_&quot;</span><span class="p">,</span>  <span class="c1"># 收集cases模块中的所有以 test_ 开头的函数(测试用例)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">seq</span>
+
+<span class="c1"># cases.py中定义测试用例</span>
+<span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">selenium</span>
+
+<span class="nd">@lib</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">continue_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_step1</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="nd">@lib</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">loop_on_error</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cycle_count</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_step2</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="nd">@lib</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">cycle_time</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_step4</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">test_step3</span><span class="p">():</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>本例中用例的执行顺序是：<code class="docutils literal notranslate"><span class="pre">test_step1()</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">test_step2()</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">test_step3()</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">test_step4()</span></code> 。</p>
+<p>需要说明的是:</p>
+<ul class="simple">
+<li><p>使用 <code class="docutils literal notranslate"><span class="pre">lib.step()</span></code> 为测试用例实施测试策略。</p></li>
+<li><p>测试策略中不能实施 <code class="docutils literal notranslate"><span class="pre">in_parallel</span></code> 平行测试策略。</p></li>
+</ul>
 </div>
 </div>
 </div>

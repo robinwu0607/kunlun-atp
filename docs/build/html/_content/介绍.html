@@ -175,6 +175,12 @@
 </pre></div>
 </div>
 </li>
+</ol>
+<p>需要说明的是，用户可以使用 <code class="docutils literal notranslate"><span class="pre">raise</span></code> 触发异常，也可以采用断言 <code class="docutils literal notranslate"><span class="pre">assert</span></code> 触发异常:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="s2">&quot;win32&quot;</span> <span class="ow">in</span> <span class="n">uut</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span> <span class="s2">&quot;platform should be [win32], go to fail&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic" start="8">
 <li><p>清理测试环境，并关闭连接:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;exit()</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">uut</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>

@@ -52,7 +52,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-params">lib.get_params()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-project-name">lib.get_project_name()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-sequencer-definition">lib.get_sequencer_definition()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lib-set-sequencer-data">lib.set_sequencer_data()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-sequencer-data">lib.get_sequencer_data()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-xlsx-params">lib.get_xlsx_params()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-xlsx-measure">lib.xlsx_measure()</a></li>
@@ -354,15 +353,44 @@
 </div>
 <p>注意：一个step可以实施单一策略，也可以实施组合策略。 优先级 <code class="docutils literal notranslate"><span class="pre">loop_on_error</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">continue_on_error</span></code> 。
 <code class="docutils literal notranslate"><span class="pre">in_parallel</span></code> 和 <code class="docutils literal notranslate"><span class="pre">finalize</span></code> 为独立策略，与其他策略无冲突。</p>
-</div>
-<div class="section" id="lib-set-sequencer-data">
-<h2>lib.set_sequencer_data()<a class="headerlink" href="#lib-set-sequencer-data" title="Permalink to this headline">¶</a></h2>
-<p>为当前的step增加sequencer数据，sequencer数据可以通过 <code class="docutils literal notranslate"><span class="pre">lib.get_sequencer_data()</span></code> 获得。</p>
-<p>例如在函数 <code class="docutils literal notranslate"><span class="pre">run_test2()</span></code> 中调用此接口函数:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_sequencer_data</span><span class="p">(</span><span class="n">param1</span><span class="o">=</span><span class="mi">1234</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="mi">5434</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">2344</span><span class="p">)</span>
+<p>5. 通过设置 <code class="docutils literal notranslate"><span class="pre">cycle_time=60</span> <span class="pre">*</span> <span class="pre">5</span></code> 可以实施 <strong>按时间循环测试</strong> 策略。
+例子中 <code class="docutils literal notranslate"><span class="pre">run_test2</span></code> 每次测试完成后，会检查累计消耗时间，若小于 <code class="docutils literal notranslate"><span class="pre">cycle_time</span></code>， 将再一次测试，其中任何一次fail，循环测试终止。</p>
+<p>使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span><span class="s2">&quot;SEQ&quot;</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">,</span> <span class="n">cycle_time</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seq</span>
 </pre></div>
 </div>
-<p><strong>此接口函数正在重新设计，暂未启用</strong></p>
+<p>6. 通过设置 <code class="docutils literal notranslate"><span class="pre">cycle_count=10</span></code> 可以实施 <strong>按次数循环测试</strong> 策略。
+例子中 <code class="docutils literal notranslate"><span class="pre">run_test2</span></code> 每次测试完成后，会检查累计次数，若小于 <code class="docutils literal notranslate"><span class="pre">cycle_count</span></code>， 将再一次测试，其中任何一次fail，循环测试终止。</p>
+<p>使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span><span class="s2">&quot;SEQ&quot;</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">,</span> <span class="n">cycle_count</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seq</span>
+</pre></div>
+</div>
+<p>注意：当在一个 <code class="docutils literal notranslate"><span class="pre">step</span></code> 上同时使用 <code class="docutils literal notranslate"><span class="pre">cycle_time</span></code> 与 <code class="docutils literal notranslate"><span class="pre">cycle_count</span></code> 时，仅 <code class="docutils literal notranslate"><span class="pre">cycle_time</span></code> 生效。</p>
+<p>7. 通过设置 <code class="docutils literal notranslate"><span class="pre">skip=&quot;lib.ud.version</span> <span class="pre">==</span> <span class="pre">'110'&quot;</span></code> 可以实施 <strong>按条件跳过测试</strong> 策略。
+例子中 <code class="docutils literal notranslate"><span class="pre">run_test2</span></code> 每次测试前，会检查 <code class="docutils literal notranslate"><span class="pre">skip</span></code> 条件是否满足，若满足，跳过本测试用例。</p>
+<p>使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span><span class="s2">&quot;SEQ&quot;</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="s2">&quot;lib.ud.version == &#39;110&#39;&quot;</span><span class="p">)</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seq</span>
+</pre></div>
+</div>
+<p>需要强调的是：<code class="docutils literal notranslate"><span class="pre">skip</span></code> 的值只能为字符串, 平台会自动将字符串转换为表达式，然后进行判断。</p>
 </div>
 <div class="section" id="lib-get-sequencer-data">
 <h2>lib.get_sequencer_data()<a class="headerlink" href="#lib-get-sequencer-data" title="Permalink to this headline">¶</a></h2>

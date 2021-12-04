@@ -100,6 +100,10 @@ KLAT是KunLun Auto Test Platform的缩写，是命令行测试自动化平台。
         if "win32" not in uut.buf:
             raise Exception("platform should be [win32], go to fail")
 
+需要说明的是，用户可以使用 ``raise`` 触发异常，也可以采用断言 ``assert`` 触发异常::
+
+    assert "win32" in uut.buf, "platform should be [win32], go to fail"
+
 8. 清理测试环境，并关闭连接::
 
         uut.send("exit()\r", expect=">", timeout=10)
