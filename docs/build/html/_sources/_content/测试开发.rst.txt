@@ -311,9 +311,10 @@ FTP的默认文件夹是 ``D:\kunlun-data\tftpboot`` 。
         seq = lib.get_sequencer_definition(
             name="MAIN SEQ",
             finalize=True,  # 实施 测试后清理 测试策略
-            discovery=True,  # 启用自动发现模式
-            module=cases,  # 导入cases模块，即cases.py
-            prefix="test_",  # 收集cases模块中的所有以 test_ 开头的函数(测试用例)
+            discovery={  # 启用自动发现模式
+                module=cases,  # 导入cases模块，即cases.py
+                prefix="test_",  # 收集cases模块中的所有以 test_ 开头的函数(测试用例)
+            }
         )
         return seq
 
@@ -343,3 +344,56 @@ FTP的默认文件夹是 ``D:\kunlun-data\tftpboot`` 。
 
 * 使用 ``lib.step()`` 为测试用例实施测试策略。
 * 测试策略中不能实施 ``in_parallel`` 平行测试策略。
+
+手工导入python pypi包
+^^^^^^^^^^^^^^^^^^^^^
+平台仅提供有限的python pypi包集成，有时候用户需要导入额外的python pypi包，辅助代码开发使用。
+
+平台提供的python pypi包有：
+
+1. pandas
+2. requests
+3. pymysql
+4. xml
+5. openpyxl
+6. pythonnet
+
+为了帮助用户更好地体验平台，这里对如何导入pypi包进行说明，以非常流行的 `invoke` 进行说明。流程如下：
+
+1. 浏览pypi官方网址: ``https://pypi.org/``, 输入 ``invoke`` 进行搜索。
+
+.. image:: ../_static/测试开发/pypi-1.png
+
+2. 选择正确的 ``invoke`` 包名，点击进入 `invoke` 主页。
+
+.. image:: ../_static/测试开发/pypi-2.png
+
+3. 点击 ``Download Files``, 选择 ``.tar.gz`` 结尾的文件，点击文件名进行下载。
+
+.. image:: ../_static/测试开发/pypi-3.png
+
+4. 打开下载好的压缩包，将 ``invoke`` 文件夹解压至文件夹 ``D:\kunlun-data\pypi`` 目录下。
+
+.. image:: ../_static/测试开发/pypi-4.png
+
+需要说明的是：
+
+    1. 压缩包中，``invoke`` 文件夹与 ``setup.py`` 文件处于同级文件夹，不是根文件夹。
+    2. 解压之前，需要手工创建 ``D:\kunlun-data\pypi`` 目录。
+
+
+5. 在代码中导入 ``invoke`` 包，导入示例代码如下::
+
+    import sys
+    sys.path.append(r"D:\kunlun-data\pypi")  # 将路径加入环境变量中
+    import invoke
+    from invoke import tasks
+    from libs import lib
+
+    log = lib.get_event_logger()
+
+
+    # # 定义入口函数
+    # def main_sequencer():
+        return
+

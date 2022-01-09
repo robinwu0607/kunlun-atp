@@ -51,6 +51,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id6">小型项目快速开发</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">大型项目测试编排</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id8">测试用例自动编排</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-pypi">手工导入python pypi包</a></li>
 </ul>
 </li>
 </ul>
@@ -382,9 +383,10 @@
     <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MAIN SEQ&quot;</span><span class="p">,</span>
         <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 实施 测试后清理 测试策略</span>
-        <span class="n">discovery</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 启用自动发现模式</span>
-        <span class="n">module</span><span class="o">=</span><span class="n">cases</span><span class="p">,</span>  <span class="c1"># 导入cases模块，即cases.py</span>
-        <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;test_&quot;</span><span class="p">,</span>  <span class="c1"># 收集cases模块中的所有以 test_ 开头的函数(测试用例)</span>
+        <span class="n">discovery</span><span class="o">=</span><span class="p">{</span>  <span class="c1"># 启用自动发现模式</span>
+            <span class="n">module</span><span class="o">=</span><span class="n">cases</span><span class="p">,</span>  <span class="c1"># 导入cases模块，即cases.py</span>
+            <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;test_&quot;</span><span class="p">,</span>  <span class="c1"># 收集cases模块中的所有以 test_ 开头的函数(测试用例)</span>
+        <span class="p">}</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">seq</span>
 
@@ -415,6 +417,61 @@
 <li><p>使用 <code class="docutils literal notranslate"><span class="pre">lib.step()</span></code> 为测试用例实施测试策略。</p></li>
 <li><p>测试策略中不能实施 <code class="docutils literal notranslate"><span class="pre">in_parallel</span></code> 平行测试策略。</p></li>
 </ul>
+</div>
+<div class="section" id="python-pypi">
+<h3>手工导入python pypi包<a class="headerlink" href="#python-pypi" title="Permalink to this headline">¶</a></h3>
+<p>平台仅提供有限的python pypi包集成，有时候用户需要导入额外的python pypi包，辅助代码开发使用。</p>
+<p>平台提供的python pypi包有：</p>
+<ol class="arabic simple">
+<li><p>pandas</p></li>
+<li><p>requests</p></li>
+<li><p>pymysql</p></li>
+<li><p>xml</p></li>
+<li><p>openpyxl</p></li>
+<li><p>pythonnet</p></li>
+</ol>
+<p>为了帮助用户更好地体验平台，这里对如何导入pypi包进行说明，以非常流行的 <cite>invoke</cite> 进行说明。流程如下：</p>
+<ol class="arabic simple">
+<li><p>浏览pypi官方网址: <code class="docutils literal notranslate"><span class="pre">https://pypi.org/</span></code>, 输入 <code class="docutils literal notranslate"><span class="pre">invoke</span></code> 进行搜索。</p></li>
+</ol>
+<img alt="../_images/pypi-1.png" src="../_images/pypi-1.png" />
+<ol class="arabic simple" start="2">
+<li><p>选择正确的 <code class="docutils literal notranslate"><span class="pre">invoke</span></code> 包名，点击进入 <cite>invoke</cite> 主页。</p></li>
+</ol>
+<img alt="../_images/pypi-2.png" src="../_images/pypi-2.png" />
+<ol class="arabic simple" start="3">
+<li><p>点击 <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Files</span></code>, 选择 <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> 结尾的文件，点击文件名进行下载。</p></li>
+</ol>
+<img alt="../_images/pypi-3.png" src="../_images/pypi-3.png" />
+<ol class="arabic simple" start="4">
+<li><p>打开下载好的压缩包，将 <code class="docutils literal notranslate"><span class="pre">invoke</span></code> 文件夹解压至文件夹 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\pypi</span></code> 目录下。</p></li>
+</ol>
+<img alt="../_images/pypi-4.png" src="../_images/pypi-4.png" />
+<p>需要说明的是：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>压缩包中，<code class="docutils literal notranslate"><span class="pre">invoke</span></code> 文件夹与 <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> 文件处于同级文件夹，不是根文件夹。</p></li>
+<li><p>解压之前，需要手工创建 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\pypi</span></code> 目录。</p></li>
+</ol>
+</div></blockquote>
+<ol class="arabic" start="5">
+<li><p>在代码中导入 <code class="docutils literal notranslate"><span class="pre">invoke</span></code> 包，导入示例代码如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;D:\kunlun-data\pypi&quot;</span><span class="p">)</span>  <span class="c1"># 将路径加入环境变量中</span>
+<span class="kn">import</span> <span class="nn">invoke</span>
+<span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">tasks</span>
+<span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_event_logger</span><span class="p">()</span>
+
+
+<span class="c1"># # 定义入口函数</span>
+<span class="c1"># def main_sequencer():</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
