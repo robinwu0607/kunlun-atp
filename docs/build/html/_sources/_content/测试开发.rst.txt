@@ -66,6 +66,8 @@ kunlun-data文件夹
             container.add_connection(name="TNT", protocol="TELNET", host="192.168.0.3", port=2009)
             # 增加一个Connection连接，连接的协议为SERIAL，目标端口为COM1，波特率为115200。
             container.add_connection(name="SER", protocol="SERIAL", serial="COM1", baud=115200)
+            # 增加一个Connection连接，连接的协议为SERIAL，以HEX方式交互，目标端口为COM1，波特率为115200。
+            container.add_connection(name="HEX", protocol="SERIAL-HEX", serial="COM1", baud=115200)
         # 在根实例Kl下增加第二个Station工站
         station = kl.add_station(name="BP2", desc="FT测试", recycle=False)
         station.add_sequencer("project.sequence")

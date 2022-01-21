@@ -1,6 +1,10 @@
 变更记录
 ============
 
+v22.1.1
+-------
+1. 增加对串口serial HEX方式交互的支持，设置方法为：``add_connection(protocol="SERIAL-HEX")`` .
+
 v22.1.0
 -------
 1. 增加导入python pypi包的说明。
