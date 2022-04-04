@@ -3,11 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-KLAT命令行测试自动化平台
+KLAT自动化测试平台
 ========================
 
-主题
-====
 .. toctree::
    :maxdepth: 2
 
@@ -18,3 +16,7 @@ KLAT命令行测试自动化平台
    _content/接口函数
    _content/常见问题
    _content/变更记录
+
+欢迎加入QQ群讨论:
+
+.. image:: ./_static/qqqr.jpg
