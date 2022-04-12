@@ -22,7 +22,7 @@ copyright = '2021, robinwu'
 author = 'robinwu'
 
 # The full version, including alpha/beta/rc tags
-release = 'v22.4.0'
+release = 'v22.4.1'
 
 
 # -- General configuration ---------------------------------------------------
