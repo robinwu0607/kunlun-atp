@@ -44,7 +44,7 @@ lib.conn
 
 需要说明的是：
 
-* ``uut.send()`` 的 ``expect`` 可以接受 ``列表list``， 若 ``expect`` 为 ``列表`` ，当平台收到 ``列表`` 中的任意一元素时，``uut.send()`` 语句执行完成，收到的元素保存在 ``uut.phrase`` ::
+* ``uut.send()`` 的 ``expect`` 可以接受 ``列表list``， 若 ``expect`` 为 ``列表`` 时，当平台收到 ``列表`` 中的任意一元素时，``uut.send()`` 语句执行完成，收到的元素保存在 ``uut.phrase`` ::
 
     uut.send("dir\r", expect=[">", "#", "$"], timeout=60)
     log.debug(uut.phrase)
@@ -52,6 +52,10 @@ lib.conn
         pass
     if uut.phrase in ["$"]:
         raise Exception("Got '$', go to fail")
+
+* ``uut.send()`` 的 ``expect`` 可以接受 ``元组tuple``， 若 ``expect`` 为 ``元组`` 时，，当平台必须收到 ``元组`` 中的所有元素，``uut.send()`` 语句执行完成。 ::
+
+    uut.send("dir\r", expect=(">", "TEST PASSED"), timeout=60)
 
 * ``uut.send()`` 前会自动清空 ``uut.buf`` 内容,  ``uut.send()`` 完成后，收到的所有字符会自动保存在 ``uut.buf`` 。此例中 ``uut.send()`` 完成后，若使用 ``log.debug(uut.buf)`` ，将在事件日志窗口打印出如下字符::
 
