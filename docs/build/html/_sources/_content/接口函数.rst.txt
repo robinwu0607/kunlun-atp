@@ -120,12 +120,16 @@ lib.set_display1/2/3()
     # display3 显示当前的测试项目名称
     lib.set_display3("STEP: RUN TEST")
 
-lib.set_test_name()
+lib.set_step_name()
 --------------------
-``lib.set_test_name()`` 设置当前测试项目名称, 若测试项FAIL, 测试记录会自动用此名称作为测试失败项, PASS则不记录。
+``lib.set_step_name()`` 设置当前测试项目名称, 若测试项FAIL, 测试记录会自动用此名称作为测试失败项, PASS则不记录。
 使用示例::
 
-    lib.set_test_name("run cpu test")
+    lib.set_step_name("run cpu test")
+
+lib.set_test_name()
+--------------------
+同 ``lib.set_step_name()``，未来将移除 ``lib.set_test_name()`` .
 
 lib.get_container_name()
 --------------------------
@@ -159,12 +163,22 @@ lib.get_mode()
 lib.get_params()
 -----------------------
 ``lib.get_params()`` 返回 ``hostname.py`` 中当前工站的 ``add_params_data()`` 的值，是一个字典。
-例: 如设置 ``params=dict(host="192.168.1.1", port=2003)``，则返回值为 ``{"host": "192.168.1.1", "port": 2003}`` 。
+例: 如设置 ``add_params_data(ip="192.168.1.1", ip=2003)``，则返回值为 ``{"host": "192.168.1.1", "port": 2003}`` 。
 
 lib.get_project_name()
 -----------------------
 ``lib.get_project_name()`` 返回 ``hostname.py`` 中相应工站的 ``sequencer`` 的第一个值(以 **.** 点号分开)，是一个字符串。
 例: 如设置 ``sequencer="demo.main"``, 则返回值为 ``demo`` 。
+
+lib.start_container_test()
+---------------------------
+使用一个 ``container`` 启动其他 ``container`` 测试。
+
+使用示例：
+
+使用 ``lib.start_container_test("DEMO:UUT01")`` 启动 ``DEMO:UUT01`` 测试。
+
+使用 ``lib.start_container_test(["DEMO:UUT01", "DEMO:UUT02"])`` 连续启动多个 ``container`` 测试。
 
 lib.get_sequencer_definition()
 ------------------------------
@@ -383,16 +397,6 @@ upper(指标上限)为 ``50`` , 因为 ``20<=30<=50`` , 所以指标检查通过
 
 若实际测量值为 ``60`` ，则指标检查失败，将触发异常，测试失败。
 
-lib.start_container_test()
----------------------------
-使用一个 ``container`` 启动其他 ``container`` 测试。
-
-使用示例：
-
-使用 ``lib.start_container_test("DEMO:UUT01")`` 启动 ``DEMO:UUT01`` 测试。
-
-使用 ``lib.start_container_test(["DEMO:UUT01", "DEMO:UUT02"])`` 连续启动多个 ``container`` 测试。
-
 lib.get_allocation()
 ----------------------
 在 ``hostname.py`` 中调用此接口函数，可以更精细化定制用户界面。
@@ -418,23 +422,3 @@ lib.get_allocation()
             container = station.add_container("UUT{:02d}".format(i))
             container.add_connection(name="UUT", protocol="DUMMY")
             container.add_connection(name="PWR", protocol="SSH", host="192.168.0.2", username="root", password="root")
-
-lib.set_chart_data()
----------------------
-``lib.set_chart_data()`` 将数据传到用户界面，制作线图(Line Chart).
-
-使用步骤：
-
-1. 在 ``hostname.py`` 中增加 ``chart`` 窗口, 设置入参 ``name``，例如 ``name="TSS"`` ::
-
-    container.add_line_chart(name="TSS")
-
-2. 重启平台服务，使修改后的 ``hostname.py`` 生效。
-3. 打开用户界面，导航至 ``Container连接`` 页面，可以看到 ``CHART-TSS`` 窗口。
-4. 用户代码中调用接口函数，入参 ``name="TSS"`` 不参与制图，其他入参会参与制图::
-
-    lib.set_chart_data(name="TSS", Actual=20, Expect=23)
-
-5. 用户界面会根据 ``lib.set_chart_data()`` 的入参 ``name`` 选择对应的窗口，其他入参作为 ``chart`` 的输入开始制图。
-
-.. image:: ../_static/接口函数/line-chart.png

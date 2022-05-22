@@ -45,19 +45,19 @@
 <li class="toctree-l2"><a class="reference internal" href="#lib-ask-question">lib.ask_question()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-ask-questions">lib.ask_questions()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-set-display1-2-3">lib.set_display1/2/3()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-set-step-name">lib.set_step_name()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-set-test-name">lib.set_test_name()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-container-name">lib.get_container_name()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-add-test-data">lib.add_test_data()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-mode">lib.get_mode()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-params">lib.get_params()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-project-name">lib.get_project_name()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lib-start-container-test">lib.start_container_test()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-sequencer-definition">lib.get_sequencer_definition()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-sequencer-data">lib.get_sequencer_data()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-xlsx-params">lib.get_xlsx_params()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-xlsx-measure">lib.xlsx_measure()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lib-start-container-test">lib.start_container_test()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lib-get-allocation">lib.get_allocation()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lib-set-chart-data">lib.set_chart_data()</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html">常见问题</a></li>
@@ -208,13 +208,17 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="lib-set-test-name">
-<h2>lib.set_test_name()<a class="headerlink" href="#lib-set-test-name" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">lib.set_test_name()</span></code> 设置当前测试项目名称, 若测试项FAIL, 测试记录会自动用此名称作为测试失败项, PASS则不记录。
+<div class="section" id="lib-set-step-name">
+<h2>lib.set_step_name()<a class="headerlink" href="#lib-set-step-name" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">lib.set_step_name()</span></code> 设置当前测试项目名称, 若测试项FAIL, 测试记录会自动用此名称作为测试失败项, PASS则不记录。
 使用示例:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_test_name</span><span class="p">(</span><span class="s2">&quot;run cpu test&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_step_name</span><span class="p">(</span><span class="s2">&quot;run cpu test&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="lib-set-test-name">
+<h2>lib.set_test_name()<a class="headerlink" href="#lib-set-test-name" title="Permalink to this headline">¶</a></h2>
+<p>同 <code class="docutils literal notranslate"><span class="pre">lib.set_step_name()</span></code>，未来将移除 <code class="docutils literal notranslate"><span class="pre">lib.set_test_name()</span></code> .</p>
 </div>
 <div class="section" id="lib-get-container-name">
 <h2>lib.get_container_name()<a class="headerlink" href="#lib-get-container-name" title="Permalink to this headline">¶</a></h2>
@@ -249,12 +253,19 @@
 <div class="section" id="lib-get-params">
 <h2>lib.get_params()<a class="headerlink" href="#lib-get-params" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">lib.get_params()</span></code> 返回 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中当前工站的 <code class="docutils literal notranslate"><span class="pre">add_params_data()</span></code> 的值，是一个字典。
-例: 如设置 <code class="docutils literal notranslate"><span class="pre">params=dict(host=&quot;192.168.1.1&quot;,</span> <span class="pre">port=2003)</span></code>，则返回值为 <code class="docutils literal notranslate"><span class="pre">{&quot;host&quot;:</span> <span class="pre">&quot;192.168.1.1&quot;,</span> <span class="pre">&quot;port&quot;:</span> <span class="pre">2003}</span></code> 。</p>
+例: 如设置 <code class="docutils literal notranslate"><span class="pre">add_params_data(ip=&quot;192.168.1.1&quot;,</span> <span class="pre">ip=2003)</span></code>，则返回值为 <code class="docutils literal notranslate"><span class="pre">{&quot;host&quot;:</span> <span class="pre">&quot;192.168.1.1&quot;,</span> <span class="pre">&quot;port&quot;:</span> <span class="pre">2003}</span></code> 。</p>
 </div>
 <div class="section" id="lib-get-project-name">
 <h2>lib.get_project_name()<a class="headerlink" href="#lib-get-project-name" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">lib.get_project_name()</span></code> 返回 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中相应工站的 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 的第一个值(以 <strong>.</strong> 点号分开)，是一个字符串。
 例: 如设置 <code class="docutils literal notranslate"><span class="pre">sequencer=&quot;demo.main&quot;</span></code>, 则返回值为 <code class="docutils literal notranslate"><span class="pre">demo</span></code> 。</p>
+</div>
+<div class="section" id="lib-start-container-test">
+<h2>lib.start_container_test()<a class="headerlink" href="#lib-start-container-test" title="Permalink to this headline">¶</a></h2>
+<p>使用一个 <code class="docutils literal notranslate"><span class="pre">container</span></code> 启动其他 <code class="docutils literal notranslate"><span class="pre">container</span></code> 测试。</p>
+<p>使用示例：</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">lib.start_container_test(&quot;DEMO:UUT01&quot;)</span></code> 启动 <code class="docutils literal notranslate"><span class="pre">DEMO:UUT01</span></code> 测试。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">lib.start_container_test([&quot;DEMO:UUT01&quot;,</span> <span class="pre">&quot;DEMO:UUT02&quot;])</span></code> 连续启动多个 <code class="docutils literal notranslate"><span class="pre">container</span></code> 测试。</p>
 </div>
 <div class="section" id="lib-get-sequencer-definition">
 <h2>lib.get_sequencer_definition()<a class="headerlink" href="#lib-get-sequencer-definition" title="Permalink to this headline">¶</a></h2>
@@ -494,13 +505,6 @@
 upper(指标上限)为 <code class="docutils literal notranslate"><span class="pre">50</span></code> , 因为 <code class="docutils literal notranslate"><span class="pre">20&lt;=30&lt;=50</span></code> , 所以指标检查通过。</p>
 <p>若实际测量值为 <code class="docutils literal notranslate"><span class="pre">60</span></code> ，则指标检查失败，将触发异常，测试失败。</p>
 </div>
-<div class="section" id="lib-start-container-test">
-<h2>lib.start_container_test()<a class="headerlink" href="#lib-start-container-test" title="Permalink to this headline">¶</a></h2>
-<p>使用一个 <code class="docutils literal notranslate"><span class="pre">container</span></code> 启动其他 <code class="docutils literal notranslate"><span class="pre">container</span></code> 测试。</p>
-<p>使用示例：</p>
-<p>使用 <code class="docutils literal notranslate"><span class="pre">lib.start_container_test(&quot;DEMO:UUT01&quot;)</span></code> 启动 <code class="docutils literal notranslate"><span class="pre">DEMO:UUT01</span></code> 测试。</p>
-<p>使用 <code class="docutils literal notranslate"><span class="pre">lib.start_container_test([&quot;DEMO:UUT01&quot;,</span> <span class="pre">&quot;DEMO:UUT02&quot;])</span></code> 连续启动多个 <code class="docutils literal notranslate"><span class="pre">container</span></code> 测试。</p>
-</div>
 <div class="section" id="lib-get-allocation">
 <h2>lib.get_allocation()<a class="headerlink" href="#lib-get-allocation" title="Permalink to this headline">¶</a></h2>
 <p>在 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中调用此接口函数，可以更精细化定制用户界面。</p>
@@ -526,27 +530,6 @@ upper(指标上限)为 <code class="docutils literal notranslate"><span class="p
         <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;PWR&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;SSH&quot;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.0.2&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="lib-set-chart-data">
-<h2>lib.set_chart_data()<a class="headerlink" href="#lib-set-chart-data" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">lib.set_chart_data()</span></code> 将数据传到用户界面，制作线图(Line Chart).</p>
-<p>使用步骤：</p>
-<ol class="arabic">
-<li><p>在 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中增加 <code class="docutils literal notranslate"><span class="pre">chart</span></code> 窗口, 设置入参 <code class="docutils literal notranslate"><span class="pre">name</span></code>，例如 <code class="docutils literal notranslate"><span class="pre">name=&quot;TSS&quot;</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">container</span><span class="o">.</span><span class="n">add_line_chart</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;TSS&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>重启平台服务，使修改后的 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 生效。</p></li>
-<li><p>打开用户界面，导航至 <code class="docutils literal notranslate"><span class="pre">Container连接</span></code> 页面，可以看到 <code class="docutils literal notranslate"><span class="pre">CHART-TSS</span></code> 窗口。</p></li>
-<li><p>用户代码中调用接口函数，入参 <code class="docutils literal notranslate"><span class="pre">name=&quot;TSS&quot;</span></code> 不参与制图，其他入参会参与制图:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_chart_data</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;TSS&quot;</span><span class="p">,</span> <span class="n">Actual</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">Expect</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
-</pre></div>
-</div>
-</li>
-<li><p>用户界面会根据 <code class="docutils literal notranslate"><span class="pre">lib.set_chart_data()</span></code> 的入参 <code class="docutils literal notranslate"><span class="pre">name</span></code> 选择对应的窗口，其他入参作为 <code class="docutils literal notranslate"><span class="pre">chart</span></code> 的输入开始制图。</p></li>
-</ol>
-<img alt="../_images/line-chart.png" src="../_images/line-chart.png" />
 </div>
 </div>
 
