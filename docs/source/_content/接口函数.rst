@@ -407,7 +407,7 @@ lib.get_allocation()
 
     def main():
         kl = lib.get_allocation()
-        station = kl.add_station("BST", "功能测试", recycle=False, photo=r"project\bee.jpg")
+        station = kl.add_station("BST", "功能测试", recycle=False, photo=r"project\bee.jpg", dense=False)
         station.add_sequencer("project.sequence")
         station.add_params_data(host="192.168.0.1")
         for i in range(4):
