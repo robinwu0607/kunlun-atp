@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-KLAT自动化测试平台
-========================
+KunLun AutoTest测试自动化
+============================
 
 .. toctree::
    :maxdepth: 2

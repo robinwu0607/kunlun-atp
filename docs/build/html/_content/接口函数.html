@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>接口函数 &mdash; KLAT自动化测试 v22.4.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>接口函数 &mdash; KunLun AutoTest v22.11.0 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -24,7 +24,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> KLAT自动化测试
+            <a href="../index.html" class="icon icon-home"> KunLun AutoTest
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -70,7 +70,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">KLAT自动化测试</a>
+          <a href="../index.html">KunLun AutoTest</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -513,7 +513,7 @@ upper(指标上限)为 <code class="docutils literal notranslate"><span class="p
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">kl</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_allocation</span><span class="p">()</span>
-    <span class="n">station</span> <span class="o">=</span> <span class="n">kl</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="s2">&quot;BST&quot;</span><span class="p">,</span> <span class="s2">&quot;功能测试&quot;</span><span class="p">,</span> <span class="n">recycle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">photo</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;project\bee.jpg&quot;</span><span class="p">)</span>
+    <span class="n">station</span> <span class="o">=</span> <span class="n">kl</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="s2">&quot;BST&quot;</span><span class="p">,</span> <span class="s2">&quot;功能测试&quot;</span><span class="p">,</span> <span class="n">recycle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">photo</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;project\bee.jpg&quot;</span><span class="p">,</span> <span class="n">dense</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">station</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;project.sequence&quot;</span><span class="p">)</span>
     <span class="n">station</span><span class="o">.</span><span class="n">add_params_data</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>

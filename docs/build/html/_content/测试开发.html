@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>测试开发 &mdash; KLAT自动化测试 v22.4.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>测试开发 &mdash; KunLun AutoTest v22.11.0 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -24,7 +24,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> KLAT自动化测试
+            <a href="../index.html" class="icon icon-home"> KunLun AutoTest
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -50,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#id5">测试代码开发方案</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id6">小型项目快速开发</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">大型项目测试编排</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">测试用例自动编排</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#python-pypi">手工导入python pypi包</a></li>
 </ul>
 </li>
@@ -67,7 +66,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">KLAT自动化测试</a>
+          <a href="../index.html">KunLun AutoTest</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -97,14 +96,12 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">product</span></code> ：生产模式将调用此文件夹下的代码。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">develop</span></code> : 开发模式将调用此文件夹下的代码。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tftpboot</span></code> : <code class="docutils literal notranslate"><span class="pre">tftp</span></code> 服务与 <code class="docutils literal notranslate"><span class="pre">ftp</span></code> 服务的根文件目录。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">packages</span></code> : 用户代码打包成 <code class="docutils literal notranslate"><span class="pre">.zip</span></code> 格式后的保存目录。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">hostname.pem</span></code> : 用户主机的唯一ID，用来制作license，例如 <code class="docutils literal notranslate"><span class="pre">desktop1tp185d.pem</span></code> 。</p></li>
 </ol>
 <p>其中，<code class="docutils literal notranslate"><span class="pre">product</span></code> 文件夹中包含两个子文件夹，它们是：</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">project</span></code> : 演示项目，其中的 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 与 <code class="docutils literal notranslate"><span class="pre">sequence.py</span></code> 提供演示代码。用户可以参考其中写法，小型项目需要快速实现，可以参考 <code class="docutils literal notranslate"><span class="pre">main.py</span></code>；大型项目需要编排测试用例的，可以参考 <code class="docutils literal notranslate"><span class="pre">sequence.py</span></code>。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">hostname</span></code> : 界面定制，<code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 提供接口定制的测试工站/工位/连接的名称与数量。平台首次启动，会自动创建文件 <code class="docutils literal notranslate"><span class="pre">主机名称.py</span></code>，供用户参考使用。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pack</span></code> : 提供用户代码打包服务。</p></li>
 </ol>
 </div>
 <div class="section" id="id2">
@@ -128,7 +125,7 @@
     <span class="c1"># desc: 工站的描述说明</span>
     <span class="c1"># recycle: 为True时，Container测试PASS后，将会自动重新开始测试，免人工反复点击开始按钮。默认值为False</span>
     <span class="c1"># photo: 工站的封面图片。project是项目名称，建议图片的格式为.jpg或是.png</span>
-    <span class="n">station</span> <span class="o">=</span> <span class="n">kl</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BST&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;功能测试&quot;</span><span class="p">,</span> <span class="n">recycle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">photo</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;project\bee.jpg&quot;</span><span class="p">)</span>
+    <span class="n">station</span> <span class="o">=</span> <span class="n">kl</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BST&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;功能测试&quot;</span><span class="p">,</span> <span class="n">recycle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">photo</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;project\bee.jpg&quot;</span><span class="p">,</span> <span class="n">dense</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="c1"># 设置工站的测试任务所关联的用户代码路径。</span>
     <span class="c1"># project是项目名称，sequence是文件，平台将调用sequence.py下的函数main_sequencer()作为入口函数</span>
     <span class="n">station</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;project.sequence&quot;</span><span class="p">)</span>
@@ -366,59 +363,6 @@
 </div>
 <p>需要说明的是： <code class="docutils literal notranslate"><span class="pre">lib.get_sequencer_definition()</span></code> 中可以承载较多的测试策略，用户可以将精力投入到测试业务代码本身，聚焦更有价值的部分，测试策略交给平台处理。</p>
 <p>需要注意的是: 入口函数 <code class="docutils literal notranslate"><span class="pre">main_sequencer()</span></code> 必须 <code class="docutils literal notranslate"><span class="pre">return</span></code> 根测试序列 <code class="docutils literal notranslate"><span class="pre">seq</span></code> 给到平台，否则平台将无法执行测试序列。</p>
-</div>
-<div class="section" id="id8">
-<h3>测试用例自动编排<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-<p>测试用例自动编排方案可以自动发现用例，自动组织用例。自动编排是手工编排的一种精简模式，对于较少测试策略的测试方案来说，可以明显减少编排工作量。</p>
-<p>测试用例自动编排方案采用自动收集满足条件的测试用例，采用字母表方案对用例的函数名/方法名进行排序，依次执行。</p>
-<p>建议采用测试序列自动编排方案的是：</p>
-<ol class="arabic simple">
-<li><p>测试用例之间相互独立，无时序上的依赖关系。</p></li>
-<li><p>测试用例函数名/方法名有规范约束，例如以 <code class="docutils literal notranslate"><span class="pre">test_</span></code> 或 <code class="docutils literal notranslate"><span class="pre">run_</span></code> 开头。</p></li>
-</ol>
-<p>以下截取部分代码片段供参考:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py中定义入口函数</span>
-<span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">cases</span>
-
-<span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
-    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MAIN SEQ&quot;</span><span class="p">,</span>
-        <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 实施 测试后清理 测试策略</span>
-        <span class="n">discovery</span><span class="o">=</span><span class="p">{</span>  <span class="c1"># 启用自动发现模式</span>
-            <span class="n">module</span><span class="o">=</span><span class="n">cases</span><span class="p">,</span>  <span class="c1"># 导入cases模块，即cases.py</span>
-            <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;test_&quot;</span><span class="p">,</span>  <span class="c1"># 收集cases模块中的所有以 test_ 开头的函数(测试用例)</span>
-        <span class="p">}</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">seq</span>
-
-<span class="c1"># cases.py中定义测试用例</span>
-<span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">selenium</span>
-
-<span class="nd">@lib</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">continue_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_step1</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-<span class="nd">@lib</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">loop_on_error</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cycle_count</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_step2</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-<span class="nd">@lib</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">cycle_time</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_step4</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-<span class="k">def</span> <span class="nf">test_step3</span><span class="p">():</span>
-    <span class="k">pass</span>
-</pre></div>
-</div>
-<p>本例中用例的执行顺序是：<code class="docutils literal notranslate"><span class="pre">test_step1()</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">test_step2()</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">test_step3()</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">test_step4()</span></code> 。</p>
-<p>需要说明的是:</p>
-<ul class="simple">
-<li><p>使用 <code class="docutils literal notranslate"><span class="pre">lib.step()</span></code> 为测试用例实施测试策略。</p></li>
-<li><p>测试策略中不能实施 <code class="docutils literal notranslate"><span class="pre">in_parallel</span></code> 平行测试策略。</p></li>
-</ul>
 </div>
 <div class="section" id="python-pypi">
 <h3>手工导入python pypi包<a class="headerlink" href="#python-pypi" title="Permalink to this headline">¶</a></h3>
