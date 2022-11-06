@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>介绍 &mdash; KunLun AutoTest v22.11.0 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>介绍 &mdash; KunLun AutoTest v22.11.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -61,8 +66,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>介绍</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">介绍</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_content/介绍.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -72,16 +77,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="id1">
-<h1>介绍<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section id="id1">
+<h1>介绍<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>KLAT是KunLun Auto Test Platform的缩写，是命令行测试自动化平台。</p>
 <p>平台的本质功能是：通过协议(SSH/TELNET/SERIAL等)连接待测产品(UUT)，发送命令行指令对产品进行激励，
 并自动采集产品的反馈日志，用户根据测试业务需要对反馈的日志进行分析、判断，并决策下一个动作(继续发送或是停止测试)，
 如此反复，直到所有的命令行指令发送完毕。</p>
 <p>平台采用WEB形式的操作界面，自动保存测试全流程日志，同时提供丰富的接口函数，支撑用户快速二次开发。</p>
-<div class="section" id="id2">
-<h2>测试主界面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<img alt="../_images/介绍1.png" src="../_images/介绍1.png" />
+<section id="id2">
+<h2>测试主界面<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<img alt="../_images/%E4%BB%8B%E7%BB%8D1.png" src="../_images/%E4%BB%8B%E7%BB%8D1.png" />
 <p>上图展示的是 <code class="docutils literal notranslate"><span class="pre">Container</span></code> 工位界面。</p>
 <p>平台采用三层结构表述测试环境架构，分别是：<code class="docutils literal notranslate"><span class="pre">Station(工站)-&gt;Container(工位)-&gt;Connection(连接)</span></code> ，
 一个工站可以包含多个工位，一个工位可以包含多个连接。</p>
@@ -90,9 +95,9 @@
 多个测试工位可以并行执行多个测试任务，即同时测试多个产品。</p>
 <p><code class="docutils literal notranslate"><span class="pre">Connection(连接)</span></code> 是指一个连接值待测产品(UUT)的 <strong>物理连接</strong> , 一个测试工位可以包含多个连接，以满足产品多元化测试的需求。
 例如：手机测试中需要使用程控电源，综测仪，蓝牙连接模组，声音测试模组等，可以建立多个连接，连接之间相互配合、协同完成整个测试流程。</p>
-</div>
-<div class="section" id="id3">
-<h2>测试用例示例<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2>测试用例示例<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>通常一个测试用例包含：</p>
 <ol class="arabic simple">
 <li><p>配置测试环境，连接产品</p></li>
@@ -188,8 +193,8 @@
 </div>
 </li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

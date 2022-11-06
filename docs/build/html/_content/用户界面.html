@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>用户界面 &mdash; KunLun AutoTest v22.11.0 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <title>用户界面 &mdash; KunLun AutoTest v22.11.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -67,8 +72,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>用户界面</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">用户界面</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_content/用户界面.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,20 +83,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="id1">
-<h1>用户界面<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section id="id1">
+<h1>用户界面<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>平台使用WEB界面作为用户操作界面，用户可以通过测试主机的IP地址进行远程连接、调试与协同。
 平台已经针对不同尺寸的屏幕进行优化适配，支持平板、手机等终端远程操作。</p>
-<div class="section" id="station">
-<h2>Station测试工站界面<a class="headerlink" href="#station" title="Permalink to this headline">¶</a></h2>
+<section id="station">
+<h2>Station测试工站界面<a class="headerlink" href="#station" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Station</span></code> 测试工站，是用来分不同的测试任务集合。
 例如不同产品采用不同的 <code class="docutils literal notranslate"><span class="pre">Station</span></code> ，或是同一产品的不同工序采用不同的 <code class="docutils literal notranslate"><span class="pre">Station</span></code> 。</p>
 <img alt="../_images/station.png" src="../_images/station.png" />
 <p>用户可以为每一个 <code class="docutils literal notranslate"><span class="pre">Station</span></code> 设置不同的 <strong>封面图片</strong> ，同时进行个性化的 <strong>描述说明</strong> (如：功能测试，FT测试等) 。</p>
 <p>需要注意的是，<code class="docutils literal notranslate"><span class="pre">Station</span></code> 的名称不能重复。</p>
-</div>
-<div class="section" id="container">
-<h2>Container测试工位界面<a class="headerlink" href="#container" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="container">
+<h2>Container测试工位界面<a class="headerlink" href="#container" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Container</span></code> 测试工位，是执行具体测试任务的载体，每个测试工位根据测试业务代码，
 可以同时执行相同的测试任务，也可以同时执行不同的测试任务。</p>
 <img alt="../_images/container.png" src="../_images/container.png" />
@@ -101,9 +106,9 @@
 <li><p>操作区：用户可以点击操作区的图标，完成 <code class="docutils literal notranslate"><span class="pre">开始测试</span></code> , <code class="docutils literal notranslate"><span class="pre">停止测试</span></code> 与 <code class="docutils literal notranslate"><span class="pre">回收测试</span></code> 等相关操作。</p></li>
 </ol>
 <p>需要注意的是，<code class="docutils literal notranslate"><span class="pre">Container</span></code> 的名称不能重复。</p>
-</div>
-<div class="section" id="connection">
-<h2>Connection测试连接界面<a class="headerlink" href="#connection" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="connection">
+<h2>Connection测试连接界面<a class="headerlink" href="#connection" title="Permalink to this heading"></a></h2>
 <p>Connection连接界面主要目的是开发调试，界面包含多种类型窗口，可以实时展示测试过程中产生的产品日志，事件日志，测试序列等信息。</p>
 <img alt="../_images/connection.png" src="../_images/connection.png" />
 <img alt="../_images/connection2.png" src="../_images/connection2.png" />
@@ -113,9 +118,9 @@
 <li><p>当连接(例如 <code class="docutils literal notranslate"><span class="pre">UUT</span></code> 窗口)的状态为 <code class="docutils literal notranslate"><span class="pre">open</span></code> 时，且 <code class="docutils literal notranslate"><span class="pre">Container</span></code> 不处于 <code class="docutils literal notranslate"><span class="pre">在测状态</span></code>，用户可以在 <code class="docutils literal notranslate"><span class="pre">连接窗口</span></code> 手工输入命令行，调试产品。</p></li>
 </ol>
 <p>需要注意的是，<code class="docutils literal notranslate"><span class="pre">Connection</span></code> 的名称不能重复。</p>
-</div>
-<div class="section" id="ask-question">
-<h2>Ask Question交互界面<a class="headerlink" href="#ask-question" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ask-question">
+<h2>Ask Question交互界面<a class="headerlink" href="#ask-question" title="Permalink to this heading"></a></h2>
 <p>调用接口函数 <code class="docutils literal notranslate"><span class="pre">lib.ask_question()</span></code> 与 <code class="docutils literal notranslate"><span class="pre">lib.ask_questions()</span></code> 可以在Container界面与Connection界面弹出交互窗口, 采集用户输入。</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">lib.ask_question()</span></code> 提出一个问题，一般仅采集一条数据。</p></li>
@@ -133,41 +138,41 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">lib.ask_questions()</span></code> 与 <code class="docutils literal notranslate"><span class="pre">lib.ask_question()</span></code> 一样，排队遵循 <code class="docutils literal notranslate"><span class="pre">FIFO先进先出</span></code> 原则。</p></li>
 <li><p>在答案输入框内输入完毕后，可以使用 <code class="docutils literal notranslate"><span class="pre">回车</span></code> 跳到下一个答案输入框。在最后一个答案输入框使用 <code class="docutils literal notranslate"><span class="pre">回车</span></code>，将提交答案，也可以在任意时候点击 <code class="docutils literal notranslate"><span class="pre">提交答案按钮</span></code> 提交答案，未回答的问题，答案为””(空字符串)。</p></li>
 </ul>
-</div>
-<div class="section" id="id2">
-<h2>测试数据查询界面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2>测试数据查询界面<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>测试数据查询界面可以查询历史测试记录，并下载与之关联的测试日志。</p>
 <p>需要注意的是，用户必须使用接口函数 <code class="docutils literal notranslate"><span class="pre">lib.add_test_data()</span></code> 生成测试记录后，才能够查询到测试记录。</p>
 <img alt="../_images/data-search.png" src="../_images/data-search.png" />
 <ul class="simple">
 <li><p>用户在 <code class="docutils literal notranslate"><span class="pre">输入框</span></code> 内输入产品序列号后，可以直接 <code class="docutils literal notranslate"><span class="pre">回车</span></code> 进行查询，也可以点击 <code class="docutils literal notranslate"><span class="pre">查询按钮</span></code> 进行查询。</p></li>
 </ul>
-</div>
-<div class="section" id="id3">
-<h2>测试报告查询界面<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2>测试报告查询界面<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>通过点击 <code class="docutils literal notranslate"><span class="pre">测试报告</span></code> 按钮，可以查看对应测试记录的测试报告。</p>
 <img alt="../_images/data-search-report1.png" src="../_images/data-search-report1.png" />
 <img alt="../_images/data-search-report2.png" src="../_images/data-search-report2.png" />
 <img alt="../_images/data-search-report3.png" src="../_images/data-search-report3.png" />
 <p>需要说明的是：测试日志保存在测试主机本地，保存位置为 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\logs</span></code> 。</p>
-</div>
-<div class="section" id="id4">
-<h2>测试参数配置界面<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id4">
+<h2>测试参数配置界面<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>测试参数配置界面可以配置项目下的XLSX文件 <code class="docutils literal notranslate"><span class="pre">params.xlsx</span></code>，使用网页对XLSX文件进行增删改查, 支撑远程调试。</p>
 <img alt="../_images/params.png" src="../_images/params.png" />
 <ul class="simple">
 <li><p>在用户测试代码中，可以使用接口函数 <code class="docutils literal notranslate"><span class="pre">lib.get_xlsx_params()</span></code> 获取测试参数。</p></li>
 </ul>
-</div>
-<div class="section" id="id5">
-<h2>指标数据配置界面<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id5">
+<h2>指标数据配置界面<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <p>指标数据配置界面可以配置项目下的XLSX文件 <code class="docutils literal notranslate"><span class="pre">meas.xlsx</span></code>，使用网页对XLSX文件进行增删改查, 支撑远程调试。</p>
 <img alt="../_images/meas.png" src="../_images/meas.png" />
 <ul class="simple">
 <li><p>在用户测试代码中，可以使用接口函数 <code class="docutils literal notranslate"><span class="pre">lib.xlsx_measure()</span></code> 进行测试指标数据对比。</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
