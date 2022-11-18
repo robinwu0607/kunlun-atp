@@ -127,10 +127,6 @@ lib.set_step_name()
 
     lib.set_step_name("run cpu test")
 
-lib.set_test_name()
---------------------
-同 ``lib.set_step_name()``，未来将移除 ``lib.set_test_name()`` .
-
 lib.get_container_name()
 --------------------------
 ``lib.get_container_name()`` 返回当前的测试工位名称。
@@ -165,28 +161,23 @@ lib.get_params()
 ``lib.get_params()`` 返回 ``hostname.py`` 中当前工站的 ``add_params_data()`` 的值，是一个字典。
 例: 如设置 ``add_params_data(ip="192.168.1.1", ip=2003)``，则返回值为 ``{"host": "192.168.1.1", "port": 2003}`` 。
 
-lib.get_project_name()
------------------------
-``lib.get_project_name()`` 返回 ``hostname.py`` 中相应工站的 ``sequencer`` 的第一个值(以 **.** 点号分开)，是一个字符串。
-例: 如设置 ``sequencer="demo.main"``, 则返回值为 ``demo`` 。
-
-lib.start_container_test()
+lib.start_test()
 ---------------------------
 使用一个 ``container`` 启动其他 ``container`` 测试。
 
 使用示例：
 
-使用 ``lib.start_container_test("DEMO:UUT01")`` 启动 ``DEMO:UUT01`` 测试。
+使用 ``lib.start_test("DEMO:UUT01")`` 启动 ``DEMO:UUT01`` 测试。
 
-使用 ``lib.start_container_test(["DEMO:UUT01", "DEMO:UUT02"])`` 连续启动多个 ``container`` 测试。
+使用 ``lib.start_test(["DEMO:UUT01", "DEMO:UUT02"])`` 连续启动多个 ``container`` 测试。
 
-lib.get_sequencer_definition()
+lib.get_sequence_definition()
 ------------------------------
-返回 ``sequencer`` 实例，用此实例编排测试序列，测试过程中，可以在 **调试界面** 的 ``STEP`` 窗口查看测试序列流程图。
+返回 ``sequence`` 实例，用此实例编排测试序列，测试过程中，可以在 **调试界面** 的 ``STEP`` 窗口查看测试序列流程图。
 假设测试代码中定义有如下函数::
 
     def run_test():
-        log.debug("welcome to main sequencer")
+        log.debug("welcome to main sequence")
         container_name = lib.get_container_name()
         log.debug(container_name)
         return
@@ -207,13 +198,13 @@ lib.get_sequencer_definition()
 
     def run_test3():
         lib.add_test_data(sernum="1234567890", uuttype="DEMO", area="DEMO")
-        log.debug("run test3: finalize set True.")
+        log.debug("run test3")
         return
 
-``sequencer`` 的基本使用示例::
+``sequence`` 的基本使用示例::
 
-    def main_sequencer():
-        seq = lib.get_sequencer_definition("SEQ")
+    def main_sequence():
+        seq = lib.get_sequence_definition("SEQ")
         seq.add_step(run_test, name="RUN TEST")
         seq.add_step(run_test1, name="RUN TEST1", kwargs={"name": "gps test"})
         seq.add_step(run_test2, name="RUN TEST2")
@@ -222,91 +213,42 @@ lib.get_sequencer_definition()
 
 注意：``add_step()`` 后要跟函数或方法的名字，``免小括号()``。
 
-``sequencer`` 形式的代码编排，为测试策略的实施提供了便利，以下是当前支持的策略，更多策略持续增加中。
+``sequence`` 形式的代码编排，为测试策略的实施提供了便利，以下是当前支持的策略，更多策略持续增加中。
 
 1. 通过设置 ``in_parallel=True`` 可以实施 **平行测试** 策略。
 
 使用示例::
 
-    def main_sequencer():
-        seq = lib.get_sequencer_definition()
+    def main_sequence():
+        seq = lib.get_sequence_definition()
         seq.add_step(run_test, name="RUN TEST")
         seq.add_step(run_test1, name="RUN TEST1", in_parallel=True)
-        seq1 = seq.add_sequencer("SUB SEQUENCER")
+        seq1 = seq.add_sequence("SUB SEQUENCER")
         seq1.add_step(run_test2, name="RUN TEST2")
         seq1.add_step(run_test3, name="RUN TEST3")
         seq1.add_step(run_test4, name="RUN TEST4")
         return seq
 
-2. 通过设置 ``continue_on_error=True`` 可以实施 **测试失败不中断** 策略，最终测试仍以失败结束。
-若有多个step被施加此策略，最终测试失败项自动选择第一个失败的step。
-
-使用示例::
-
-    # re-define run_test2() function.
-    def run_test2():
-        uut = lib.conn.UUT
-        log.debug("run test2: cd")
-        uut.send("cd\r", expect=">", timeout=10)
-        raise Exception("run test2 failed")
-
-    def main_sequencer():
-        seq = lib.get_sequencer_definition("SEQ")
-        seq.add_step(run_test, name="RUN TEST")
-        seq.add_step(run_test1, name="RUN TEST1")
-        seq.add_step(run_test2, name="RUN TEST2", continue_on_error=True)
-        seq.add_step(run_test3, name="RUN TEST3")
-        return seq
-
-3. 通过设置 ``finalize=True`` 可以实施 **测试失败后清理** 策略。若 ``run_test2`` 测试失败，会自动运行最后一个step，即 ``run_test3``。
-若最后一个step测试失败，则不会再次运行最后一个step。
-
-使用示例::
-
-    def main_sequencer():
-        seq = lib.get_sequencer_definition("SEQ", finalize=True)
-        seq.add_step(run_test, name="RUN TEST")
-        seq.add_step(run_test1, name="RUN TEST1")
-        seq.add_step(run_test2, name="RUN TEST2")
-        seq.add_step(run_test3, name="RUN TEST3")
-        return seq
-
-4. 通过设置 ``loop_on_error=3`` 可以实施 **测试失败后重测** 策略。若 ``run_test2`` 测试失败，会自动重测3次，其中任何一次pass，
-此step为pass。
-
-使用示例::
-
-    def main_sequencer():
-        seq = lib.get_sequencer_definition("SEQ", finalize=True)
-        seq.add_step(run_test, name="RUN TEST")
-        seq.add_step(run_test1, name="RUN TEST1")
-        seq.add_step(run_test2, name="RUN TEST2", loop_on_error=3)
-        seq.add_step(run_test3, name="RUN TEST3")
-        return seq
-
-注意：一个step可以实施单一策略，也可以实施组合策略。 优先级 ``loop_on_error`` > ``continue_on_error`` 。
-``in_parallel`` 和 ``finalize`` 为独立策略，与其他策略无冲突。
-
-5. 通过设置 ``cycle_time=60 * 5`` 可以实施 **按时间循环测试** 策略。
+2. 通过设置 ``cycle_time=60 * 5`` 可以实施 **按时间循环测试** 策略。
 例子中 ``run_test2`` 每次测试完成后，会检查累计消耗时间，若小于 ``cycle_time``， 将再一次测试，其中任何一次fail，循环测试终止。
 
 使用示例::
 
-    def main_sequencer():
-        seq = lib.get_sequencer_definition("SEQ", finalize=True)
+    def main_sequence():
+        seq = lib.get_sequence_definition("SEQ", finalize=True)
         seq.add_step(run_test, name="RUN TEST")
         seq.add_step(run_test1, name="RUN TEST1")
         seq.add_step(run_test2, name="RUN TEST2", cycle_time=60 * 5)
         seq.add_step(run_test3, name="RUN TEST3")
         return seq
 
-6. 通过设置 ``cycle_count=10`` 可以实施 **按次数循环测试** 策略。
+3. 通过设置 ``cycle_count=10`` 可以实施 **按次数循环测试** 策略。
 例子中 ``run_test2`` 每次测试完成后，会检查累计次数，若小于 ``cycle_count``， 将再一次测试，其中任何一次fail，循环测试终止。
 
 使用示例::
 
-    def main_sequencer():
-        seq = lib.get_sequencer_definition("SEQ", finalize=True)
+    def main_sequence():
+        seq = lib.get_sequence_definition("SEQ", finalize=True)
         seq.add_step(run_test, name="RUN TEST")
         seq.add_step(run_test1, name="RUN TEST1")
         seq.add_step(run_test2, name="RUN TEST2", cycle_count=10)
@@ -315,34 +257,6 @@ lib.get_sequencer_definition()
 
 注意：当在一个 ``step`` 上同时使用 ``cycle_time`` 与 ``cycle_count`` 时，仅 ``cycle_time`` 生效。
 
-7. 通过设置 ``skip="lib.ud.version == '110'"`` 可以实施 **按条件跳过测试** 策略。
-例子中 ``run_test2`` 每次测试前，会检查 ``skip`` 条件是否满足，若满足，跳过本测试用例。
-
-使用示例::
-
-    def main_sequencer():
-        seq = lib.get_sequencer_definition("SEQ", finalize=True)
-        seq.add_step(run_test, name="RUN TEST")
-        seq.add_step(run_test1, name="RUN TEST1")
-        seq.add_step(run_test2, name="RUN TEST2", skip="lib.ud.version == '110'")
-        seq.add_step(run_test3, name="RUN TEST3")
-        return seq
-
-需要强调的是：``skip`` 的值只能为字符串, 平台会自动将字符串转换为表达式，然后进行判断。
-
-lib.get_sequencer_data()
-------------------------
-获取sequencer数据，例如在函数 ``run_test3()`` 中调用此接口函数::
-
-    lib.get_sequencer_data()
-
-    # could get below sequencer data.
-    [
-        {'index': 1, 'name': 'RUN_TEST', 'result': 'PASS', 'time_cost': 0},
-        {'index': 2, 'name': 'RUN_TEST1', 'result': 'PASS', 'time_cost': 4},
-        {'index': 3, 'name': 'RUN_TEST2', 'result': 'FAIL', 'time_cost': 0, 'param1': 1234, 'test': 5434, 'value': '2344'},
-        {'index': 4, 'name': 'RUN_TEST3', 'result': 'PASS', 'time_cost': 0}
-    ]
 
 lib.get_xlsx_params()
 -----------------------
@@ -397,18 +311,18 @@ upper(指标上限)为 ``50`` , 因为 ``20<=30<=50`` , 所以指标检查通过
 
 若实际测量值为 ``60`` ，则指标检查失败，将触发异常，测试失败。
 
-lib.get_allocation()
-----------------------
+lib.get_configuration()
+--------------------------------
 在 ``hostname.py`` 中调用此接口函数，可以更精细化定制用户界面。
 
 使用示例::
 
-    from libs import lib
+    from kunlun import lib
 
     def main():
-        kl = lib.get_allocation()
+        kl = lib.get_configuration()
         station = kl.add_station("BST", "功能测试", recycle=False, photo=r"project\bee.jpg", dense=False)
-        station.add_sequencer("project.sequence")
+        station.add_sequence("project.sequence")
         station.add_params_data(host="192.168.0.1")
         for i in range(4):
             container = station.add_container("UUT{:02d}".format(i))
@@ -416,7 +330,7 @@ lib.get_allocation()
             container.add_connection(name="UUT", protocol="DUMMY")
             container.add_connection(name="REF", protocol="TELNET", host="localhost", port=23)
         station = kl.add_station("BP2", "FT测试", recycle=False)
-        station.add_sequencer("project.sequence")
+        station.add_sequence("project.sequence")
         station.add_params_data(host="192.168.0.1")
         for i in range(4):
             container = station.add_container("UUT{:02d}".format(i))

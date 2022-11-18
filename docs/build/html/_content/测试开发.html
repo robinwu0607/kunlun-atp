@@ -55,7 +55,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#id5">测试代码开发方案</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id6">小型项目快速开发</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">大型项目测试编排</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#python-pypi">手工导入python pypi包</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pip">导入其他pip依赖包</a></li>
 </ul>
 </li>
 </ul>
@@ -93,176 +93,169 @@
 <h1>测试开发<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="kunlun-data">
 <h2>kunlun-data文件夹<a class="headerlink" href="#kunlun-data" title="Permalink to this heading"></a></h2>
-<p>首次安装，启动平台软件后，平台将自动创建 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data</span></code> 文件夹目录，
-<code class="docutils literal notranslate"><span class="pre">D:\kunlun-data</span></code> 目录包含以下文件或文件夹。</p>
+<p>首次安装, 启动平台软件后, 平台将自动创建 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data</span></code> 文件夹目录,
+<code class="docutils literal notranslate"><span class="pre">D:\kunlun-data</span></code> 目录包含以下文件或文件夹.</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">db.sqlite3</span></code> ：数据库文件，保存测试记录。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">logs</span></code> ：测试日志文件夹，保存测试过程中产生的测试日志，以及保存一些临时文件。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">product</span></code> ：生产模式将调用此文件夹下的代码。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">develop</span></code> : 开发模式将调用此文件夹下的代码。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">tftpboot</span></code> : <code class="docutils literal notranslate"><span class="pre">tftp</span></code> 服务与 <code class="docutils literal notranslate"><span class="pre">ftp</span></code> 服务的根文件目录。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">hostname.pem</span></code> : 用户主机的唯一ID，用来制作license，例如 <code class="docutils literal notranslate"><span class="pre">desktop1tp185d.pem</span></code> 。</p></li>
-</ol>
-<p>其中，<code class="docutils literal notranslate"><span class="pre">product</span></code> 文件夹中包含两个子文件夹，它们是：</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">project</span></code> : 演示项目，其中的 <code class="docutils literal notranslate"><span class="pre">main.py</span></code> 与 <code class="docutils literal notranslate"><span class="pre">sequence.py</span></code> 提供演示代码。用户可以参考其中写法，小型项目需要快速实现，可以参考 <code class="docutils literal notranslate"><span class="pre">main.py</span></code>；大型项目需要编排测试用例的，可以参考 <code class="docutils literal notranslate"><span class="pre">sequence.py</span></code>。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">hostname</span></code> : 界面定制，<code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 提供接口定制的测试工站/工位/连接的名称与数量。平台首次启动，会自动创建文件 <code class="docutils literal notranslate"><span class="pre">主机名称.py</span></code>，供用户参考使用。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">db.sqlite3</span></code> ：数据库文件, 保存测试记录.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logs</span></code> ：测试日志文件夹, 保存测试过程中产生的测试日志, 以及保存一些临时文件.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tftpboot</span></code> : <code class="docutils literal notranslate"><span class="pre">tftp</span></code> 服务与 <code class="docutils literal notranslate"><span class="pre">ftp</span></code> 服务的根文件目录.</p></li>
 </ol>
 </section>
 <section id="id2">
 <h2>定制用户界面<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
-<p>每次启动时，平台会自动调用 <code class="docutils literal notranslate"><span class="pre">hostname</span></code> 文件夹下，以 <code class="docutils literal notranslate"><span class="pre">主机名称.py</span></code> 命名的python文件(如： <code class="docutils literal notranslate"><span class="pre">desktop123.py</span></code> )，
-标准的 <code class="docutils literal notranslate"><span class="pre">主机名称</span></code> 可以如下界面中获取。</p>
+<p>用户可以在以下地址下载测试程序示例.</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://gitee.com/robinwu0607/kunlun-scripts</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">configs</span></code> 中包含界面定制代码.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">demo</span></code> 中包含演示测试代码.</p></li>
+</ul>
 <img alt="../_images/hostname.png" src="../_images/hostname.png" />
-<p>用于演示的 <code class="docutils literal notranslate"><span class="pre">主机名称.py</span></code> 文件的内容示例如下，用户可以根据业务需要进行增加、修改或是拷贝:</p>
+<p>用于演示的 <code class="docutils literal notranslate"><span class="pre">desktop1tp185d.py</span></code> 文件的内容示例如下, 用户可以根据业务需要进行增加、修改或是拷贝:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 导入接口函数库</span>
-<span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+<span class="kn">from</span> <span class="nn">kunlun</span> <span class="kn">import</span> <span class="n">lib</span>
 
 <span class="c1"># 函数名必须是 main()</span>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># 从lib.get_allocation()获取根实例kl</span>
-    <span class="c1"># tftp: 为True时将启动tftp服务，默认为False</span>
-    <span class="c1"># ftp: 为True时将启动ftp服务，默认为False</span>
-    <span class="c1"># lts: Log Time Stamp。为True时，将额外生成一份带有timestamp的日志，在测试记录查询界面可以关联下载。</span>
-    <span class="n">kl</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_allocation</span><span class="p">(</span><span class="n">tftp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ftp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lts</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># 从lib.get_configuration()获取根实例kun</span>
+    <span class="c1"># tftp: 为True时将启动tftp服务, 默认为False</span>
+    <span class="c1"># ftp: 为True时将启动ftp服务, 默认为False</span>
+    <span class="n">kun</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_configuration</span><span class="p">(</span><span class="n">tftp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ftp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="c1"># add_station: 在根实例Kl下增加一个Station工站</span>
     <span class="c1"># name: 工站的名称</span>
     <span class="c1"># desc: 工站的描述说明</span>
-    <span class="c1"># recycle: 为True时，Container测试PASS后，将会自动重新开始测试，免人工反复点击开始按钮。默认值为False</span>
-    <span class="c1"># photo: 工站的封面图片。project是项目名称，建议图片的格式为.jpg或是.png</span>
-    <span class="n">station</span> <span class="o">=</span> <span class="n">kl</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BST&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;功能测试&quot;</span><span class="p">,</span> <span class="n">recycle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">photo</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;project\bee.jpg&quot;</span><span class="p">,</span> <span class="n">dense</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="c1"># 设置工站的测试任务所关联的用户代码路径。</span>
-    <span class="c1"># project是项目名称，sequence是文件，平台将调用sequence.py下的函数main_sequencer()作为入口函数</span>
-    <span class="n">station</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;project.sequence&quot;</span><span class="p">)</span>
-    <span class="c1"># 设置工站的硬件参数，用户在代码中可以使用lib.get_params(&quot;host&quot;)获取到参数的值</span>
+    <span class="c1"># recycle: 为True时, Container测试PASS后, 将会自动重新开始测试, 免人工反复点击开始按钮.默认值为False</span>
+    <span class="c1"># photo: 工站的封面图片.demo是项目名称, 建议图片的格式为.jpg或是.png</span>
+    <span class="n">station</span> <span class="o">=</span> <span class="n">kun</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;PCBA&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;PCBA功能测试&quot;</span><span class="p">,</span> <span class="n">recycle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">photo</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;demo\bee.jpg&quot;</span><span class="p">,</span> <span class="n">dense</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># 设置工站的测试任务所关联的用户代码路径.</span>
+    <span class="c1"># demo是项目名称, sequence是文件, 平台将调用sequence.py下的函数main_sequence()作为入口函数</span>
+    <span class="n">station</span><span class="o">.</span><span class="n">add_sequence</span><span class="p">(</span><span class="s2">&quot;demo.pcba&quot;</span><span class="p">)</span>
+    <span class="n">station</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UDS&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
+    <span class="c1"># 设置工站的硬件参数, 用户在代码中可以使用lib.get_params(&quot;host&quot;)获取到参数的值</span>
     <span class="n">station</span><span class="o">.</span><span class="n">add_params_data</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.0.1&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">)</span>
     <span class="c1"># 用循环的方式连续添加Container工位</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
         <span class="c1"># add_container: 在工站实例station下增加一个Container工位.</span>
-        <span class="c1"># name: 工位的名称， 工位的名称动态累加</span>
+        <span class="c1"># name: 工位的名称,  工位的名称动态累加</span>
         <span class="n">container</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">add_container</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UUT</span><span class="si">{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-        <span class="c1"># 设置工位的硬件参数。工位会继承工站的硬件参数，同时可以覆盖工站的参数，或是新增专用的参数。</span>
+        <span class="c1"># 设置工位的硬件参数.工位会继承工站的硬件参数, 同时可以覆盖工站的参数, 或是新增专用的参数.</span>
         <span class="n">container</span><span class="o">.</span><span class="n">add_params_data</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;192.168.1.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">test</span><span class="o">=</span><span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
-        <span class="c1"># 增加一个Connection连接，连接的协议为DUMMY，将调用windows的cmd.exe窗口。</span>
+        <span class="c1"># 增加一个Connection连接, 连接的协议为DUMMY, 将调用windows的cmd.exe窗口.</span>
         <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UUT&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
-        <span class="c1"># 增加一个Connection连接，连接的协议为SSH，目标主机ip为192.168.0.2，登入用户名为root，密码为root。</span>
+        <span class="c1"># 增加一个Connection连接, 连接的协议为SSH, 目标主机ip为192.168.0.2, 登入用户名为root, 密码为root.</span>
         <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;SSH&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;SSH&quot;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.0.2&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">)</span>
-        <span class="c1"># 增加一个Connection连接，连接的协议为TELNET，目标主机ip为192.168.0.3，端口为2009。</span>
+        <span class="c1"># 增加一个Connection连接, 连接的协议为TELNET, 目标主机ip为192.168.0.3, 端口为2009.</span>
         <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;TNT&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;TELNET&quot;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;192.168.0.3&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">2009</span><span class="p">)</span>
-        <span class="c1"># 增加一个Connection连接，连接的协议为SERIAL，目标端口为COM1，波特率为115200。</span>
-        <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;SER&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;SERIAL&quot;</span><span class="p">,</span> <span class="n">serial</span><span class="o">=</span><span class="s2">&quot;COM1&quot;</span><span class="p">,</span> <span class="n">baud</span><span class="o">=</span><span class="mi">115200</span><span class="p">)</span>
-        <span class="c1"># 增加一个Connection连接，连接的协议为SERIAL，以HEX方式交互，目标端口为COM1，波特率为115200。</span>
-        <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;HEX&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;SERIAL-HEX&quot;</span><span class="p">,</span> <span class="n">serial</span><span class="o">=</span><span class="s2">&quot;COM1&quot;</span><span class="p">,</span> <span class="n">baud</span><span class="o">=</span><span class="mi">115200</span><span class="p">)</span>
+        <span class="c1"># 增加一个Connection连接, 连接的协议为SERIAL, 目标端口为COM1, 波特率为115200.</span>
+        <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;SER&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;SERIAL&quot;</span><span class="p">,</span> <span class="n">serial</span><span class="o">=</span><span class="s2">&quot;COM1&quot;</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">115200</span><span class="p">)</span>
     <span class="c1"># 在根实例Kl下增加第二个Station工站</span>
-    <span class="n">station</span> <span class="o">=</span> <span class="n">kl</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;BP2&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;FT测试&quot;</span><span class="p">,</span> <span class="n">recycle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">station</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;project.sequence&quot;</span><span class="p">)</span>
+    <span class="n">station</span> <span class="o">=</span> <span class="n">kun</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;FCT&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;FCT测试&quot;</span><span class="p">,</span> <span class="n">recycle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">station</span><span class="o">.</span><span class="n">add_sequence</span><span class="p">(</span><span class="s2">&quot;demo.fct&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
         <span class="n">container</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">add_container</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UUT</span><span class="si">{:02d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
         <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UUT&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
-    <span class="c1"># 在根实例Kl下增加第三个Station工站，用来打包用户代码。</span>
-    <span class="n">station</span> <span class="o">=</span> <span class="n">kl</span><span class="o">.</span><span class="n">add_station</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;PACK&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;代码打包发布&quot;</span><span class="p">)</span>
-    <span class="n">station</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;pack.main&quot;</span><span class="p">)</span>
-    <span class="n">container</span> <span class="o">=</span> <span class="n">station</span><span class="o">.</span><span class="n">add_container</span><span class="p">(</span><span class="s2">&quot;UUT00&quot;</span><span class="p">)</span>
-    <span class="n">container</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;UUT&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;DUMMY&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>需要注意的是：每次对 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 进行修改，必须重新启动平台(<code class="docutils literal notranslate"><span class="pre">Stop</span> <span class="pre">Engine</span></code> 与 <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Engine</span></code>)，修改后的内容才会生效。</p>
-<p>需要再次强调的是，平台会根据 <code class="docutils literal notranslate"><span class="pre">add_sequencer()</span></code> 中的入参调用对应项目下的 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 文件的 <code class="docutils literal notranslate"><span class="pre">main_sequencer()</span></code> 函数作为入口函数。</p>
+<p>需要注意的是：每次对 <code class="docutils literal notranslate"><span class="pre">desktop1tp185d.py</span></code> 进行修改, 必须使用 <code class="docutils literal notranslate"><span class="pre">kunlun</span> <span class="pre">start</span></code> 重启服务, 修改后的内容才会生效.</p>
+<p>需要再次强调的是, 平台会根据 <code class="docutils literal notranslate"><span class="pre">add_sequence()</span></code> 中的入参调用对应项目下的 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 文件的 <code class="docutils literal notranslate"><span class="pre">main_sequence()</span></code> 函数作为入口函数.</p>
 </section>
 <section id="id3">
 <h2>开发者模式与生产模式<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
-<p>在测试主界面，用户可以自由切换 <code class="docutils literal notranslate"><span class="pre">生产模式</span></code> 与 <code class="docutils literal notranslate"><span class="pre">开发模式</span></code> (默认为 <code class="docutils literal notranslate"><span class="pre">生产模式</span></code> )，平台后台将根据选择的模式，
-自动处理调用 <code class="docutils literal notranslate"><span class="pre">product</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">develop</span></code> 文件夹下测试代码。</p>
+<p>在测试主界面, 用户可以自由切换 <code class="docutils literal notranslate"><span class="pre">生产模式</span></code> 与 <code class="docutils literal notranslate"><span class="pre">开发模式</span></code> (默认为 <code class="docutils literal notranslate"><span class="pre">生产模式</span></code> ), 平台后台将根据选择的模式,
+自动处理调用 <code class="docutils literal notranslate"><span class="pre">product</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">develop</span></code> 文件夹下测试代码.</p>
 <img alt="../_images/product-mode.png" src="../_images/product-mode.png" />
 <img alt="../_images/develop-mode.png" src="../_images/develop-mode.png" />
-<p>需要强调的是：每次页面刷新后，测试模式将会默认切换至 <code class="docutils literal notranslate"><span class="pre">生产模式</span></code> 。</p>
+<p>需要强调的是：每次页面刷新后, 测试模式将会默认切换至 <code class="docutils literal notranslate"><span class="pre">生产模式</span></code> .</p>
 </section>
 <section id="id4">
 <h2>测试服务<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
-<p>平台提供 <code class="docutils literal notranslate"><span class="pre">FTP</span></code> 与 <code class="docutils literal notranslate"><span class="pre">TFTP</span></code> 服务。</p>
+<p>平台提供 <code class="docutils literal notranslate"><span class="pre">FTP</span></code> 与 <code class="docutils literal notranslate"><span class="pre">TFTP</span></code> 服务.</p>
 <section id="ftp">
 <h3>FTP服务<a class="headerlink" href="#ftp" title="Permalink to this heading"></a></h3>
-<p>用户在定制界面时，若设置 <code class="docutils literal notranslate"><span class="pre">lib.get_allocation(ftp=True)</span></code> ，启动平台时，FTP服务也将启动。</p>
-<p>FTP的默认文件夹是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\tftpboot</span></code> ，用户名密码为： <code class="docutils literal notranslate"><span class="pre">klat/klat</span></code> 。</p>
+<p>用户在定制界面时, 若设置 <code class="docutils literal notranslate"><span class="pre">lib.get_configuration(ftp=True)</span></code> , 启动平台时, FTP服务也将启动.</p>
+<p>FTP的默认文件夹是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\tftpboot</span></code> , 用户名密码为： <code class="docutils literal notranslate"><span class="pre">klat/klat</span></code> .</p>
 </section>
 <section id="tftp">
 <h3>TFTP服务<a class="headerlink" href="#tftp" title="Permalink to this heading"></a></h3>
-<p>用户在定制界面时，若设置 <code class="docutils literal notranslate"><span class="pre">lib.get_allocation(tftp=True)</span></code> ，启动平台时，TFTP服务也将启动。</p>
-<p>FTP的默认文件夹是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\tftpboot</span></code> 。</p>
+<p>用户在定制界面时, 若设置 <code class="docutils literal notranslate"><span class="pre">lib.get_configuration(tftp=True)</span></code> , 启动平台时, TFTP服务也将启动.</p>
+<p>FTP的默认文件夹是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\tftpboot</span></code> .</p>
 <p>需要注意的是：</p>
 <ol class="arabic simple">
-<li><p>当 <code class="docutils literal notranslate"><span class="pre">lib.get_allocation(ftp=True,</span> <span class="pre">tftp=True)</span></code> 时，FTP服务与TFTP服务将同时启动，不冲突。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">FTP服务</span></code> 使用端口 <code class="docutils literal notranslate"><span class="pre">21</span></code>， <code class="docutils literal notranslate"><span class="pre">TFTP服务</span></code> 使用端口 <code class="docutils literal notranslate"><span class="pre">69</span></code>。若用户使用其他的软件打开这两项服务，<code class="docutils literal notranslate"><span class="pre">平台管理面板</span></code> 也会显示服务状态为 <code class="docutils literal notranslate"><span class="pre">Running</span></code> 。</p></li>
+<li><p>当 <code class="docutils literal notranslate"><span class="pre">lib.get_configuration(ftp=True,</span> <span class="pre">tftp=True)</span></code> 时, FTP服务与TFTP服务将同时启动, 不冲突.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FTP服务</span></code> 使用端口 <code class="docutils literal notranslate"><span class="pre">21</span></code>,  <code class="docutils literal notranslate"><span class="pre">TFTP服务</span></code> 使用端口 <code class="docutils literal notranslate"><span class="pre">69</span></code>.</p></li>
 </ol>
 </section>
 </section>
 <section id="id5">
 <h2>测试代码开发方案<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
-<p>用户的代码存放于 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\develop</span></code> 下。</p>
+<p>用户的代码存放于 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\develop</span></code> 下.</p>
 <p>给开发者建议：</p>
 <ol class="arabic simple">
-<li><p>用户项目下的文件夹与文件，Python代码开发规范参考PEP8规范，PEP8链接为: <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
-<li><p>用户项目下的每一个文件夹，都包含文件 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 。</p></li>
-<li><p>用户项目下的代码相互调用，采用相对import方案, 如： <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">..</span> <span class="pre">import</span> <span class="pre">common</span></code> 。</p></li>
-<li><p>用户项目文件夹的名称与实际项目名称保持一致。</p></li>
-<li><p>使用 <code class="docutils literal notranslate"><span class="pre">git</span></code> 等版本工具管理测试代码。</p></li>
+<li><p>用户项目下的文件夹与文件, Python代码开发规范参考PEP8规范, PEP8链接为: <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
+<li><p>用户项目下的每一个文件夹, 都包含文件 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> .</p></li>
+<li><p>用户项目文件夹的名称与实际项目名称保持一致.</p></li>
+<li><p>使用 <code class="docutils literal notranslate"><span class="pre">git</span></code> 等版本工具管理测试代码.</p></li>
 </ol>
-<p>基于不同的测试需求与目标，用户可以采用快速开发方案或是测试序列编排方案。</p>
+<p>基于不同的测试需求与目标, 用户可以采用快速开发方案或是测试序列编排方案.</p>
 <section id="id6">
 <h3>小型项目快速开发<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <p>建议采用快速开发方案的是：</p>
 <ol class="arabic simple">
-<li><p>相对独立的项目(较少与其他项目复用代码)。</p></li>
-<li><p>测试命令行小于或等于20条的项目。</p></li>
+<li><p>相对独立的项目(较少与其他项目复用代码).</p></li>
+<li><p>测试命令行小于或等于20条的项目.</p></li>
 </ol>
-<p>快速开发方案的演示代码可以参考 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product\project\main.py</span></code> 。</p>
+<p>快速开发方案的演示代码可以参考 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product\demo\fct.py</span></code> .</p>
 <p>以下截取部分代码片段进行说明:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kunlun</span> <span class="kn">import</span> <span class="n">lib</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
+<span class="c1"># 获取事件日志接口</span>
 <span class="n">log</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_event_logger</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;welcome to main sequencer&quot;</span><span class="p">)</span>
-    <span class="c1"># 获取当前Container工位的名称</span>
+
+<span class="c1"># 定义入口函数, 每个文件只有一个入口函数.</span>
+<span class="k">def</span> <span class="nf">main_sequence</span><span class="p">():</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;welcome to main sequence&quot;</span><span class="p">)</span>
     <span class="n">container_name</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_container_name</span><span class="p">()</span>
     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
-    <span class="c1"># 一次提出一个问题</span>
-    <span class="n">serial</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;请输入序列号SERIAL：&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">serial</span><span class="p">)</span>  <span class="c1"># 将序列号打印至事件日志窗口</span>
-    <span class="n">serial</span> <span class="o">=</span> <span class="s2">&quot;1234567890&quot;</span>
-    <span class="c1"># 定制Container工位面板的定制区display1内容</span>
-    <span class="n">lib</span><span class="o">.</span><span class="n">set_display1</span><span class="p">(</span><span class="s2">&quot;SERIAL:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">serial</span><span class="p">))</span>
-    <span class="c1"># 一次提出一个问题， 是一个选择题。</span>
-    <span class="n">uuttype</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;请选择UUTTYPE：&quot;</span><span class="p">,</span>
-                               <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;UUTTYPE-12345&quot;</span><span class="p">,</span> <span class="s2">&quot;UUTTYPE-67890&quot;</span><span class="p">],</span>
-                               <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">uuttype</span><span class="p">)</span>  <span class="c1"># echo uuttype to EVENT window.</span>
-    <span class="c1"># 定制Container工位面板的定制区display2内容</span>
-    <span class="n">lib</span><span class="o">.</span><span class="n">set_display2</span><span class="p">(</span><span class="s2">&quot;UUTTYPE:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uuttype</span><span class="p">))</span>
-    <span class="c1"># 定制Container工位面板的定制区display3内容</span>
-    <span class="n">lib</span><span class="o">.</span><span class="n">set_display3</span><span class="p">(</span><span class="s2">&quot;STEP: DEMO Test&quot;</span><span class="p">)</span>
-    <span class="c1"># 增加一笔测试记录，测试完成后，可以在&quot;测试记录查询页面&quot;查询</span>
-    <span class="n">lib</span><span class="o">.</span><span class="n">add_test_data</span><span class="p">(</span><span class="n">sernum</span><span class="o">=</span><span class="n">serial</span><span class="p">,</span> <span class="n">uuttype</span><span class="o">=</span><span class="n">uuttype</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="s2">&quot;DEMO&quot;</span><span class="p">)</span>
-    <span class="c1"># 获取一个连接, 此连接必须在hostname.py中预定义。</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;输入序列号：&quot;</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ask_question: [</span><span class="si">%s</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;选择产品类型：&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;12-3456-78&quot;</span><span class="p">,</span> <span class="s2">&quot;98-7654-32&quot;</span><span class="p">])</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ask_question choose: (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;选择产品类型：&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;12-3456-78&quot;</span><span class="p">,</span> <span class="s2">&quot;98-7654-32&quot;</span><span class="p">],</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ask_question multiple choose: (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_questions</span><span class="p">([</span><span class="s2">&quot;输入序列号:&quot;</span><span class="p">,</span> <span class="s2">&quot;输入MAC:&quot;</span><span class="p">,</span> <span class="s2">&quot;输入编码:&quot;</span><span class="p">])</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ask_questions: (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">ud</span><span class="o">.</span><span class="n">hello</span> <span class="o">=</span> <span class="s2">&quot;good&quot;</span>
     <span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">UUT</span>
-    <span class="c1"># 打开连接</span>
-    <span class="n">uut</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
-    <span class="c1"># 发送一条命令行</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>  <span class="c1"># open the connection</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test1: dir&quot;</span><span class="p">)</span>
     <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;dir</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="c1"># 将命令行输出结果打印至事件日志窗口</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">uut</span><span class="o">.</span><span class="n">buf</span><span class="p">)</span>
-    <span class="c1"># 判断是否收到字符串 &quot;fail&quot;</span>
-    <span class="k">if</span> <span class="s2">&quot;fail&quot;</span> <span class="ow">in</span> <span class="n">uut</span><span class="o">.</span><span class="n">buf</span><span class="p">:</span>  <span class="c1"># 如果收到字符串 &quot;fail&quot;， 触发异常，测试失败。</span>
-        <span class="c1"># 设置失败项的名称为 DEMO TEST，后续可以在&quot;测试记录查询页面&quot;查询。</span>
-        <span class="n">lib</span><span class="o">.</span><span class="n">set_test_name</span><span class="p">(</span><span class="s2">&quot;DEMO TEST&quot;</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;DEMO TEST2 Failed.&quot;</span><span class="p">)</span>
-    <span class="c1"># 等待2秒</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="c1"># 关闭连接</span>
-    <span class="n">uut</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">get_params</span><span class="p">())</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">add_test_data</span><span class="p">(</span><span class="n">sernum</span><span class="o">=</span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span> <span class="n">uuttype</span><span class="o">=</span><span class="s2">&quot;DEMO&quot;</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="s2">&quot;DEMO&quot;</span><span class="p">)</span>
+    <span class="n">run_test2</span><span class="p">()</span>
+    <span class="n">run_test4</span><span class="p">()</span>
+    <span class="k">return</span>
 
-    <span class="k">return</span>  <span class="c1"># 测试完成</span>
+
+
+<span class="k">def</span> <span class="nf">run_test2</span><span class="p">():</span>
+    <span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">UUT</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test2&quot;</span><span class="p">)</span>
+    <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;dir</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;UUT01&quot;</span> <span class="ow">in</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_container_name</span><span class="p">():</span>
+        <span class="n">lib</span><span class="o">.</span><span class="n">set_step_name</span><span class="p">(</span><span class="s2">&quot;Test Step2&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;run test failed&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span>
+
+
+<span class="k">def</span> <span class="nf">run_test4</span><span class="p">():</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">set_display1</span><span class="p">(</span><span class="s2">&quot;SERNUM: 1234567890&quot;</span><span class="p">)</span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">set_display2</span><span class="p">(</span><span class="s2">&quot;UUTTYPE: 12-3456-78&quot;</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;userdict1: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">ud</span><span class="o">.</span><span class="n">hello</span><span class="p">))</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;userdict2: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">ud</span><span class="p">))</span>
+    <span class="k">return</span>
 </pre></div>
 </div>
 </section>
@@ -270,58 +263,57 @@
 <h3>大型项目测试编排<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
 <p>建议采用测试序列编排方案的是：</p>
 <ol class="arabic simple">
-<li><p>大型项目的子项目(较多与其他项目复用代码)。</p></li>
-<li><p>持续演进的项目。</p></li>
-<li><p>需要实施较多测试策略的项目。</p></li>
-<li><p>测试命令行大于20条的项目。</p></li>
+<li><p>大型项目的子项目(较多与其他项目复用代码).</p></li>
+<li><p>持续演进的项目.</p></li>
+<li><p>需要实施较多测试策略的项目.</p></li>
+<li><p>测试命令行大于20条的项目.</p></li>
 </ol>
-<p>测试序列编排方案的演示代码可以参考 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product\project\sequence.py</span></code> 。</p>
+<p>测试序列编排方案的演示代码可以参考 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product\demo\pcba.py</span></code> .</p>
 <p>以下截取部分代码片段供参考:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kunlun</span> <span class="kn">import</span> <span class="n">lib</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
+<span class="c1"># 获取事件日志接口</span>
 <span class="n">log</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_event_logger</span><span class="p">()</span>
 
-<span class="c1"># 定义入口函数</span>
-<span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
-    <span class="c1"># 增加一个根测试序列sequencer，并设置名称为MAIN SEQ</span>
-    <span class="c1"># finalize: 为True时，如果测试失败，会自动执行最后一个step。默认为False</span>
-    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequencer_definition</span><span class="p">(</span><span class="s2">&quot;MAIN SEQ&quot;</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="c1"># 根序列增加一个step，并设置此step名称为RUN TEST，如果测试失败，则失败项为RUN TEST</span>
+
+<span class="c1"># 定义入口函数, 每个文件只有一个入口函数.</span>
+<span class="k">def</span> <span class="nf">main_sequence</span><span class="p">():</span>
+    <span class="c1"># 增加一个根测试序列sequence, 并设置名称为MAIN SEQ</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequence_definition</span><span class="p">(</span><span class="s2">&quot;MAIN SEQ&quot;</span><span class="p">)</span>
+    <span class="c1"># 根序列增加一个step, 并设置此step名称为RUN TEST, 如果测试失败, 则失败项为RUN TEST</span>
     <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST&quot;</span><span class="p">)</span>
-    <span class="c1"># 根序列增加一个step，并传参数给step</span>
-    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST1&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gps test&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;cpu test&quot;</span><span class="p">})</span>
-    <span class="c1"># 根序列增加一个子测试序列，并设置名称为SUB MAIN SEQ</span>
-    <span class="n">sub_seq</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;SUB MAIN SEQ&quot;</span><span class="p">)</span>
-    <span class="c1"># 子测试序列增加一个step</span>
-    <span class="n">sub_seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">)</span>
-    <span class="c1"># 子序列在增加一个子子序列。</span>
-    <span class="c1"># in_parallel: 并行测试标识，为True时，将与 下一个step/测试序列 并行执行。</span>
-    <span class="n">ss_seq</span> <span class="o">=</span> <span class="n">sub_seq</span><span class="o">.</span><span class="n">add_sequencer</span><span class="p">(</span><span class="s2">&quot;SUB SUB SEQ&quot;</span><span class="p">,</span> <span class="n">in_parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="c1"># 子子序列增加一个step</span>
-    <span class="n">ss_seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">)</span>
-    <span class="c1"># 子子序列增加一个step</span>
-    <span class="c1"># loop_on_error: 测试失败后重测，默认为0，即不重测。</span>
-    <span class="c1"># 比如设置为3，若测试失败，将最多重测3次，其中任何一次测试结果为PASS，此step的即PASS，若全部FAIL，此step为FAIL。</span>
-    <span class="n">ss_seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST2&quot;</span><span class="p">,</span> <span class="n">loop_on_error</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># 根序列增加一个step, 并传参数kws给step</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;run test1&quot;</span><span class="p">,</span> <span class="n">kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gps test&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;cpu test&quot;</span><span class="p">})</span>
+    <span class="c1"># 根序列增加一个子测试序列, 并设置名称为SUB MAIN SEQ</span>
+    <span class="c1"># in_parallel: 并行测试标识, 为True时, 将与 下一个step/测试序列 并行执行</span>
+    <span class="c1"># 测试循环次数设置为3次</span>
+    <span class="n">sub_seq</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">add_sequence</span><span class="p">(</span><span class="s2">&quot;SUB MAIN SEQ&quot;</span><span class="p">,</span> <span class="n">in_parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cycle_count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 子序列增加一个step</span>
+    <span class="n">sub_seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;run test2-1&quot;</span><span class="p">)</span>
+    <span class="c1"># 子序列增加一个step</span>
+    <span class="n">sub_seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;run test2-2&quot;</span><span class="p">)</span>
     <span class="c1"># 根序列增加一个step</span>
-    <span class="c1"># continue_on_error: 默认为False，当为True时，若此step测试失败，测试不终止，继续测试。当所有step都执行完成后，最终测试结果为FAIL。</span>
-    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">,</span> <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="c1"># 根序列增加一个step。</span>
-    <span class="c1"># 当根序列设置参数finalize=True时，若测试失败，会自动执行此step(因其为最后一个step)</span>
+    <span class="c1"># 测试循环时间为30秒</span>
+    <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RUN TEST3&quot;</span><span class="p">,</span> <span class="n">cycle_time</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 根序列增加一个step.</span>
     <span class="n">seq</span><span class="o">.</span><span class="n">add_step</span><span class="p">(</span><span class="n">run_test4</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;run TEST4&quot;</span><span class="p">)</span>
     <span class="c1"># 返回根序列</span>
     <span class="k">return</span> <span class="n">seq</span>
 
 
 <span class="k">def</span> <span class="nf">run_test</span><span class="p">():</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;welcome to main sequencer&quot;</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;welcome to main sequence&quot;</span><span class="p">)</span>
     <span class="n">container_name</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_container_name</span><span class="p">()</span>
     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">container_name</span><span class="p">)</span>
     <span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;输入序列号：&quot;</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ask_question: [</span><span class="si">%s</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
     <span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;选择产品类型：&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;12-3456-78&quot;</span><span class="p">,</span> <span class="s2">&quot;98-7654-32&quot;</span><span class="p">])</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ask_question choose: (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;选择产品类型：&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;12-3456-78&quot;</span><span class="p">,</span> <span class="s2">&quot;98-7654-32&quot;</span><span class="p">],</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ask_question multiple choose: (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
     <span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_questions</span><span class="p">([</span><span class="s2">&quot;输入序列号:&quot;</span><span class="p">,</span> <span class="s2">&quot;输入MAC:&quot;</span><span class="p">,</span> <span class="s2">&quot;输入编码:&quot;</span><span class="p">])</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ask_questions: (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
     <span class="n">lib</span><span class="o">.</span><span class="n">ud</span><span class="o">.</span><span class="n">hello</span> <span class="o">=</span> <span class="s2">&quot;good&quot;</span>
     <span class="k">return</span>
 
@@ -334,26 +326,28 @@
     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test1: dir&quot;</span><span class="p">)</span>
     <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;dir</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">lib</span><span class="o">.</span><span class="n">xlsx_measure</span><span class="p">(</span><span class="n">sheet</span><span class="o">=</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;spec2&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">get_xlsx_params</span><span class="p">(</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">,</span> <span class="s2">&quot;param1&quot;</span><span class="p">))</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">get_xlsx_params</span><span class="p">(</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">,</span> <span class="s2">&quot;param*&quot;</span><span class="p">))</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">get_xlsx_params</span><span class="p">(</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">,</span> <span class="s2">&quot;*_test&quot;</span><span class="p">))</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">get_xlsx_params</span><span class="p">(</span><span class="s2">&quot;Sheet1&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">))</span>
+    <span class="c1"># lib.xlsx_measure(sheet=&quot;Sheet1&quot;, name=&quot;spec2&quot;, value=50)</span>
+    <span class="c1"># log.debug(lib.get_xlsx_params(&quot;Sheet1&quot;, &quot;param1&quot;))</span>
+    <span class="c1"># log.debug(lib.get_xlsx_params(&quot;Sheet1&quot;, &quot;param*&quot;))</span>
+    <span class="c1"># log.debug(lib.get_xlsx_params(&quot;Sheet1&quot;, &quot;*_test&quot;))</span>
+    <span class="c1"># log.debug(lib.get_xlsx_params(&quot;Sheet1&quot;, &quot;*&quot;))</span>
     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">get_params</span><span class="p">())</span>
     <span class="k">return</span>
 
 
 <span class="k">def</span> <span class="nf">run_test2</span><span class="p">():</span>
     <span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">UUT</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test2&quot;</span><span class="p">)</span>
     <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;dir</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="k">if</span> <span class="s2">&quot;fail&quot;</span> <span class="ow">in</span> <span class="n">uut</span><span class="o">.</span><span class="n">buf</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;run test failed&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">return</span>
 
 
 <span class="k">def</span> <span class="nf">run_test3</span><span class="p">():</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;has ref: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;REF&quot;</span><span class="p">)))</span>
-    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;has uut: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;COM&quot;</span><span class="p">)))</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;run test3&quot;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">return</span>
 
 
@@ -366,63 +360,12 @@
     <span class="k">return</span>
 </pre></div>
 </div>
-<p>需要说明的是： <code class="docutils literal notranslate"><span class="pre">lib.get_sequencer_definition()</span></code> 中可以承载较多的测试策略，用户可以将精力投入到测试业务代码本身，聚焦更有价值的部分，测试策略交给平台处理。</p>
-<p>需要注意的是: 入口函数 <code class="docutils literal notranslate"><span class="pre">main_sequencer()</span></code> 必须 <code class="docutils literal notranslate"><span class="pre">return</span></code> 根测试序列 <code class="docutils literal notranslate"><span class="pre">seq</span></code> 给到平台，否则平台将无法执行测试序列。</p>
+<p>需要说明的是： <code class="docutils literal notranslate"><span class="pre">lib.get_sequence_definition()</span></code> 中可以承载较多的测试策略, 用户可以将精力投入到测试业务代码本身, 聚焦更有价值的部分, 测试策略交给平台处理.</p>
+<p>需要注意的是: 入口函数 <code class="docutils literal notranslate"><span class="pre">main_sequence()</span></code> 必须 <code class="docutils literal notranslate"><span class="pre">return</span></code> 根测试序列 <code class="docutils literal notranslate"><span class="pre">seq</span></code> 给到平台, 否则平台将无法执行测试序列.</p>
 </section>
-<section id="python-pypi">
-<h3>手工导入python pypi包<a class="headerlink" href="#python-pypi" title="Permalink to this heading"></a></h3>
-<p>平台仅提供有限的python pypi包集成，有时候用户需要导入额外的python pypi包，辅助代码开发使用。</p>
-<p>平台提供的python pypi包有：</p>
-<ol class="arabic simple">
-<li><p>pandas</p></li>
-<li><p>requests</p></li>
-<li><p>pymysql</p></li>
-<li><p>xml</p></li>
-<li><p>openpyxl</p></li>
-<li><p>pythonnet</p></li>
-</ol>
-<p>为了帮助用户更好地体验平台，这里对如何导入pypi包进行说明，以非常流行的 <cite>invoke</cite> 进行说明。流程如下：</p>
-<ol class="arabic simple">
-<li><p>浏览pypi官方网址: <code class="docutils literal notranslate"><span class="pre">https://pypi.org/</span></code>, 输入 <code class="docutils literal notranslate"><span class="pre">invoke</span></code> 进行搜索。</p></li>
-</ol>
-<img alt="../_images/pypi-1.png" src="../_images/pypi-1.png" />
-<ol class="arabic simple" start="2">
-<li><p>选择正确的 <code class="docutils literal notranslate"><span class="pre">invoke</span></code> 包名，点击进入 <cite>invoke</cite> 主页。</p></li>
-</ol>
-<img alt="../_images/pypi-2.png" src="../_images/pypi-2.png" />
-<ol class="arabic simple" start="3">
-<li><p>点击 <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Files</span></code>, 选择 <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> 结尾的文件，点击文件名进行下载。</p></li>
-</ol>
-<img alt="../_images/pypi-3.png" src="../_images/pypi-3.png" />
-<ol class="arabic simple" start="4">
-<li><p>打开下载好的压缩包，将 <code class="docutils literal notranslate"><span class="pre">invoke</span></code> 文件夹解压至文件夹 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\pypi</span></code> 目录下。</p></li>
-</ol>
-<img alt="../_images/pypi-4.png" src="../_images/pypi-4.png" />
-<p>需要说明的是：</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>压缩包中，<code class="docutils literal notranslate"><span class="pre">invoke</span></code> 文件夹与 <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> 文件处于同级文件夹，不是根文件夹。</p></li>
-<li><p>解压之前，需要手工创建 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\pypi</span></code> 目录。</p></li>
-</ol>
-</div></blockquote>
-<ol class="arabic" start="5">
-<li><p>在代码中导入 <code class="docutils literal notranslate"><span class="pre">invoke</span></code> 包，导入示例代码如下:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;D:\kunlun-data\pypi&quot;</span><span class="p">)</span>  <span class="c1"># 将路径加入环境变量中</span>
-<span class="kn">import</span> <span class="nn">invoke</span>
-<span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">tasks</span>
-<span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
-
-<span class="n">log</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_event_logger</span><span class="p">()</span>
-
-
-<span class="c1"># # 定义入口函数</span>
-<span class="c1"># def main_sequencer():</span>
-    <span class="k">return</span>
-</pre></div>
-</div>
-</li>
-</ol>
+<section id="pip">
+<h3>导入其他pip依赖包<a class="headerlink" href="#pip" title="Permalink to this heading"></a></h3>
+<p>直接使用 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> 安装对应依赖包即可.</p>
 </section>
 </section>
 </section>

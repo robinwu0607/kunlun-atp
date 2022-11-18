@@ -79,40 +79,40 @@
              
   <section id="id1">
 <h1>介绍<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
-<p>KLAT是KunLun Auto Test Platform的缩写，是命令行测试自动化平台。</p>
-<p>平台的本质功能是：通过协议(SSH/TELNET/SERIAL等)连接待测产品(UUT)，发送命令行指令对产品进行激励，
-并自动采集产品的反馈日志，用户根据测试业务需要对反馈的日志进行分析、判断，并决策下一个动作(继续发送或是停止测试)，
-如此反复，直到所有的命令行指令发送完毕。</p>
-<p>平台采用WEB形式的操作界面，自动保存测试全流程日志，同时提供丰富的接口函数，支撑用户快速二次开发。</p>
+<p>KunLun Auto Test是基于命令行的测试自动化平台。</p>
+<p>平台的本质功能是: 通过协议(SSH/TELNET/SERIAL等)连接待测产品(UUT), 发送命令行指令对产品进行激励,
+并自动采集产品的反馈日志, 用户根据测试业务需要对反馈的日志进行分析、判断, 并决策下一个动作(继续发送或是停止测试),
+如此反复, 直到所有的命令行指令发送完毕。</p>
+<p>平台采用WEB形式的操作界面, 自动保存测试全流程日志, 同时提供丰富的接口函数, 支撑用户快速二次开发。</p>
 <section id="id2">
 <h2>测试主界面<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <img alt="../_images/%E4%BB%8B%E7%BB%8D1.png" src="../_images/%E4%BB%8B%E7%BB%8D1.png" />
 <p>上图展示的是 <code class="docutils literal notranslate"><span class="pre">Container</span></code> 工位界面。</p>
-<p>平台采用三层结构表述测试环境架构，分别是：<code class="docutils literal notranslate"><span class="pre">Station(工站)-&gt;Container(工位)-&gt;Connection(连接)</span></code> ，
-一个工站可以包含多个工位，一个工位可以包含多个连接。</p>
-<p><code class="docutils literal notranslate"><span class="pre">Station工站</span></code> 是指一个测试工序，一台物理测试主机可以配置若干个相同的或是不相同的测试工序，不同的测试工序完成不同的测试业务。</p>
-<p><code class="docutils literal notranslate"><span class="pre">Container工位</span></code> 是指完成测试业务的具体执行单元(任务)，一个测试工序包含若干个测试工位，
-多个测试工位可以并行执行多个测试任务，即同时测试多个产品。</p>
-<p><code class="docutils literal notranslate"><span class="pre">Connection(连接)</span></code> 是指一个连接值待测产品(UUT)的 <strong>物理连接</strong> , 一个测试工位可以包含多个连接，以满足产品多元化测试的需求。
-例如：手机测试中需要使用程控电源，综测仪，蓝牙连接模组，声音测试模组等，可以建立多个连接，连接之间相互配合、协同完成整个测试流程。</p>
+<p>平台采用三层结构表述测试环境架构, 分别是: <code class="docutils literal notranslate"><span class="pre">Station(工站)-&gt;Container(工位)-&gt;Connection(连接)</span></code> ,
+一个工站可以包含多个工位, 一个工位可以包含多个连接。</p>
+<p><code class="docutils literal notranslate"><span class="pre">Station工站</span></code> 是指一个测试工序, 一台物理测试主机可以配置若干个相同的或是不相同的测试工序, 不同的测试工序完成不同的测试业务。</p>
+<p><code class="docutils literal notranslate"><span class="pre">Container工位</span></code> 是指完成测试业务的具体执行单元(任务), 一个测试工序包含若干个测试工位,
+多个测试工位可以并行执行多个测试任务, 即同时测试多个产品。</p>
+<p><code class="docutils literal notranslate"><span class="pre">Connection(连接)</span></code> 是指一个连接值待测产品(UUT)的 <strong>物理连接</strong> , 一个测试工位可以包含多个连接, 以满足产品多元化测试的需求。
+例如: 手机测试中需要使用程控电源, 综测仪, 蓝牙连接模组, 声音测试模组等, 可以建立多个连接, 连接之间相互配合、协同完成整个测试流程。</p>
 </section>
 <section id="id3">
 <h2>测试用例示例<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
-<p>通常一个测试用例包含：</p>
+<p>通常一个测试用例包含:</p>
 <ol class="arabic simple">
-<li><p>配置测试环境，连接产品</p></li>
+<li><p>配置测试环境, 连接产品</p></li>
 <li><p>发送一系列测试命令行</p></li>
-<li><p>对产品反馈的日志进行解析，判断测试结果是通过或是失败</p></li>
+<li><p>对产品反馈的日志进行解析, 判断测试结果是通过或是失败</p></li>
 <li><p>重复第2步与第3步</p></li>
-<li><p>关闭连接，清理测试环境</p></li>
+<li><p>关闭连接, 清理测试环境</p></li>
 </ol>
-<p>假设有如下测试用例：进入Python交互界面，通过 <code class="docutils literal notranslate"><span class="pre">sys.platform</span></code> 查询当前主机的操作系统类型，并打印结果，
-若结果不为 <code class="docutils literal notranslate"><span class="pre">win32</span></code>，测试失败。反之，测试通过:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+<p>假设有如下测试用例: 进入Python交互界面, 通过 <code class="docutils literal notranslate"><span class="pre">sys.platform</span></code> 查询当前主机的操作系统类型, 并打印结果,
+若结果不为 <code class="docutils literal notranslate"><span class="pre">win32</span></code>, 测试失败。反之, 测试通过:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kunlun</span> <span class="kn">import</span> <span class="n">lib</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_event_logger</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">main_sequence</span><span class="p">():</span>
     <span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">UUT</span>
     <span class="n">uut</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
     <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;python</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -126,67 +126,67 @@
     <span class="k">return</span>
 </pre></div>
 </div>
-<p>以上为测试用例的代码实现，接下来先对代码进行分段解释。</p>
+<p>以上为测试用例的代码实现, 接下来先对代码进行分段解释。</p>
 <ol class="arabic">
 <li><p>从平台导入接口函数库:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">libs</span> <span class="kn">import</span> <span class="n">lib</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kunlun</span> <span class="kn">import</span> <span class="n">lib</span>
 </pre></div>
 </div>
 </li>
-<li><p>实例化 <code class="docutils literal notranslate"><span class="pre">事件日志</span></code>，获得实例log，后续可用 <code class="docutils literal notranslate"><span class="pre">log.debug()</span></code> ,  <code class="docutils literal notranslate"><span class="pre">log.error()</span></code> 等记录事件日志:</p>
+<li><p>实例化 <code class="docutils literal notranslate"><span class="pre">事件日志</span></code>, 获得event log实例, 后续可用 <code class="docutils literal notranslate"><span class="pre">log.debug()</span></code> ,  <code class="docutils literal notranslate"><span class="pre">log.error()</span></code> 等记录事件日志:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_event_logger</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
-<li><p>定义入口函数，入口函数名必须是 <code class="docutils literal notranslate"><span class="pre">main_sequencer</span></code> , 平台将从接口函数开始调用用户的程序:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequencer</span><span class="p">():</span>
+<li><p>定义入口函数, 入口函数名必须是 <code class="docutils literal notranslate"><span class="pre">main_sequence</span></code> , 平台将从接口函数开始调用用户的程序:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequence</span><span class="p">():</span>
 </pre></div>
 </div>
 </li>
-<li><p>获取预定义连接(如何预定义，参考 <code class="docutils literal notranslate"><span class="pre">测试开发</span></code> 章节)，协议为 <code class="docutils literal notranslate"><span class="pre">DUMMY</span></code> , 并打开此连接:</p>
+<li><p>获取预定义连接(如何预定义, 参考 <code class="docutils literal notranslate"><span class="pre">测试开发</span></code> 章节), 协议为 <code class="docutils literal notranslate"><span class="pre">DUMMY</span></code> , 并打开此连接:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">UUT</span>
 <span class="n">uut</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 </ol>
-<p>平台支持多种连接协议，详情可以参考 <strong>接口函数</strong> 章节。</p>
+<p>平台支持多种连接协议, 详情可以参考 <strong>接口函数</strong> 章节。</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">DUMMY</span></code> ：调用cmd.exe，获取windows的命令行界面。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">SSH</span></code> ：根据提供的ip地址，用户名，密码，连接到产品。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TELNET</span></code> ：根据提供的ip地址，端口号，连接到产品。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">SERIAL</span></code> ：根据提供的串口地址，波特率，连接到产品。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DUMMY</span></code> : 调用cmd.exe, 获取windows的命令行界面。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SSH</span></code> : 根据提供的ip地址, 用户名, 密码, 连接到产品。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TELNET</span></code> : 根据提供的ip地址, 端口号, 连接到产品。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SERIAL</span></code> : 根据提供的串口地址, 波特率, 连接到产品。</p></li>
 </ol>
 </div></blockquote>
 <ol class="arabic" start="5">
-<li><p>发送命令行至连接，配置测试环境:</p>
+<li><p>发送命令行至连接, 配置测试环境:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;python</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;import sys</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 </ol>
-<p>6. 发送测试命令行至连接，并采集产品反馈的日志，日志保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 中，
+<p>6. 发送测试命令行至连接, 并采集产品反馈的日志, 日志保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 中,
 <code class="docutils literal notranslate"><span class="pre">log.debug()</span></code> 将日志打印至 <strong>事件日志</strong> 界面:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;sys.platform</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">uut</span><span class="o">.</span><span class="n">buf</span><span class="p">)</span>
 </pre></div>
 </div>
 <ol class="arabic" start="7">
-<li><p>对产品反馈的日志进行分析，判断测试是否通过，若失败，触发异常，测试将停止:</p>
+<li><p>对产品反馈的日志进行分析, 判断测试是否通过, 若失败, 触发异常, 测试将停止:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s2">&quot;win32&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">uut</span><span class="o">.</span><span class="n">buf</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;platform should be [win32], go to fail&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 </ol>
-<p>需要说明的是，用户可以使用 <code class="docutils literal notranslate"><span class="pre">raise</span></code> 触发异常，也可以采用断言 <code class="docutils literal notranslate"><span class="pre">assert</span></code> 触发异常:</p>
+<p>需要说明的是, 用户可以使用 <code class="docutils literal notranslate"><span class="pre">raise</span></code> 触发异常, 也可以采用断言 <code class="docutils literal notranslate"><span class="pre">assert</span></code> 触发异常:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="s2">&quot;win32&quot;</span> <span class="ow">in</span> <span class="n">uut</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span> <span class="s2">&quot;platform should be [win32], go to fail&quot;</span>
 </pre></div>
 </div>
 <ol class="arabic" start="8">
-<li><p>清理测试环境，并关闭连接:</p>
+<li><p>清理测试环境, 并关闭连接:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;exit()</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">uut</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>

@@ -46,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="%E6%8E%A5%E5%8F%A3%E5%87%BD%E6%95%B0.html">接口函数</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.html">常见问题</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">变更记录</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v22-11-0">v22.11.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v22-8-1">v22.8.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v22-8-0">v22.8.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v22-5-0">v22.5.0</a></li>
@@ -98,6 +99,15 @@
              
   <section id="id1">
 <h1>变更记录<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="v22-11-0">
+<h2>v22.11.0<a class="headerlink" href="#v22-11-0" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>将安装包 <code class="docutils literal notranslate"><span class="pre">.exe</span></code> 改为 <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> , 直接使用 <code class="docutils literal notranslate"><span class="pre">pip</span></code> 进行安装, 以兼顾 <code class="docutils literal notranslate"><span class="pre">Linux版本</span></code> .</p></li>
+<li><p>去除一些复杂的且不必要的接口函数.</p></li>
+<li><p>重命名部分接口函数, 例如 <code class="docutils literal notranslate"><span class="pre">lib.get_allocation()</span></code> 改为 <code class="docutils literal notranslate"><span class="pre">lib.get_configuration()</span></code> .</p></li>
+<li><p>将所有命名为 <code class="docutils literal notranslate"><span class="pre">sequencer</span></code> 全部重命名为 <code class="docutils literal notranslate"><span class="pre">sequence</span></code> .</p></li>
+</ol>
+</section>
 <section id="v22-8-1">
 <h2>v22.8.1<a class="headerlink" href="#v22-8-1" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
