@@ -8,6 +8,8 @@
 
 在线文档地址： https://kunlun-atp.readthedocs.io/en/latest/
 
+仅限个人使用，请勿用作商业用途.
+
 欢迎入群讨论，QQ 群：1023345565
 
 ![QQ群](./qqqr.jpg)
