@@ -45,7 +45,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#id2">操作系统要求</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">安装包下载</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python">Python版本要求</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">安装方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">安装方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#visual-studio">安装 Visual Studio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kunlun-autotest">安装 KunLun AutoTest</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.html">用户界面</a></li>
@@ -94,10 +98,20 @@
 </section>
 <section id="python">
 <h2>Python版本要求<a class="headerlink" href="#python" title="Permalink to this heading"></a></h2>
-<p>KunLun AutoTest要求Python版本为 <code class="docutils literal notranslate"><span class="pre">3.7</span></code> 或以上.</p>
+<p>KunLun AutoTest要求Python版本为 <code class="docutils literal notranslate"><span class="pre">3.7</span></code>.</p>
 </section>
 <section id="id4">
 <h2>安装方法<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<section id="visual-studio">
+<h3>安装 Visual Studio<a class="headerlink" href="#visual-studio" title="Permalink to this heading"></a></h3>
+<p>可以从以下地址下载最新版本 Visual Studio Installer.</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://learn.microsoft.com/zh-cn/visualstudio/install/install-visual-studio?view=vs-2022</span></code></p>
+<p>选择工作负载 -&gt; Python开发 -&gt; Python本机开发工具, 然后点击安装即可.</p>
+<img alt="../_images/visualstudio.PNG" src="../_images/visualstudio.PNG" />
+</section>
+<section id="kunlun-autotest">
+<h3>安装 KunLun AutoTest<a class="headerlink" href="#kunlun-autotest" title="Permalink to this heading"></a></h3>
+<p>请将 <code class="docutils literal notranslate"><span class="pre">pip</span></code> 工具先行升级到最新版本, 再安装KunLun AutoTest, 否则可能遇到依赖包 <code class="docutils literal notranslate"><span class="pre">cryptography</span></code> 安装失败的问题.</p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">kunlun-xx.xx.xx.tar.gz</span></code> 即可, <code class="docutils literal notranslate"><span class="pre">pip</span></code> 工具会自动安装相关依赖.</p>
 <p>需要说明的是: 建议创建虚拟环境virtual environment后, 再安装KunLun AutoTest, 虚拟环境的安装方法, 这里就不再赘述.</p>
 <p>安装完成后, 命令行工具 <code class="docutils literal notranslate"><span class="pre">kunlun</span></code> 即为可用状态， 其相关用法介绍如下:</p>
@@ -109,6 +123,7 @@
 <span class="o">-</span> <span class="n">info</span>    <span class="n">Show</span> <span class="n">KunLun</span> <span class="n">Autotest</span> <span class="n">Service</span> <span class="n">Status</span><span class="o">.</span>
 </pre></div>
 </div>
+</section>
 </section>
 </section>
 

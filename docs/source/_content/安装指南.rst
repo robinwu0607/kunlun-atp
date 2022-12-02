@@ -9,6 +9,7 @@ KunLun AutoTest暂支持以下操作系统
 
 安装包下载
 -------------
+
 请从以下地址下载最新pip安装包, 安装包名以 ``tar.gz`` 结尾:
 
 https://gitee.com/robinwu0607/kunlun-atp/releases
@@ -19,6 +20,20 @@ KunLun AutoTest要求Python版本为 ``3.7``.
 
 安装方法
 -------------
+
+安装 Visual Studio
+^^^^^^^^^^^^^^^^^^^^^^
+
+可以从以下地址下载最新版本 Visual Studio Installer.
+
+``https://learn.microsoft.com/zh-cn/visualstudio/install/install-visual-studio?view=vs-2022``
+
+选择工作负载 -> Python开发 -> Python本机开发工具, 然后点击安装即可.
+
+.. image:: ../_static/安装指南/visualstudio.PNG
+
+安装 KunLun AutoTest
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 请将 ``pip`` 工具先行升级到最新版本, 再安装KunLun AutoTest, 否则可能遇到依赖包 ``cryptography`` 安装失败的问题.
 
