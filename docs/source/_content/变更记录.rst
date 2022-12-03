@@ -3,7 +3,7 @@
 
 v22.12.0
 -----------
-1. 增加WIN10按照对 ``Visual Studio`` 依赖的说明.
+1. 增加WIN10安装对 ``Visual Studio`` 依赖的说明.
 2. 解决 ``kunlun stop`` 的一些问题.
 
 v22.11.0
