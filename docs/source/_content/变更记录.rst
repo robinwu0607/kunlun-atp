@@ -1,5 +1,9 @@
 变更记录
 ============
+v23.1.0
+-----------
+1. 修复两个 ``lib.ask_question()`` 弹窗之间太快导致无法autofocus的问题.
+2. 接口函数 ``lib.ask_question()与lib.ask_questions()`` 增加参数 ``tips`` .
 
 v22.12.0
 -----------
