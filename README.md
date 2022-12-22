@@ -8,7 +8,7 @@
 
 在线文档地址： https://kunlun-atp.readthedocs.io/en/latest/
 
-仅限个人学习使用，请勿用作商业用途.
+仅限个人学习使用，请勿用于生产场景.
 
 欢迎入群讨论，QQ 群：1023345565
 
