@@ -1,5 +1,13 @@
 变更记录
 ============
+v23.2.0
+-----------
+1. 增加 ``kunlun panel`` 管理界面.
+2. 增加 ``MEASURE`` MEASURE界面.
+3. 将 ``params.xlsx`` 变更为 ``params.json`` .
+4. 将 ``meas.xlsx`` 变更为 ``measure.json`` .
+5. session免配置
+
 v23.1.0
 -----------
 1. 修复两个 ``lib.ask_question()`` 弹窗之间太快导致无法autofocus的问题.
