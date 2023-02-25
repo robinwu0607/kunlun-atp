@@ -2,11 +2,9 @@
 ============
 v23.2.0
 -----------
-1. 增加 ``kunlun panel`` 管理界面.
-2. 增加 ``MEASURE`` MEASURE界面.
-3. 将 ``params.xlsx`` 变更为 ``params.json`` .
-4. 将 ``meas.xlsx`` 变更为 ``measure.json`` .
-5. session免配置
+1. 将 ``params.xlsx`` 变更为 ``params.json`` , 接口函数 ``lib.get_xlsx_params()`` 变更为 ``lib.get_json_params()`` .
+2. 增加 ``kunlun panel`` 管理界面.
+3. 增加 ``MEASURE`` MEASURE界面.
 
 v23.1.0
 -----------

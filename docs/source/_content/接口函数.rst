@@ -260,10 +260,10 @@ lib.get_sequence_definition()
 注意：当在一个 ``step`` 上同时使用 ``cycle_time`` 与 ``cycle_count`` 时，仅 ``cycle_time`` 生效。
 
 
-lib.get_xlsx_params()
+lib.get_json_params()
 -----------------------
-返回当前项目下的XLSX(Excel)文件中的值, XLSX的命名必须是 ``params.xlsx`` ,
-如当前项目为 ``demo``, 则XLSX的路径为 ``demo/params.xlsx`` 。
+返回当前项目下的JSON文件中的值, json的命名必须是 ``params.json`` ,
+如当前项目为 ``demo``, 则XLSX的路径为 ``demo/params.json`` 。
 
 其内容格式如下:
 
@@ -279,39 +279,9 @@ lib.get_xlsx_params()
 
 使用示例:
 
-假设XLSX当前的Sheet名为 ``Sheet1`` , 若要获取 ``param2`` 的值,
-则调用 ``lib.get_xlsx_params("Sheet1", "param2")``， 即返回字符串 ``4567`` 。
+假设JSON文件当前的Sheet名为 ``Sheet1`` , 若要获取 ``param2`` 的值,
+则调用 ``lib.get_json_params("Sheet1", "param2")``, 即返回字符串 ``4567`` 。
 
-使用 ``lib.get_xlsx_params("Sheet1", "param*")``，返回所有以 ``param`` **起始** 的参数，以字典形式返回。
-
-使用 ``lib.get_xlsx_params("Sheet1", "*param")``，返回所有以 ``param`` **结尾** 的参数，以字典形式返回。
-
-使用 ``lib.get_xlsx_params("Sheet1", "*")``，返回 **所有** 参数，以字典形式返回。
-
-lib.xlsx_measure()
------------------------
-通过XLSX(Excel)文件定义指标数据(指标上限与指标下线), 在接口函数中带入 **实际测量值** , 可自动进行指标检查。 XLSX的命名必须是 ``meas.xlsx`` ,
-如当前项目为 ``demo``, 则XLSX的路径为 ``demo/meas.xlsx`` 。
-
-其内容格式如下:
-
-+---------+----------+-----------+-----------+
-| name    | lower    |   upper   |    desc   |
-+=========+==========+===========+===========+
-| meas1   | 20       |    50     |    rf     |
-+---------+----------+-----------+-----------+
-| meas2   | 40       |    78.9   |    gps    |
-+---------+----------+-----------+-----------+
-| meas3   | -35      |    35.9   |    ground |
-+---------+----------+-----------+-----------+
-
-使用示例:
-
-假设XLSX当前的Sheet名为 ``Sheet1`` , 待检查的指标名为 ``meas1`` , 实际测量值为 ``30`` 。
-调用 ``lib.xlsx_measure("Sheet1", "meas1", 30)``,  XLSX文件中 ``meas1`` 的lower(指标下限)为 ``20`` ,
-upper(指标上限)为 ``50`` , 因为 ``20<=30<=50`` , 所以指标检查通过。
-
-若实际测量值为 ``60`` ，则指标检查失败，将触发异常，测试失败。
 
 lib.get_configuration()
 --------------------------------
