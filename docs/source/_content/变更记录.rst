@@ -1,10 +1,9 @@
 变更记录
 ============
-v23.2.0
+v23.3.0
 -----------
 1. 将 ``params.xlsx`` 变更为 ``params.json`` , 接口函数 ``lib.get_xlsx_params()`` 变更为 ``lib.get_json_params()`` .
-2. 增加 ``kunlun panel`` 管理界面.
-3. 增加 ``MEASURE`` MEASURE界面.
+2. 增加 ``MEASURE`` MEASURE界面, 请参考示例代码.
 
 v23.1.0
 -----------
