@@ -308,3 +308,19 @@ lib.get_configuration()
             container = station.add_container("UUT{:02d}".format(i))
             container.add_connection(name="UUT", protocol="DUMMY")
             container.add_connection(name="PWR", protocol="SSH", host="192.168.0.2", username="root", password="root")
+            # 增加measure窗口
+            container.add_measure()
+
+lib.add_measure()
+----------------------
+前置条件: 使用 ``lib.get_configuration()`` 使用 ``add_measure()`` , 则Connection页面增加一个MEASURE窗口。
+
+.. image:: ../_static/接口函数/add_measure1.png
+
+在测试代码中, 使用接口函数, 可以在MEASURE窗口增加一个measure项目, 示例如下::
+
+    lib.add_measure("TEST_MEASURE1", value=3, low=1, high=4)
+
+双击measure项目, 可以得到该项目的线性图。
+
+.. image:: ../_static/接口函数/add_measure2.png

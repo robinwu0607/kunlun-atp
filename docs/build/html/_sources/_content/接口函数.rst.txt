@@ -89,6 +89,7 @@ lib.ask_question()
 4. ``multiple`` : 多选题, 默认为 ``False``。若设置为 ``True``, 则网页弹出一个 ``多项选择题``。当 ``options`` 未设置时，``multiple`` 无效。
 5. ``privilege`` : 插队，默认为 ``False``。多 ``Container工位`` 提问，遵循 ``FIFO先进先出`` 原则。若设置为 ``True``，将插队至队列的第一位。
 6. ``timeout`` : 超时，默认为 ``3600`` 秒。若在超时时间内，用户未响应问题，则触发异常。
+7. ``tips`` : 小提示, 默认为 ``""`` , 可以增加一些提示性字符串。
 
 lib.ask_questions()
 ---------------------
@@ -105,6 +106,7 @@ lib.ask_questions()
 1. ``image`` : 问题描述图片，是一个字符串，例如 ``"project\bee.jpg"``。若传入，则弹出的对话框会展示图片信息。
 2. ``privilege`` : 插队，默认为 ``False``。多 ``Container工位`` 提问，遵循 ``FIFO先进先出`` 原则。若设置为 ``True``，将插队至队列的第一位。
 3. ``timeout`` : 超时，默认为 ``3600`` 秒。若在超时时间内，用户未响应问题，则触发异常。
+8. ``tips`` : 小提示, 默认为 ``""`` , 可以增加一些提示性字符串。
 
 需要强调的是: ``lib.ask_questions()`` 与 ``lib.ask_question()`` 共享同一个 ``FIFO队列`` 。
 
@@ -258,10 +260,10 @@ lib.get_sequence_definition()
 注意：当在一个 ``step`` 上同时使用 ``cycle_time`` 与 ``cycle_count`` 时，仅 ``cycle_time`` 生效。
 
 
-lib.get_xlsx_params()
+lib.get_json_params()
 -----------------------
-返回当前项目下的XLSX(Excel)文件中的值, XLSX的命名必须是 ``params.xlsx`` ,
-如当前项目为 ``demo``, 则XLSX的路径为 ``demo/params.xlsx`` 。
+返回当前项目下的JSON文件中的值, json的命名必须是 ``params.json`` ,
+如当前项目为 ``demo``, 则XLSX的路径为 ``demo/params.json`` 。
 
 其内容格式如下:
 
@@ -277,39 +279,9 @@ lib.get_xlsx_params()
 
 使用示例:
 
-假设XLSX当前的Sheet名为 ``Sheet1`` , 若要获取 ``param2`` 的值,
-则调用 ``lib.get_xlsx_params("Sheet1", "param2")``， 即返回字符串 ``4567`` 。
+假设JSON文件当前的Sheet名为 ``Sheet1`` , 若要获取 ``param2`` 的值,
+则调用 ``lib.get_json_params("Sheet1", "param2")``, 即返回字符串 ``4567`` 。
 
-使用 ``lib.get_xlsx_params("Sheet1", "param*")``，返回所有以 ``param`` **起始** 的参数，以字典形式返回。
-
-使用 ``lib.get_xlsx_params("Sheet1", "*param")``，返回所有以 ``param`` **结尾** 的参数，以字典形式返回。
-
-使用 ``lib.get_xlsx_params("Sheet1", "*")``，返回 **所有** 参数，以字典形式返回。
-
-lib.xlsx_measure()
------------------------
-通过XLSX(Excel)文件定义指标数据(指标上限与指标下线), 在接口函数中带入 **实际测量值** , 可自动进行指标检查。 XLSX的命名必须是 ``meas.xlsx`` ,
-如当前项目为 ``demo``, 则XLSX的路径为 ``demo/meas.xlsx`` 。
-
-其内容格式如下:
-
-+---------+----------+-----------+-----------+
-| name    | lower    |   upper   |    desc   |
-+=========+==========+===========+===========+
-| meas1   | 20       |    50     |    rf     |
-+---------+----------+-----------+-----------+
-| meas2   | 40       |    78.9   |    gps    |
-+---------+----------+-----------+-----------+
-| meas3   | -35      |    35.9   |    ground |
-+---------+----------+-----------+-----------+
-
-使用示例:
-
-假设XLSX当前的Sheet名为 ``Sheet1`` , 待检查的指标名为 ``meas1`` , 实际测量值为 ``30`` 。
-调用 ``lib.xlsx_measure("Sheet1", "meas1", 30)``,  XLSX文件中 ``meas1`` 的lower(指标下限)为 ``20`` ,
-upper(指标上限)为 ``50`` , 因为 ``20<=30<=50`` , 所以指标检查通过。
-
-若实际测量值为 ``60`` ，则指标检查失败，将触发异常，测试失败。
 
 lib.get_configuration()
 --------------------------------
@@ -336,3 +308,19 @@ lib.get_configuration()
             container = station.add_container("UUT{:02d}".format(i))
             container.add_connection(name="UUT", protocol="DUMMY")
             container.add_connection(name="PWR", protocol="SSH", host="192.168.0.2", username="root", password="root")
+            # 增加measure窗口
+            container.add_measure()
+
+lib.add_measure()
+----------------------
+前置条件: 使用 ``lib.get_configuration()`` 使用 ``add_measure()`` , 则Connection页面增加一个MEASURE窗口。
+
+.. image:: ../_static/接口函数/add_measure1.png
+
+在测试代码中, 使用接口函数, 可以在MEASURE窗口增加一个measure项目, 示例如下::
+
+    lib.add_measure("TEST_MEASURE1", value=3, low=1, high=4)
+
+双击measure项目, 可以得到该项目的线性图。
+
+.. image:: ../_static/接口函数/add_measure2.png

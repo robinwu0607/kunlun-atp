@@ -1,9 +1,18 @@
 变更记录
 ============
+v23.3.0
+-----------
+1. 将 ``params.xlsx`` 变更为 ``params.json`` , 接口函数 ``lib.get_xlsx_params()`` 变更为 ``lib.get_json_params()`` .
+2. 增加 ``MEASURE`` MEASURE界面, 请参考示例代码.
+
+v23.1.0
+-----------
+1. 修复两个 ``lib.ask_question()`` 弹窗之间太快导致无法autofocus的问题.
+2. 接口函数 ``lib.ask_question()与lib.ask_questions()`` 增加参数 ``tips`` .
 
 v22.12.0
 -----------
-1. 增加WIN10按照对 ``Visual Studio`` 依赖的说明.
+1. 增加WIN10安装对 ``Visual Studio`` 依赖的说明.
 2. 解决 ``kunlun stop`` 的一些问题.
 
 v22.11.0

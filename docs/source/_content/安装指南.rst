@@ -16,7 +16,7 @@ https://gitee.com/robinwu0607/kunlun-atp/releases
 
 Python版本要求
 ----------------
-KunLun AutoTest要求Python版本为 ``3.7``.
+KunLun AutoTest要求Python版本为 ``3.7.x``.
 
 安装方法
 -------------
@@ -41,7 +41,15 @@ KunLun AutoTest要求Python版本为 ``3.7``.
 
 需要说明的是: 建议创建虚拟环境virtual environment后, 再安装KunLun AutoTest, 虚拟环境的安装方法, 这里就不再赘述.
 
-安装完成后, 命令行工具 ``kunlun`` 即为可用状态， 其相关用法介绍如下:: 
+安装完成后, 命令行工具 ``kunlun`` 即为可用状态， 可以使用 ``import kunlun`` 确认安装成功::
+
+  (.venv) D:\kunlun-develop>python
+  Python 3.7.5 (tags/v3.7.5:5c02a39a0b, Oct 15 2019, 00:11:34) [MSC v.1916 64 bit (AMD64)] on win32
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> import kunlun
+  >>> 
+
+其相关用法介绍如下, 可以使用 ``kunlun -h`` 打印帮助信息:: 
 
   Usage: kunlun [start|stop|web|info]
 

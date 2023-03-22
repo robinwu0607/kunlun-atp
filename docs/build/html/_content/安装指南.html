@@ -98,7 +98,7 @@
 </section>
 <section id="python">
 <h2>Python版本要求<a class="headerlink" href="#python" title="Permalink to this heading"></a></h2>
-<p>KunLun AutoTest要求Python版本为 <code class="docutils literal notranslate"><span class="pre">3.7</span></code>.</p>
+<p>KunLun AutoTest要求Python版本为 <code class="docutils literal notranslate"><span class="pre">3.7.x</span></code>.</p>
 </section>
 <section id="id4">
 <h2>安装方法<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
@@ -114,7 +114,15 @@
 <p>请将 <code class="docutils literal notranslate"><span class="pre">pip</span></code> 工具先行升级到最新版本, 再安装KunLun AutoTest, 否则可能遇到依赖包 <code class="docutils literal notranslate"><span class="pre">cryptography</span></code> 安装失败的问题.</p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">kunlun-xx.xx.xx.tar.gz</span></code> 即可, <code class="docutils literal notranslate"><span class="pre">pip</span></code> 工具会自动安装相关依赖.</p>
 <p>需要说明的是: 建议创建虚拟环境virtual environment后, 再安装KunLun AutoTest, 虚拟环境的安装方法, 这里就不再赘述.</p>
-<p>安装完成后, 命令行工具 <code class="docutils literal notranslate"><span class="pre">kunlun</span></code> 即为可用状态， 其相关用法介绍如下:</p>
+<p>安装完成后, 命令行工具 <code class="docutils literal notranslate"><span class="pre">kunlun</span></code> 即为可用状态， 可以使用 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">kunlun</span></code> 确认安装成功:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="n">D</span><span class="p">:</span>\<span class="n">kunlun</span><span class="o">-</span><span class="n">develop</span><span class="o">&gt;</span><span class="n">python</span>
+<span class="n">Python</span> <span class="mf">3.7.5</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="mf">.7.5</span><span class="p">:</span><span class="mi">5</span><span class="n">c02a39a0b</span><span class="p">,</span> <span class="n">Oct</span> <span class="mi">15</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">00</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">34</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="mf">.1916</span> <span class="mi">64</span> <span class="n">bit</span> <span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">kunlun</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>其相关用法介绍如下, 可以使用 <code class="docutils literal notranslate"><span class="pre">kunlun</span> <span class="pre">-h</span></code> 打印帮助信息:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">kunlun</span> <span class="p">[</span><span class="n">start</span><span class="o">|</span><span class="n">stop</span><span class="o">|</span><span class="n">web</span><span class="o">|</span><span class="n">info</span><span class="p">]</span>
 
 <span class="o">-</span> <span class="n">start</span>   <span class="n">Start</span> <span class="n">KunLun</span> <span class="n">AutoTest</span> <span class="n">Service</span><span class="o">.</span>

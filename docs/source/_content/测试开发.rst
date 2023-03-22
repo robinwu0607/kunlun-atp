@@ -60,12 +60,16 @@ kunlun-data文件夹
             container.add_connection(name="TNT", protocol="TELNET", host="192.168.0.3", port=2009)
             # 增加一个Connection连接, 连接的协议为SERIAL, 目标端口为COM1, 波特率为115200.
             container.add_connection(name="SER", protocol="SERIAL", serial="COM1", baudrate=115200)
+            # 增加measure窗口
+            container.add_measure()
         # 在根实例Kl下增加第二个Station工站
         station = kun.add_station(name="FCT", desc="FCT测试", recycle=False)
         station.add_sequence("demo.fct")
         for i in range(4):
             container = station.add_container(name="UUT{:02d}".format(i))
             container.add_connection(name="UUT", protocol="DUMMY")
+            # 增加measure窗口
+            container.add_measure()
 
 
 需要注意的是：每次对 ``desktop1tp185d.py`` 进行修改, 必须使用 ``kunlun start`` 重启服务, 修改后的内容才会生效.
