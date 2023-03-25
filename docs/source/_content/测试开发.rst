@@ -3,8 +3,8 @@
 
 kunlun-data文件夹
 -------------------
-首次安装, 启动平台软件后, 平台将自动创建 ``D:\kunlun-data`` 文件夹目录, 
-``D:\kunlun-data`` 目录包含以下文件或文件夹.
+首次安装, 启动平台软件后, 平台将自动创建 ``C:\kunlun-data`` 文件夹目录, 
+``C:\kunlun-data`` 目录包含以下文件或文件夹.
 
 1. ``db.sqlite3`` ：数据库文件, 保存测试记录.
 2. ``logs`` ：测试日志文件夹, 保存测试过程中产生的测试日志, 以及保存一些临时文件.
@@ -15,7 +15,7 @@ kunlun-data文件夹
 
 用户可以在以下地址下载测试程序示例.
 
-``https://gitee.com/robinwu0607/kunlun-scripts``
+``https://gitee.com/robinwu0607/kunlun_scripts``
 
 * ``configs`` 中包含界面定制代码.
 * ``demo`` 中包含演示测试代码.
@@ -94,13 +94,13 @@ FTP服务
 ^^^^^^^
 用户在定制界面时, 若设置 ``lib.get_configuration(ftp=True)`` , 启动平台时, FTP服务也将启动.
 
-FTP的默认文件夹是 ``D:\kunlun-data\tftpboot`` , 用户名密码为： ``klat/klat`` .
+FTP的默认文件夹是 ``C:\kunlun-data\tftpboot`` , 用户名密码为： ``klat/klat`` .
 
 TFTP服务
 ^^^^^^^^
 用户在定制界面时, 若设置 ``lib.get_configuration(tftp=True)`` , 启动平台时, TFTP服务也将启动.
 
-FTP的默认文件夹是 ``D:\kunlun-data\tftpboot`` .
+FTP的默认文件夹是 ``C:\kunlun-data\tftpboot`` .
 
 需要注意的是：
 
@@ -109,7 +109,7 @@ FTP的默认文件夹是 ``D:\kunlun-data\tftpboot`` .
 
 测试代码开发方案
 -----------------
-用户的代码存放于 ``D:\kunlun-data\product`` 或是 ``D:\kunlun-data\develop`` 下.
+用户的代码存放于 ``C:\kunlun-data\product`` 或是 ``C:\kunlun-data\develop`` 下.
 
 给开发者建议：
 
@@ -127,7 +127,7 @@ FTP的默认文件夹是 ``D:\kunlun-data\tftpboot`` .
 1. 相对独立的项目(较少与其他项目复用代码).
 2. 测试命令行小于或等于20条的项目.
 
-快速开发方案的演示代码可以参考 ``D:\kunlun-data\product\demo\fct.py`` .
+快速开发方案的演示代码可以参考 ``C:\kunlun-data\kunlun_scripts\demo\fct.py`` .
 
 以下截取部分代码片段进行说明::
 
@@ -193,7 +193,7 @@ FTP的默认文件夹是 ``D:\kunlun-data\tftpboot`` .
 3. 需要实施较多测试策略的项目.
 4. 测试命令行大于20条的项目.
 
-测试序列编排方案的演示代码可以参考 ``D:\kunlun-data\product\demo\pcba.py`` .
+测试序列编排方案的演示代码可以参考 ``C:\kunlun-data\kunlun_scripts\demo\pcba.py`` .
 
 以下截取部分代码片段供参考::
 

@@ -1,5 +1,10 @@
 变更记录
 ============
+v23.4.0
+-----------
+1. 修改用户代码默认文件夹为 ``kunlun_scripts``, 调试模式文件夹为 ``develop`` .
+2. 修复一些问题
+
 v23.3.0
 -----------
 1. 将 ``params.xlsx`` 变更为 ``params.json`` , 接口函数 ``lib.get_xlsx_params()`` 变更为 ``lib.get_json_params()`` .
