@@ -3,48 +3,48 @@
 
 lib.ud
 -------
-``lib.ud`` 是一个全局字典userdict，可以在测试代码的任意位置使用。
+``lib.ud`` 是一个全局字典userdict, 可以在测试代码的任意位置使用。
 
-典型应用场景： 用户定义多个函数，函数间的变量传递就会变得复杂，使用 ``lib.ud`` 可以轻松解决这个问题。
+典型应用场景： 用户定义多个函数, 函数间的变量传递就会变得复杂, 使用 ``lib.ud`` 可以轻松解决这个问题。
 
-``lib.ud`` 使用起来也很方便，如下所示:
+``lib.ud`` 使用起来也很方便, 如下所示:
 
 * ``lib.ud.test_spec = 123`` : 设置 ``test_spec`` 值为 ``123`` 。
 
-* ``spec = lib.ud.test_spec`` 获取 ``test_spec`` 的值，并保存在变量 ``spec`` 。
+* ``spec = lib.ud.test_spec`` 获取 ``test_spec`` 的值, 并保存在变量 ``spec`` 。
 
-需要说明的是：``lib.ud`` 支持任意级层的赋值，如 ``lib.ud.test.ft.result.name = "PASS"`` 。
+需要说明的是：``lib.ud`` 支持任意级层的赋值, 如 ``lib.ud.test.ft.result.name = "PASS"`` 。
 
 lib.conn
 ---------
-``lib.conn`` 是一个连接池，保存着用户在 ``hostname.py`` 中为当前 ``container工位`` 定义的所有连接。
+``lib.conn`` 是一个连接池, 保存着用户在 ``hostname.py`` 中为当前 ``container工位`` 定义的所有连接。
 
 例如:
 
-* 用户定义了 ``add_connection(name="UUT")``，则使用 ``uut = lib.conn.UUT`` 可以获取此连接实例。
-* 用户定义了 ``add_connection(name="REF")``，则使用 ``uut = lib.conn.REF`` 可以获取此连接实例。
-* 用户定义了 ``add_connection(name="COM")``，则使用 ``uut = lib.conn.COM`` 可以获取此连接实例。
+* 用户定义了 ``add_connection(name="UUT")``, 则使用 ``uut = lib.conn.UUT`` 可以获取此连接实例。
+* 用户定义了 ``add_connection(name="REF")``, 则使用 ``uut = lib.conn.REF`` 可以获取此连接实例。
+* 用户定义了 ``add_connection(name="COM")``, 则使用 ``uut = lib.conn.COM`` 可以获取此连接实例。
 
-获取连接实例 ``uut`` 后，可以使用实例的以下几种属性:
+获取连接实例 ``uut`` 后, 可以使用实例的以下几种属性:
 
-1. ``uut.open()`` ：打开连接, 需要注意的是：每次 ``open()`` 前，会自动调用 ``close()`` 方法。
+1. ``uut.open()`` ：打开连接, 需要注意的是：每次 ``open()`` 前, 会自动调用 ``close()`` 方法。
 2. ``uut.close()`` ：关闭连接
 3. ``uut.send()`` : 向连接传递命令行.
-4. ``uut.buf`` ：保存 *uut.send()* 语句发送后，产品回馈的日志。
-5. ``uut.phrase`` ：保存 *uut.send()* 语句发送后，收到的 ``expect`` 字符串。
-6. ``uut.capture()`` ：对 ``uut.buf`` 进行解析，获取想要的字符串片段。
+4. ``uut.buf`` ：保存 *uut.send()* 语句发送后, 产品回馈的日志。
+5. ``uut.phrase`` ：保存 *uut.send()* 语句发送后, 收到的 ``expect`` 字符串。
+6. ``uut.capture()`` ：对 ``uut.buf`` 进行解析, 获取想要的字符串片段。
 
-需要强调的是：``uut.send()`` 是传递命令行至待测产品UUT的唯一方式，使用方法如下::
+需要强调的是：``uut.send()`` 是传递命令行至待测产品UUT的唯一方式, 使用方法如下::
 
     uut.send("python\r", expect=">>>", timeout=10)
 
-对此语句的解释：通过 ``uut.send`` 发送命令行 ``python`` ，并带回车符 ``\r`` ，并期望在 ``timeout`` 的 ``10`` 秒钟内，收到字符串 ``>>>`` 。
-若收到，此语句正常完成，产品反馈的日志将以字符串形式保存在 ``uut.buf`` 中，然后执行下一条语句。
-若未收到字符串 ``>>>``，则触发异常(用户可以使用 ``try...except...`` 捕获此异常)。
+对此语句的解释：通过 ``uut.send`` 发送命令行 ``python`` , 并带回车符 ``\r`` , 并期望在 ``timeout`` 的 ``10`` 秒钟内, 收到字符串 ``>>>`` 。
+若收到, 此语句正常完成, 产品反馈的日志将以字符串形式保存在 ``uut.buf`` 中, 然后执行下一条语句。
+若未收到字符串 ``>>>``, 则触发异常(用户可以使用 ``try...except...`` 捕获此异常)。
 
 需要说明的是：
 
-* ``uut.send()`` 的 ``expect`` 可以接受 ``列表list``， 若 ``expect`` 为 ``列表`` 时，当平台收到 ``列表`` 中的任意一元素时，``uut.send()`` 语句执行完成，收到的元素保存在 ``uut.phrase`` ::
+* ``uut.send()`` 的 ``expect`` 可以接受 ``列表list``,  若 ``expect`` 为 ``列表`` 时, 当平台收到 ``列表`` 中的任意一元素时, ``uut.send()`` 语句执行完成, 收到的元素保存在 ``uut.phrase`` ::
 
     uut.send("dir\r", expect=[">", "#", "$"], timeout=60)
     log.debug(uut.phrase)
@@ -53,29 +53,29 @@ lib.conn
     if uut.phrase in ["$"]:
         raise Exception("Got '$', go to fail")
 
-* ``uut.send()`` 的 ``expect`` 可以接受 ``元组tuple``， 若 ``expect`` 为 ``元组`` 时，，当平台必须收到 ``元组`` 中的所有元素，``uut.send()`` 语句执行完成。 ::
+* ``uut.send()`` 的 ``expect`` 可以接受 ``元组tuple``,  若 ``expect`` 为 ``元组`` 时, , 当平台必须收到 ``元组`` 中的所有元素, ``uut.send()`` 语句执行完成。 ::
 
     uut.send("dir\r", expect=(">", "TEST PASSED"), timeout=60)
 
-* ``uut.send()`` 前会自动清空 ``uut.buf`` 内容,  ``uut.send()`` 完成后，收到的所有字符会自动保存在 ``uut.buf`` 。此例中 ``uut.send()`` 完成后，若使用 ``log.debug(uut.buf)`` ，将在事件日志窗口打印出如下字符::
+* ``uut.send()`` 前会自动清空 ``uut.buf`` 内容,  ``uut.send()`` 完成后, 收到的所有字符会自动保存在 ``uut.buf`` 。此例中 ``uut.send()`` 完成后, 若使用 ``log.debug(uut.buf)`` , 将在事件日志窗口打印出如下字符::
 
     python
     Python 3.7.8 (tags/v3.7.8:4b47a5b6ba, Jun 28 2020, 08:53:46) [MSC v.1916 64 bit (AMD64)] on win32
     Type "help", "copyright", "credits" or "license" for more information.
     >>>
 
-* ``uut.capture`` 可以快速截取 ``uut.buf`` 中用户想要的字符串，并支持 ``正则表达``，其用法如下::
+* ``uut.capture`` 可以快速截取 ``uut.buf`` 中用户想要的字符串, 并支持 ``正则表达``, 其用法如下::
 
     # 语法说明
     user_string = uut.capture(start_string, end_string="\n")
-    # 例如：想要获取Python的版本(此例中，版本为：3.7.8 )
+    # 例如：想要获取Python的版本(此例中, 版本为：3.7.8 )
     version = uut.capture("Python", "(tags")
 
 lib.ask_question()
 --------------------
-``lib.ask_question()`` 提供一种用户交互方法，调用此接口函数后，网页界面将弹出对话框，用户可以在对话框应答一个问题，并返回答案(字符串).
+``lib.ask_question()`` 提供一种用户交互方法, 调用此接口函数后, 网页界面将弹出对话框, 用户可以在对话框应答一个问题, 并返回答案(字符串).
 
-典型应用场景：弹出对话框，要求用户输入产品的序列号::
+典型应用场景：弹出对话框, 要求用户输入产品的序列号::
 
     ans = lib.ask_question("请输入序列号SERIAL：", timeout=60 * 3)
 
@@ -83,19 +83,19 @@ lib.ask_question()
 
 需要说明的是：``lib.ask_question()`` 支持传入如下参数:
 
-1. ``options`` : 备选答案，是一个列表，例如 ``["12345", "678990"]``。若传入，则网页会弹出一个 ``单项选择题`` 对话框，若不设置，则弹出一个 ``填空题`` 对话框。
-2. ``image`` : 问题描述图片，是一个字符串，例如 ``"project\bee.jpg"``。若传入，则弹出的对话框会展示图片信息。
-3. ``visible`` : 输入内容可视，默认为 ``True``。若设置为 ``False``, 则用户输入内容显示为 ``*`` 号，常用于密码输入等场景。
-4. ``multiple`` : 多选题, 默认为 ``False``。若设置为 ``True``, 则网页弹出一个 ``多项选择题``。当 ``options`` 未设置时，``multiple`` 无效。
-5. ``privilege`` : 插队，默认为 ``False``。多 ``Container工位`` 提问，遵循 ``FIFO先进先出`` 原则。若设置为 ``True``，将插队至队列的第一位。
-6. ``timeout`` : 超时，默认为 ``3600`` 秒。若在超时时间内，用户未响应问题，则触发异常。
+1. ``options`` : 备选答案, 是一个列表, 例如 ``["12345", "678990"]``。若传入, 则网页会弹出一个 ``单项选择题`` 对话框, 若不设置, 则弹出一个 ``填空题`` 对话框。
+2. ``image`` : 问题描述图片, 是一个字符串, 例如 ``"project\bee.jpg"``。若传入, 则弹出的对话框会展示图片信息。
+3. ``visible`` : 输入内容可视, 默认为 ``True``。若设置为 ``False``, 则用户输入内容显示为 ``*`` 号, 常用于密码输入等场景。
+4. ``multiple`` : 多选题, 默认为 ``False``。若设置为 ``True``, 则网页弹出一个 ``多项选择题``。当 ``options`` 未设置时, ``multiple`` 无效。
+5. ``privilege`` : 插队, 默认为 ``False``。多 ``Container工位`` 提问, 遵循 ``FIFO先进先出`` 原则。若设置为 ``True``, 将插队至队列的第一位。
+6. ``timeout`` : 超时, 默认为 ``3600`` 秒。若在超时时间内, 用户未响应问题, 则触发异常。
 7. ``tips`` : 小提示, 默认为 ``""`` , 可以增加一些提示性字符串。
 
 lib.ask_questions()
 ---------------------
-此接口函数提供一个用户交互方法，调用此函数后，网页界面将弹出对话框，用户可以在对话框同时应答多个问题，并返回答案(列表).
+此接口函数提供一个用户交互方法, 调用此函数后, 网页界面将弹出对话框, 用户可以在对话框同时应答多个问题, 并返回答案(列表).
 
-使用示例：弹出对话框，要求应答多个问题::
+使用示例：弹出对话框, 要求应答多个问题::
 
     ans = lib.ask_questions(["请输入序列号SERIAL：", "请输入UUTTYPE：", "请输入员工工号："], timeout=60 * 3)
 
@@ -103,16 +103,16 @@ lib.ask_questions()
 
 需要说明的是：``lib.ask_questio()`` 支持传入如下参数:
 
-1. ``image`` : 问题描述图片，是一个字符串，例如 ``"project\bee.jpg"``。若传入，则弹出的对话框会展示图片信息。
-2. ``privilege`` : 插队，默认为 ``False``。多 ``Container工位`` 提问，遵循 ``FIFO先进先出`` 原则。若设置为 ``True``，将插队至队列的第一位。
-3. ``timeout`` : 超时，默认为 ``3600`` 秒。若在超时时间内，用户未响应问题，则触发异常。
-8. ``tips`` : 小提示, 默认为 ``""`` , 可以增加一些提示性字符串。
+1. ``image`` : 问题描述图片, 是一个字符串, 例如 ``"project\bee.jpg"``。若传入, 则弹出的对话框会展示图片信息。
+2. ``privilege`` : 插队, 默认为 ``False``。多 ``Container工位`` 提问, 遵循 ``FIFO先进先出`` 原则。若设置为 ``True``, 将插队至队列的第一位。
+3. ``timeout`` : 超时, 默认为 ``3600`` 秒。若在超时时间内, 用户未响应问题, 则触发异常。
+4. ``tips`` : 小提示, 默认为 ``""`` , 可以增加一些提示性字符串。
 
 需要强调的是: ``lib.ask_questions()`` 与 ``lib.ask_question()`` 共享同一个 ``FIFO队列`` 。
 
 lib.set_display1/2/3()
 -----------------------
-``lib.set_display1/2/3()`` 可以设置 ``Container工位`` 面板 ``定制区域`` 的显示，display1/2/3分别面板的上/中/下位置。
+``lib.set_display1/2/3()`` 可以设置 ``Container工位`` 面板 ``定制区域`` 的显示, display1/2/3分别面板的上/中/下位置。
 建议的定制方案为::
 
     # display1 显示产品的序列号
@@ -132,7 +132,7 @@ lib.set_step_name()
 lib.get_container_name()
 --------------------------
 ``lib.get_container_name()`` 返回当前的测试工位名称。
-使用示例：在 ``FT:UUT00`` 上点击开始测试，返回值为字符串 ``FT:UUT00`` ::
+使用示例：在 ``FT:UUT00`` 上点击开始测试, 返回值为字符串 ``FT:UUT00`` ::
 
     container_name = lib.get_container_name()
 
@@ -140,13 +140,13 @@ lib.add_test_data()
 ----------------------
 ``lib.add_test_data()`` 可以为产品做测试记录。
 
-测试过程中，使用此接口函数记录产品信息，测试完成后，根据测试结果成功或是失败，自动记录一笔 ``P`` （Pass）或是 ``F`` （Fail）::
+测试过程中, 使用此接口函数记录产品信息, 测试完成后, 根据测试结果成功或是失败, 自动记录一笔 ``P`` （Pass）或是 ``F`` （Fail）::
 
     lib.add_test_data(sernum=serial, uuttype=uuttype, area="FT")
 
-需要强调的是：此接口函数至少需要传入3个参数，它们是： ``sernum`` 产品条码,  ``uuttype`` 产品类型,  ``area`` 测试工序名称。
+需要强调的是：此接口函数至少需要传入3个参数, 它们是： ``sernum`` 产品条码,  ``uuttype`` 产品类型,  ``area`` 测试工序名称。
 
-需要说明的是：此接口函数还支持传入更多参数，以便帮助用户记录更多信息，它们是：
+需要说明的是：此接口函数还支持传入更多参数, 以便帮助用户记录更多信息, 它们是：
 
 * ``label1, label2, label3, label4, label5``
 * ``version1, version1, version3, version4, version5``
@@ -154,14 +154,14 @@ lib.add_test_data()
 
 lib.get_mode()
 ---------------
-``lib.get_mode()`` 返回当前测试的模式，值为 ``PRODUCT`` 或是 ``DEVELOP`` ::
+``lib.get_mode()`` 返回当前测试的模式, 值为 ``PRODUCT`` 或是 ``DEVELOP`` ::
 
     mode = lib.get_mode()
 
 lib.get_params()
 -----------------------
-``lib.get_params()`` 返回 ``hostname.py`` 中当前工站的 ``add_params_data()`` 的值，是一个字典。
-例: 如设置 ``add_params_data(ip="192.168.1.1", ip=2003)``，则返回值为 ``{"host": "192.168.1.1", "port": 2003}`` 。
+``lib.get_params()`` 返回 ``hostname.py`` 中当前工站的 ``add_params_data()`` 的值, 是一个字典。
+例: 如设置 ``add_params_data(ip="192.168.1.1", ip=2003)``, 则返回值为 ``{"host": "192.168.1.1", "port": 2003}`` 。
 
 lib.start_test()
 ---------------------------
@@ -175,7 +175,7 @@ lib.start_test()
 
 lib.get_sequence_definition()
 ------------------------------
-返回 ``sequence`` 实例，用此实例编排测试序列，测试过程中，可以在 **调试界面** 的 ``STEP`` 窗口查看测试序列流程图。
+返回 ``sequence`` 实例, 用此实例编排测试序列, 测试过程中, 可以在 **调试界面** 的 ``STEP`` 窗口查看测试序列流程图。
 假设测试代码中定义有如下函数::
 
     def run_test():
@@ -213,9 +213,9 @@ lib.get_sequence_definition()
         seq.add_step(run_test3, name="RUN TEST3")
         return seq
 
-注意：``add_step()`` 后要跟函数或方法的名字，``免小括号()``。
+注意：``add_step()`` 后要跟函数或方法的名字, ``免小括号()``。
 
-``sequence`` 形式的代码编排，为测试策略的实施提供了便利，以下是当前支持的策略，更多策略持续增加中。
+``sequence`` 形式的代码编排, 为测试策略的实施提供了便利, 以下是当前支持的策略, 更多策略持续增加中。
 
 1. 通过设置 ``in_parallel=True`` 可以实施 **平行测试** 策略。
 
@@ -232,7 +232,7 @@ lib.get_sequence_definition()
         return seq
 
 2. 通过设置 ``cycle_time=60 * 5`` 可以实施 **按时间循环测试** 策略。
-例子中 ``run_test2`` 每次测试完成后，会检查累计消耗时间，若小于 ``cycle_time``， 将再一次测试，其中任何一次fail，循环测试终止。
+例子中 ``run_test2`` 每次测试完成后, 会检查累计消耗时间, 若小于 ``cycle_time``,  将再一次测试, 其中任何一次fail, 循环测试终止。
 
 使用示例::
 
@@ -245,7 +245,7 @@ lib.get_sequence_definition()
         return seq
 
 3. 通过设置 ``cycle_count=10`` 可以实施 **按次数循环测试** 策略。
-例子中 ``run_test2`` 每次测试完成后，会检查累计次数，若小于 ``cycle_count``， 将再一次测试，其中任何一次fail，循环测试终止。
+例子中 ``run_test2`` 每次测试完成后, 会检查累计次数, 若小于 ``cycle_count``,  将再一次测试, 其中任何一次fail, 循环测试终止。
 
 使用示例::
 
@@ -257,7 +257,7 @@ lib.get_sequence_definition()
         seq.add_step(run_test3, name="RUN TEST3")
         return seq
 
-注意：当在一个 ``step`` 上同时使用 ``cycle_time`` 与 ``cycle_count`` 时，仅 ``cycle_time`` 生效。
+注意：当在一个 ``step`` 上同时使用 ``cycle_time`` 与 ``cycle_count`` 时, 仅 ``cycle_time`` 生效。
 
 
 lib.get_json_params()
@@ -285,7 +285,7 @@ lib.get_json_params()
 
 lib.get_configuration()
 --------------------------------
-在 ``hostname.py`` 中调用此接口函数，可以更精细化定制用户界面。
+在 ``hostname.py`` 中调用此接口函数, 可以更精细化定制用户界面。
 
 使用示例::
 

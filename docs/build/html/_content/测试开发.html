@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>测试开发 &mdash; KunLun AutoTest v22.11.0 documentation</title>
+  <title>测试开发 &mdash; KunLun AutoTest v23.3.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -93,8 +93,8 @@
 <h1>测试开发<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="kunlun-data">
 <h2>kunlun-data文件夹<a class="headerlink" href="#kunlun-data" title="Permalink to this heading"></a></h2>
-<p>首次安装, 启动平台软件后, 平台将自动创建 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data</span></code> 文件夹目录,
-<code class="docutils literal notranslate"><span class="pre">D:\kunlun-data</span></code> 目录包含以下文件或文件夹.</p>
+<p>首次安装, 启动平台软件后, 平台将自动创建 <code class="docutils literal notranslate"><span class="pre">C:\kunlun-data</span></code> 文件夹目录,
+<code class="docutils literal notranslate"><span class="pre">C:\kunlun-data</span></code> 目录包含以下文件或文件夹.</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">db.sqlite3</span></code> ：数据库文件, 保存测试记录.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">logs</span></code> ：测试日志文件夹, 保存测试过程中产生的测试日志, 以及保存一些临时文件.</p></li>
@@ -104,7 +104,7 @@
 <section id="id2">
 <h2>定制用户界面<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>用户可以在以下地址下载测试程序示例.</p>
-<p><code class="docutils literal notranslate"><span class="pre">https://gitee.com/robinwu0607/kunlun-scripts</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">https://gitee.com/robinwu0607/kunlun_scripts</span></code></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">configs</span></code> 中包含界面定制代码.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">demo</span></code> 中包含演示测试代码.</p></li>
@@ -176,12 +176,12 @@
 <section id="ftp">
 <h3>FTP服务<a class="headerlink" href="#ftp" title="Permalink to this heading"></a></h3>
 <p>用户在定制界面时, 若设置 <code class="docutils literal notranslate"><span class="pre">lib.get_configuration(ftp=True)</span></code> , 启动平台时, FTP服务也将启动.</p>
-<p>FTP的默认文件夹是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\tftpboot</span></code> , 用户名密码为： <code class="docutils literal notranslate"><span class="pre">klat/klat</span></code> .</p>
+<p>FTP的默认文件夹是 <code class="docutils literal notranslate"><span class="pre">C:\kunlun-data\tftpboot</span></code> , 用户名密码为： <code class="docutils literal notranslate"><span class="pre">klat/klat</span></code> .</p>
 </section>
 <section id="tftp">
 <h3>TFTP服务<a class="headerlink" href="#tftp" title="Permalink to this heading"></a></h3>
 <p>用户在定制界面时, 若设置 <code class="docutils literal notranslate"><span class="pre">lib.get_configuration(tftp=True)</span></code> , 启动平台时, TFTP服务也将启动.</p>
-<p>FTP的默认文件夹是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\tftpboot</span></code> .</p>
+<p>FTP的默认文件夹是 <code class="docutils literal notranslate"><span class="pre">C:\kunlun-data\tftpboot</span></code> .</p>
 <p>需要注意的是：</p>
 <ol class="arabic simple">
 <li><p>当 <code class="docutils literal notranslate"><span class="pre">lib.get_configuration(ftp=True,</span> <span class="pre">tftp=True)</span></code> 时, FTP服务与TFTP服务将同时启动, 不冲突.</p></li>
@@ -191,7 +191,7 @@
 </section>
 <section id="id5">
 <h2>测试代码开发方案<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
-<p>用户的代码存放于 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\develop</span></code> 下.</p>
+<p>用户的代码存放于 <code class="docutils literal notranslate"><span class="pre">C:\kunlun-data\product</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">C:\kunlun-data\develop</span></code> 下.</p>
 <p>给开发者建议：</p>
 <ol class="arabic simple">
 <li><p>用户项目下的文件夹与文件, Python代码开发规范参考PEP8规范, PEP8链接为: <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
@@ -207,7 +207,7 @@
 <li><p>相对独立的项目(较少与其他项目复用代码).</p></li>
 <li><p>测试命令行小于或等于20条的项目.</p></li>
 </ol>
-<p>快速开发方案的演示代码可以参考 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product\demo\fct.py</span></code> .</p>
+<p>快速开发方案的演示代码可以参考 <code class="docutils literal notranslate"><span class="pre">C:\kunlun-data\kunlun_scripts\demo\fct.py</span></code> .</p>
 <p>以下截取部分代码片段进行说明:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kunlun</span> <span class="kn">import</span> <span class="n">lib</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -272,7 +272,7 @@
 <li><p>需要实施较多测试策略的项目.</p></li>
 <li><p>测试命令行大于20条的项目.</p></li>
 </ol>
-<p>测试序列编排方案的演示代码可以参考 <code class="docutils literal notranslate"><span class="pre">D:\kunlun-data\product\demo\pcba.py</span></code> .</p>
+<p>测试序列编排方案的演示代码可以参考 <code class="docutils literal notranslate"><span class="pre">C:\kunlun-data\kunlun_scripts\demo\pcba.py</span></code> .</p>
 <p>以下截取部分代码片段供参考:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kunlun</span> <span class="kn">import</span> <span class="n">lib</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -385,7 +385,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, robinwu.</p>
+    <p>&#169; Copyright 2023, robinwu.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

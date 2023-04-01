@@ -77,4 +77,4 @@ Ask Question交互界面
 .. image:: ../_static/用户界面/data-search-report2.png
 .. image:: ../_static/用户界面/data-search-report3.png
 
-需要说明的是：测试日志保存在测试主机本地, 保存位置为 ``D:\kunlun-data\logs`` 。
+需要说明的是：测试日志保存在测试主机本地, 保存位置为 ``C:\kunlun-data\logs`` 。

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>接口函数 &mdash; KunLun AutoTest v22.11.0 documentation</title>
+  <title>接口函数 &mdash; KunLun AutoTest v23.3.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -94,43 +94,43 @@
 <h1>接口函数<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="lib-ud">
 <h2>lib.ud<a class="headerlink" href="#lib-ud" title="Permalink to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">lib.ud</span></code> 是一个全局字典userdict，可以在测试代码的任意位置使用。</p>
-<p>典型应用场景： 用户定义多个函数，函数间的变量传递就会变得复杂，使用 <code class="docutils literal notranslate"><span class="pre">lib.ud</span></code> 可以轻松解决这个问题。</p>
-<p><code class="docutils literal notranslate"><span class="pre">lib.ud</span></code> 使用起来也很方便，如下所示:</p>
+<p><code class="docutils literal notranslate"><span class="pre">lib.ud</span></code> 是一个全局字典userdict, 可以在测试代码的任意位置使用。</p>
+<p>典型应用场景： 用户定义多个函数, 函数间的变量传递就会变得复杂, 使用 <code class="docutils literal notranslate"><span class="pre">lib.ud</span></code> 可以轻松解决这个问题。</p>
+<p><code class="docutils literal notranslate"><span class="pre">lib.ud</span></code> 使用起来也很方便, 如下所示:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">lib.ud.test_spec</span> <span class="pre">=</span> <span class="pre">123</span></code> : 设置 <code class="docutils literal notranslate"><span class="pre">test_spec</span></code> 值为 <code class="docutils literal notranslate"><span class="pre">123</span></code> 。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">spec</span> <span class="pre">=</span> <span class="pre">lib.ud.test_spec</span></code> 获取 <code class="docutils literal notranslate"><span class="pre">test_spec</span></code> 的值，并保存在变量 <code class="docutils literal notranslate"><span class="pre">spec</span></code> 。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spec</span> <span class="pre">=</span> <span class="pre">lib.ud.test_spec</span></code> 获取 <code class="docutils literal notranslate"><span class="pre">test_spec</span></code> 的值, 并保存在变量 <code class="docutils literal notranslate"><span class="pre">spec</span></code> 。</p></li>
 </ul>
-<p>需要说明的是：<code class="docutils literal notranslate"><span class="pre">lib.ud</span></code> 支持任意级层的赋值，如 <code class="docutils literal notranslate"><span class="pre">lib.ud.test.ft.result.name</span> <span class="pre">=</span> <span class="pre">&quot;PASS&quot;</span></code> 。</p>
+<p>需要说明的是：<code class="docutils literal notranslate"><span class="pre">lib.ud</span></code> 支持任意级层的赋值, 如 <code class="docutils literal notranslate"><span class="pre">lib.ud.test.ft.result.name</span> <span class="pre">=</span> <span class="pre">&quot;PASS&quot;</span></code> 。</p>
 </section>
 <section id="lib-conn">
 <h2>lib.conn<a class="headerlink" href="#lib-conn" title="Permalink to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">lib.conn</span></code> 是一个连接池，保存着用户在 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中为当前 <code class="docutils literal notranslate"><span class="pre">container工位</span></code> 定义的所有连接。</p>
+<p><code class="docutils literal notranslate"><span class="pre">lib.conn</span></code> 是一个连接池, 保存着用户在 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中为当前 <code class="docutils literal notranslate"><span class="pre">container工位</span></code> 定义的所有连接。</p>
 <p>例如:</p>
 <ul class="simple">
-<li><p>用户定义了 <code class="docutils literal notranslate"><span class="pre">add_connection(name=&quot;UUT&quot;)</span></code>，则使用 <code class="docutils literal notranslate"><span class="pre">uut</span> <span class="pre">=</span> <span class="pre">lib.conn.UUT</span></code> 可以获取此连接实例。</p></li>
-<li><p>用户定义了 <code class="docutils literal notranslate"><span class="pre">add_connection(name=&quot;REF&quot;)</span></code>，则使用 <code class="docutils literal notranslate"><span class="pre">uut</span> <span class="pre">=</span> <span class="pre">lib.conn.REF</span></code> 可以获取此连接实例。</p></li>
-<li><p>用户定义了 <code class="docutils literal notranslate"><span class="pre">add_connection(name=&quot;COM&quot;)</span></code>，则使用 <code class="docutils literal notranslate"><span class="pre">uut</span> <span class="pre">=</span> <span class="pre">lib.conn.COM</span></code> 可以获取此连接实例。</p></li>
+<li><p>用户定义了 <code class="docutils literal notranslate"><span class="pre">add_connection(name=&quot;UUT&quot;)</span></code>, 则使用 <code class="docutils literal notranslate"><span class="pre">uut</span> <span class="pre">=</span> <span class="pre">lib.conn.UUT</span></code> 可以获取此连接实例。</p></li>
+<li><p>用户定义了 <code class="docutils literal notranslate"><span class="pre">add_connection(name=&quot;REF&quot;)</span></code>, 则使用 <code class="docutils literal notranslate"><span class="pre">uut</span> <span class="pre">=</span> <span class="pre">lib.conn.REF</span></code> 可以获取此连接实例。</p></li>
+<li><p>用户定义了 <code class="docutils literal notranslate"><span class="pre">add_connection(name=&quot;COM&quot;)</span></code>, 则使用 <code class="docutils literal notranslate"><span class="pre">uut</span> <span class="pre">=</span> <span class="pre">lib.conn.COM</span></code> 可以获取此连接实例。</p></li>
 </ul>
-<p>获取连接实例 <code class="docutils literal notranslate"><span class="pre">uut</span></code> 后，可以使用实例的以下几种属性:</p>
+<p>获取连接实例 <code class="docutils literal notranslate"><span class="pre">uut</span></code> 后, 可以使用实例的以下几种属性:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.open()</span></code> ：打开连接, 需要注意的是：每次 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 前，会自动调用 <code class="docutils literal notranslate"><span class="pre">close()</span></code> 方法。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.open()</span></code> ：打开连接, 需要注意的是：每次 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 前, 会自动调用 <code class="docutils literal notranslate"><span class="pre">close()</span></code> 方法。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.close()</span></code> ：关闭连接</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> : 向连接传递命令行.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> ：保存 <em>uut.send()</em> 语句发送后，产品回馈的日志。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.phrase</span></code> ：保存 <em>uut.send()</em> 语句发送后，收到的 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 字符串。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.capture()</span></code> ：对 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 进行解析，获取想要的字符串片段。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> ：保存 <em>uut.send()</em> 语句发送后, 产品回馈的日志。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.phrase</span></code> ：保存 <em>uut.send()</em> 语句发送后, 收到的 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 字符串。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.capture()</span></code> ：对 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 进行解析, 获取想要的字符串片段。</p></li>
 </ol>
-<p>需要强调的是：<code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 是传递命令行至待测产品UUT的唯一方式，使用方法如下:</p>
+<p>需要强调的是：<code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 是传递命令行至待测产品UUT的唯一方式, 使用方法如下:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;python</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="s2">&quot;&gt;&gt;&gt;&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>对此语句的解释：通过 <code class="docutils literal notranslate"><span class="pre">uut.send</span></code> 发送命令行 <code class="docutils literal notranslate"><span class="pre">python</span></code> ，并带回车符 <code class="docutils literal notranslate"><span class="pre">\r</span></code> ，并期望在 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 的 <code class="docutils literal notranslate"><span class="pre">10</span></code> 秒钟内，收到字符串 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> 。
-若收到，此语句正常完成，产品反馈的日志将以字符串形式保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 中，然后执行下一条语句。
-若未收到字符串 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>，则触发异常(用户可以使用 <code class="docutils literal notranslate"><span class="pre">try...except...</span></code> 捕获此异常)。</p>
+<p>对此语句的解释：通过 <code class="docutils literal notranslate"><span class="pre">uut.send</span></code> 发送命令行 <code class="docutils literal notranslate"><span class="pre">python</span></code> , 并带回车符 <code class="docutils literal notranslate"><span class="pre">\r</span></code> , 并期望在 <code class="docutils literal notranslate"><span class="pre">timeout</span></code> 的 <code class="docutils literal notranslate"><span class="pre">10</span></code> 秒钟内, 收到字符串 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> 。
+若收到, 此语句正常完成, 产品反馈的日志将以字符串形式保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 中, 然后执行下一条语句。
+若未收到字符串 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>, 则触发异常(用户可以使用 <code class="docutils literal notranslate"><span class="pre">try...except...</span></code> 捕获此异常)。</p>
 <p>需要说明的是：</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 可以接受 <code class="docutils literal notranslate"><span class="pre">列表list</span></code>， 若 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 为 <code class="docutils literal notranslate"><span class="pre">列表</span></code> 时，当平台收到 <code class="docutils literal notranslate"><span class="pre">列表</span></code> 中的任意一元素时，<code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 语句执行完成，收到的元素保存在 <code class="docutils literal notranslate"><span class="pre">uut.phrase</span></code></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 可以接受 <code class="docutils literal notranslate"><span class="pre">列表list</span></code>,  若 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 为 <code class="docutils literal notranslate"><span class="pre">列表</span></code> 时, 当平台收到 <code class="docutils literal notranslate"><span class="pre">列表</span></code> 中的任意一元素时, <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 语句执行完成, 收到的元素保存在 <code class="docutils literal notranslate"><span class="pre">uut.phrase</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;dir</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;$&quot;</span><span class="p">],</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">uut</span><span class="o">.</span><span class="n">phrase</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">uut</span><span class="o">.</span><span class="n">phrase</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="p">]:</span>
@@ -140,12 +140,12 @@
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 可以接受 <code class="docutils literal notranslate"><span class="pre">元组tuple</span></code>， 若 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 为 <code class="docutils literal notranslate"><span class="pre">元组</span></code> 时，，当平台必须收到 <code class="docutils literal notranslate"><span class="pre">元组</span></code> 中的所有元素，<code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 语句执行完成。</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 可以接受 <code class="docutils literal notranslate"><span class="pre">元组tuple</span></code>,  若 <code class="docutils literal notranslate"><span class="pre">expect</span></code> 为 <code class="docutils literal notranslate"><span class="pre">元组</span></code> 时, , 当平台必须收到 <code class="docutils literal notranslate"><span class="pre">元组</span></code> 中的所有元素, <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 语句执行完成。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uut</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;dir</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">expect</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;TEST PASSED&quot;</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 前会自动清空 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 内容,  <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 完成后，收到的所有字符会自动保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 。此例中 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 完成后，若使用 <code class="docutils literal notranslate"><span class="pre">log.debug(uut.buf)</span></code> ，将在事件日志窗口打印出如下字符:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 前会自动清空 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 内容,  <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 完成后, 收到的所有字符会自动保存在 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 。此例中 <code class="docutils literal notranslate"><span class="pre">uut.send()</span></code> 完成后, 若使用 <code class="docutils literal notranslate"><span class="pre">log.debug(uut.buf)</span></code> , 将在事件日志窗口打印出如下字符:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span>
 <span class="n">Python</span> <span class="mf">3.7.8</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="mf">.7.8</span><span class="p">:</span><span class="mi">4</span><span class="n">b47a5b6ba</span><span class="p">,</span> <span class="n">Jun</span> <span class="mi">28</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">08</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">46</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="mf">.1916</span> <span class="mi">64</span> <span class="n">bit</span> <span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
 <span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
@@ -153,10 +153,10 @@
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uut.capture</span></code> 可以快速截取 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 中用户想要的字符串，并支持 <code class="docutils literal notranslate"><span class="pre">正则表达</span></code>，其用法如下:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">uut.capture</span></code> 可以快速截取 <code class="docutils literal notranslate"><span class="pre">uut.buf</span></code> 中用户想要的字符串, 并支持 <code class="docutils literal notranslate"><span class="pre">正则表达</span></code>, 其用法如下:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 语法说明</span>
 <span class="n">user_string</span> <span class="o">=</span> <span class="n">uut</span><span class="o">.</span><span class="n">capture</span><span class="p">(</span><span class="n">start_string</span><span class="p">,</span> <span class="n">end_string</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="c1"># 例如：想要获取Python的版本(此例中，版本为：3.7.8 )</span>
+<span class="c1"># 例如：想要获取Python的版本(此例中, 版本为：3.7.8 )</span>
 <span class="n">version</span> <span class="o">=</span> <span class="n">uut</span><span class="o">.</span><span class="n">capture</span><span class="p">(</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="s2">&quot;(tags&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -165,43 +165,43 @@
 </section>
 <section id="lib-ask-question">
 <h2>lib.ask_question()<a class="headerlink" href="#lib-ask-question" title="Permalink to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">lib.ask_question()</span></code> 提供一种用户交互方法，调用此接口函数后，网页界面将弹出对话框，用户可以在对话框应答一个问题，并返回答案(字符串).</p>
-<p>典型应用场景：弹出对话框，要求用户输入产品的序列号:</p>
+<p><code class="docutils literal notranslate"><span class="pre">lib.ask_question()</span></code> 提供一种用户交互方法, 调用此接口函数后, 网页界面将弹出对话框, 用户可以在对话框应答一个问题, 并返回答案(字符串).</p>
+<p>典型应用场景：弹出对话框, 要求用户输入产品的序列号:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_question</span><span class="p">(</span><span class="s2">&quot;请输入序列号SERIAL：&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>答案会保存在 <code class="docutils literal notranslate"><span class="pre">ans</span></code> 中。</p>
 <p>需要说明的是：<code class="docutils literal notranslate"><span class="pre">lib.ask_question()</span></code> 支持传入如下参数:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">options</span></code> : 备选答案，是一个列表，例如 <code class="docutils literal notranslate"><span class="pre">[&quot;12345&quot;,</span> <span class="pre">&quot;678990&quot;]</span></code>。若传入，则网页会弹出一个 <code class="docutils literal notranslate"><span class="pre">单项选择题</span></code> 对话框，若不设置，则弹出一个 <code class="docutils literal notranslate"><span class="pre">填空题</span></code> 对话框。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">image</span></code> : 问题描述图片，是一个字符串，例如 <code class="docutils literal notranslate"><span class="pre">&quot;project\bee.jpg&quot;</span></code>。若传入，则弹出的对话框会展示图片信息。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">visible</span></code> : 输入内容可视，默认为 <code class="docutils literal notranslate"><span class="pre">True</span></code>。若设置为 <code class="docutils literal notranslate"><span class="pre">False</span></code>, 则用户输入内容显示为 <code class="docutils literal notranslate"><span class="pre">*</span></code> 号，常用于密码输入等场景。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">multiple</span></code> : 多选题, 默认为 <code class="docutils literal notranslate"><span class="pre">False</span></code>。若设置为 <code class="docutils literal notranslate"><span class="pre">True</span></code>, 则网页弹出一个 <code class="docutils literal notranslate"><span class="pre">多项选择题</span></code>。当 <code class="docutils literal notranslate"><span class="pre">options</span></code> 未设置时，<code class="docutils literal notranslate"><span class="pre">multiple</span></code> 无效。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">privilege</span></code> : 插队，默认为 <code class="docutils literal notranslate"><span class="pre">False</span></code>。多 <code class="docutils literal notranslate"><span class="pre">Container工位</span></code> 提问，遵循 <code class="docutils literal notranslate"><span class="pre">FIFO先进先出</span></code> 原则。若设置为 <code class="docutils literal notranslate"><span class="pre">True</span></code>，将插队至队列的第一位。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code> : 超时，默认为 <code class="docutils literal notranslate"><span class="pre">3600</span></code> 秒。若在超时时间内，用户未响应问题，则触发异常。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options</span></code> : 备选答案, 是一个列表, 例如 <code class="docutils literal notranslate"><span class="pre">[&quot;12345&quot;,</span> <span class="pre">&quot;678990&quot;]</span></code>。若传入, 则网页会弹出一个 <code class="docutils literal notranslate"><span class="pre">单项选择题</span></code> 对话框, 若不设置, 则弹出一个 <code class="docutils literal notranslate"><span class="pre">填空题</span></code> 对话框。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">image</span></code> : 问题描述图片, 是一个字符串, 例如 <code class="docutils literal notranslate"><span class="pre">&quot;project\bee.jpg&quot;</span></code>。若传入, 则弹出的对话框会展示图片信息。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">visible</span></code> : 输入内容可视, 默认为 <code class="docutils literal notranslate"><span class="pre">True</span></code>。若设置为 <code class="docutils literal notranslate"><span class="pre">False</span></code>, 则用户输入内容显示为 <code class="docutils literal notranslate"><span class="pre">*</span></code> 号, 常用于密码输入等场景。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">multiple</span></code> : 多选题, 默认为 <code class="docutils literal notranslate"><span class="pre">False</span></code>。若设置为 <code class="docutils literal notranslate"><span class="pre">True</span></code>, 则网页弹出一个 <code class="docutils literal notranslate"><span class="pre">多项选择题</span></code>。当 <code class="docutils literal notranslate"><span class="pre">options</span></code> 未设置时, <code class="docutils literal notranslate"><span class="pre">multiple</span></code> 无效。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">privilege</span></code> : 插队, 默认为 <code class="docutils literal notranslate"><span class="pre">False</span></code>。多 <code class="docutils literal notranslate"><span class="pre">Container工位</span></code> 提问, 遵循 <code class="docutils literal notranslate"><span class="pre">FIFO先进先出</span></code> 原则。若设置为 <code class="docutils literal notranslate"><span class="pre">True</span></code>, 将插队至队列的第一位。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code> : 超时, 默认为 <code class="docutils literal notranslate"><span class="pre">3600</span></code> 秒。若在超时时间内, 用户未响应问题, 则触发异常。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tips</span></code> : 小提示, 默认为 <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> , 可以增加一些提示性字符串。</p></li>
 </ol>
 </section>
 <section id="lib-ask-questions">
 <h2>lib.ask_questions()<a class="headerlink" href="#lib-ask-questions" title="Permalink to this heading"></a></h2>
-<p>此接口函数提供一个用户交互方法，调用此函数后，网页界面将弹出对话框，用户可以在对话框同时应答多个问题，并返回答案(列表).</p>
-<p>使用示例：弹出对话框，要求应答多个问题:</p>
+<p>此接口函数提供一个用户交互方法, 调用此函数后, 网页界面将弹出对话框, 用户可以在对话框同时应答多个问题, 并返回答案(列表).</p>
+<p>使用示例：弹出对话框, 要求应答多个问题:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ans</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">ask_questions</span><span class="p">([</span><span class="s2">&quot;请输入序列号SERIAL：&quot;</span><span class="p">,</span> <span class="s2">&quot;请输入UUTTYPE：&quot;</span><span class="p">,</span> <span class="s2">&quot;请输入员工工号：&quot;</span><span class="p">],</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>答案将保存在 <code class="docutils literal notranslate"><span class="pre">ans</span></code> 中。</p>
 <p>需要说明的是：<code class="docutils literal notranslate"><span class="pre">lib.ask_questio()</span></code> 支持传入如下参数:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">image</span></code> : 问题描述图片，是一个字符串，例如 <code class="docutils literal notranslate"><span class="pre">&quot;project\bee.jpg&quot;</span></code>。若传入，则弹出的对话框会展示图片信息。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">privilege</span></code> : 插队，默认为 <code class="docutils literal notranslate"><span class="pre">False</span></code>。多 <code class="docutils literal notranslate"><span class="pre">Container工位</span></code> 提问，遵循 <code class="docutils literal notranslate"><span class="pre">FIFO先进先出</span></code> 原则。若设置为 <code class="docutils literal notranslate"><span class="pre">True</span></code>，将插队至队列的第一位。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">image</span></code> : 问题描述图片, 是一个字符串, 例如 <code class="docutils literal notranslate"><span class="pre">&quot;project\bee.jpg&quot;</span></code>。若传入, 则弹出的对话框会展示图片信息。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">privilege</span></code> : 插队, 默认为 <code class="docutils literal notranslate"><span class="pre">False</span></code>。多 <code class="docutils literal notranslate"><span class="pre">Container工位</span></code> 提问, 遵循 <code class="docutils literal notranslate"><span class="pre">FIFO先进先出</span></code> 原则。若设置为 <code class="docutils literal notranslate"><span class="pre">True</span></code>, 将插队至队列的第一位。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code> : 超时, 默认为 <code class="docutils literal notranslate"><span class="pre">3600</span></code> 秒。若在超时时间内, 用户未响应问题, 则触发异常。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tips</span></code> : 小提示, 默认为 <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> , 可以增加一些提示性字符串。</p></li>
 </ol>
-<p>3. <code class="docutils literal notranslate"><span class="pre">timeout</span></code> : 超时，默认为 <code class="docutils literal notranslate"><span class="pre">3600</span></code> 秒。若在超时时间内，用户未响应问题，则触发异常。
-8. <code class="docutils literal notranslate"><span class="pre">tips</span></code> : 小提示, 默认为 <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> , 可以增加一些提示性字符串。</p>
 <p>需要强调的是: <code class="docutils literal notranslate"><span class="pre">lib.ask_questions()</span></code> 与 <code class="docutils literal notranslate"><span class="pre">lib.ask_question()</span></code> 共享同一个 <code class="docutils literal notranslate"><span class="pre">FIFO队列</span></code> 。</p>
 </section>
 <section id="lib-set-display1-2-3">
 <h2>lib.set_display1/2/3()<a class="headerlink" href="#lib-set-display1-2-3" title="Permalink to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">lib.set_display1/2/3()</span></code> 可以设置 <code class="docutils literal notranslate"><span class="pre">Container工位</span></code> 面板 <code class="docutils literal notranslate"><span class="pre">定制区域</span></code> 的显示，display1/2/3分别面板的上/中/下位置。
+<p><code class="docutils literal notranslate"><span class="pre">lib.set_display1/2/3()</span></code> 可以设置 <code class="docutils literal notranslate"><span class="pre">Container工位</span></code> 面板 <code class="docutils literal notranslate"><span class="pre">定制区域</span></code> 的显示, display1/2/3分别面板的上/中/下位置。
 建议的定制方案为:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># display1 显示产品的序列号</span>
 <span class="n">lib</span><span class="o">.</span><span class="n">set_display1</span><span class="p">(</span><span class="s2">&quot;SERNUM: 12345678&quot;</span><span class="p">)</span>
@@ -223,7 +223,7 @@
 <section id="lib-get-container-name">
 <h2>lib.get_container_name()<a class="headerlink" href="#lib-get-container-name" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">lib.get_container_name()</span></code> 返回当前的测试工位名称。
-使用示例：在 <code class="docutils literal notranslate"><span class="pre">FT:UUT00</span></code> 上点击开始测试，返回值为字符串 <code class="docutils literal notranslate"><span class="pre">FT:UUT00</span></code></p>
+使用示例：在 <code class="docutils literal notranslate"><span class="pre">FT:UUT00</span></code> 上点击开始测试, 返回值为字符串 <code class="docutils literal notranslate"><span class="pre">FT:UUT00</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">container_name</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_container_name</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -231,12 +231,12 @@
 <section id="lib-add-test-data">
 <h2>lib.add_test_data()<a class="headerlink" href="#lib-add-test-data" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">lib.add_test_data()</span></code> 可以为产品做测试记录。</p>
-<p>测试过程中，使用此接口函数记录产品信息，测试完成后，根据测试结果成功或是失败，自动记录一笔 <code class="docutils literal notranslate"><span class="pre">P</span></code> （Pass）或是 <code class="docutils literal notranslate"><span class="pre">F</span></code> （Fail）:</p>
+<p>测试过程中, 使用此接口函数记录产品信息, 测试完成后, 根据测试结果成功或是失败, 自动记录一笔 <code class="docutils literal notranslate"><span class="pre">P</span></code> （Pass）或是 <code class="docutils literal notranslate"><span class="pre">F</span></code> （Fail）:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">add_test_data</span><span class="p">(</span><span class="n">sernum</span><span class="o">=</span><span class="n">serial</span><span class="p">,</span> <span class="n">uuttype</span><span class="o">=</span><span class="n">uuttype</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="s2">&quot;FT&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>需要强调的是：此接口函数至少需要传入3个参数，它们是： <code class="docutils literal notranslate"><span class="pre">sernum</span></code> 产品条码,  <code class="docutils literal notranslate"><span class="pre">uuttype</span></code> 产品类型,  <code class="docutils literal notranslate"><span class="pre">area</span></code> 测试工序名称。</p>
-<p>需要说明的是：此接口函数还支持传入更多参数，以便帮助用户记录更多信息，它们是：</p>
+<p>需要强调的是：此接口函数至少需要传入3个参数, 它们是： <code class="docutils literal notranslate"><span class="pre">sernum</span></code> 产品条码,  <code class="docutils literal notranslate"><span class="pre">uuttype</span></code> 产品类型,  <code class="docutils literal notranslate"><span class="pre">area</span></code> 测试工序名称。</p>
+<p>需要说明的是：此接口函数还支持传入更多参数, 以便帮助用户记录更多信息, 它们是：</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">label1,</span> <span class="pre">label2,</span> <span class="pre">label3,</span> <span class="pre">label4,</span> <span class="pre">label5</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">version1,</span> <span class="pre">version1,</span> <span class="pre">version3,</span> <span class="pre">version4,</span> <span class="pre">version5</span></code></p></li>
@@ -245,15 +245,15 @@
 </section>
 <section id="lib-get-mode">
 <h2>lib.get_mode()<a class="headerlink" href="#lib-get-mode" title="Permalink to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">lib.get_mode()</span></code> 返回当前测试的模式，值为 <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">DEVELOP</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">lib.get_mode()</span></code> 返回当前测试的模式, 值为 <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">DEVELOP</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mode</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
 <section id="lib-get-params">
 <h2>lib.get_params()<a class="headerlink" href="#lib-get-params" title="Permalink to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">lib.get_params()</span></code> 返回 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中当前工站的 <code class="docutils literal notranslate"><span class="pre">add_params_data()</span></code> 的值，是一个字典。
-例: 如设置 <code class="docutils literal notranslate"><span class="pre">add_params_data(ip=&quot;192.168.1.1&quot;,</span> <span class="pre">ip=2003)</span></code>，则返回值为 <code class="docutils literal notranslate"><span class="pre">{&quot;host&quot;:</span> <span class="pre">&quot;192.168.1.1&quot;,</span> <span class="pre">&quot;port&quot;:</span> <span class="pre">2003}</span></code> 。</p>
+<p><code class="docutils literal notranslate"><span class="pre">lib.get_params()</span></code> 返回 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中当前工站的 <code class="docutils literal notranslate"><span class="pre">add_params_data()</span></code> 的值, 是一个字典。
+例: 如设置 <code class="docutils literal notranslate"><span class="pre">add_params_data(ip=&quot;192.168.1.1&quot;,</span> <span class="pre">ip=2003)</span></code>, 则返回值为 <code class="docutils literal notranslate"><span class="pre">{&quot;host&quot;:</span> <span class="pre">&quot;192.168.1.1&quot;,</span> <span class="pre">&quot;port&quot;:</span> <span class="pre">2003}</span></code> 。</p>
 </section>
 <section id="lib-start-test">
 <h2>lib.start_test()<a class="headerlink" href="#lib-start-test" title="Permalink to this heading"></a></h2>
@@ -264,7 +264,7 @@
 </section>
 <section id="lib-get-sequence-definition">
 <h2>lib.get_sequence_definition()<a class="headerlink" href="#lib-get-sequence-definition" title="Permalink to this heading"></a></h2>
-<p>返回 <code class="docutils literal notranslate"><span class="pre">sequence</span></code> 实例，用此实例编排测试序列，测试过程中，可以在 <strong>调试界面</strong> 的 <code class="docutils literal notranslate"><span class="pre">STEP</span></code> 窗口查看测试序列流程图。
+<p>返回 <code class="docutils literal notranslate"><span class="pre">sequence</span></code> 实例, 用此实例编排测试序列, 测试过程中, 可以在 <strong>调试界面</strong> 的 <code class="docutils literal notranslate"><span class="pre">STEP</span></code> 窗口查看测试序列流程图。
 假设测试代码中定义有如下函数:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_test</span><span class="p">():</span>
     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;welcome to main sequence&quot;</span><span class="p">)</span>
@@ -302,8 +302,8 @@
     <span class="k">return</span> <span class="n">seq</span>
 </pre></div>
 </div>
-<p>注意：<code class="docutils literal notranslate"><span class="pre">add_step()</span></code> 后要跟函数或方法的名字，<code class="docutils literal notranslate"><span class="pre">免小括号()</span></code>。</p>
-<p><code class="docutils literal notranslate"><span class="pre">sequence</span></code> 形式的代码编排，为测试策略的实施提供了便利，以下是当前支持的策略，更多策略持续增加中。</p>
+<p>注意：<code class="docutils literal notranslate"><span class="pre">add_step()</span></code> 后要跟函数或方法的名字, <code class="docutils literal notranslate"><span class="pre">免小括号()</span></code>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">sequence</span></code> 形式的代码编排, 为测试策略的实施提供了便利, 以下是当前支持的策略, 更多策略持续增加中。</p>
 <ol class="arabic simple">
 <li><p>通过设置 <code class="docutils literal notranslate"><span class="pre">in_parallel=True</span></code> 可以实施 <strong>平行测试</strong> 策略。</p></li>
 </ol>
@@ -320,7 +320,7 @@
 </pre></div>
 </div>
 <p>2. 通过设置 <code class="docutils literal notranslate"><span class="pre">cycle_time=60</span> <span class="pre">*</span> <span class="pre">5</span></code> 可以实施 <strong>按时间循环测试</strong> 策略。
-例子中 <code class="docutils literal notranslate"><span class="pre">run_test2</span></code> 每次测试完成后，会检查累计消耗时间，若小于 <code class="docutils literal notranslate"><span class="pre">cycle_time</span></code>， 将再一次测试，其中任何一次fail，循环测试终止。</p>
+例子中 <code class="docutils literal notranslate"><span class="pre">run_test2</span></code> 每次测试完成后, 会检查累计消耗时间, 若小于 <code class="docutils literal notranslate"><span class="pre">cycle_time</span></code>,  将再一次测试, 其中任何一次fail, 循环测试终止。</p>
 <p>使用示例:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequence</span><span class="p">():</span>
     <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequence_definition</span><span class="p">(</span><span class="s2">&quot;SEQ&quot;</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -332,7 +332,7 @@
 </pre></div>
 </div>
 <p>3. 通过设置 <code class="docutils literal notranslate"><span class="pre">cycle_count=10</span></code> 可以实施 <strong>按次数循环测试</strong> 策略。
-例子中 <code class="docutils literal notranslate"><span class="pre">run_test2</span></code> 每次测试完成后，会检查累计次数，若小于 <code class="docutils literal notranslate"><span class="pre">cycle_count</span></code>， 将再一次测试，其中任何一次fail，循环测试终止。</p>
+例子中 <code class="docutils literal notranslate"><span class="pre">run_test2</span></code> 每次测试完成后, 会检查累计次数, 若小于 <code class="docutils literal notranslate"><span class="pre">cycle_count</span></code>,  将再一次测试, 其中任何一次fail, 循环测试终止。</p>
 <p>使用示例:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_sequence</span><span class="p">():</span>
     <span class="n">seq</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_sequence_definition</span><span class="p">(</span><span class="s2">&quot;SEQ&quot;</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -343,7 +343,7 @@
     <span class="k">return</span> <span class="n">seq</span>
 </pre></div>
 </div>
-<p>注意：当在一个 <code class="docutils literal notranslate"><span class="pre">step</span></code> 上同时使用 <code class="docutils literal notranslate"><span class="pre">cycle_time</span></code> 与 <code class="docutils literal notranslate"><span class="pre">cycle_count</span></code> 时，仅 <code class="docutils literal notranslate"><span class="pre">cycle_time</span></code> 生效。</p>
+<p>注意：当在一个 <code class="docutils literal notranslate"><span class="pre">step</span></code> 上同时使用 <code class="docutils literal notranslate"><span class="pre">cycle_time</span></code> 与 <code class="docutils literal notranslate"><span class="pre">cycle_count</span></code> 时, 仅 <code class="docutils literal notranslate"><span class="pre">cycle_time</span></code> 生效。</p>
 </section>
 <section id="lib-get-json-params">
 <h2>lib.get_json_params()<a class="headerlink" href="#lib-get-json-params" title="Permalink to this heading"></a></h2>
@@ -383,7 +383,7 @@
 </section>
 <section id="lib-get-configuration">
 <h2>lib.get_configuration()<a class="headerlink" href="#lib-get-configuration" title="Permalink to this heading"></a></h2>
-<p>在 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中调用此接口函数，可以更精细化定制用户界面。</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">hostname.py</span></code> 中调用此接口函数, 可以更精细化定制用户界面。</p>
 <p>使用示例:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kunlun</span> <span class="kn">import</span> <span class="n">lib</span>
 
@@ -433,7 +433,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, robinwu.</p>
+    <p>&#169; Copyright 2023, robinwu.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

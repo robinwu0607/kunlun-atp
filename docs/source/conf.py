@@ -17,11 +17,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'KunLun AutoTest'
-copyright = '2021, robinwu'
+copyright = '2023, robinwu'
 author = 'robinwu'
 
 # The full version, including alpha/beta/rc tags
-release = 'v22.11.0'
+release = 'v23.3.0'
 
 # -- General configuration ---------------------------------------------------
 
