@@ -10,7 +10,12 @@ KunLun AutoTest测试自动化
    :maxdepth: 2
 
    _content/介绍
-
+   _content/安装指南
+   _content/用户界面
+   _content/测试开发
+   _content/接口函数
+   _content/常见问题
+   _content/变更记录
 
 欢迎加入QQ群讨论:
 
