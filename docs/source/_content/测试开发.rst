@@ -79,7 +79,7 @@ kunlun-data文件夹
 开发者模式与生产模式
 --------------------
 在测试主界面, 用户可以自由切换 ``生产模式`` 与 ``开发模式`` (默认为 ``生产模式`` ), 平台后台将根据选择的模式, 
-自动处理调用 ``product`` 或是 ``develop`` 文件夹下测试代码.
+自动处理调用 ``kunlun_scripts`` 或是 ``develop`` 文件夹下测试代码.
 
 .. image:: ../_static/用户界面/product-mode.png
 .. image:: ../_static/用户界面/develop-mode.png
@@ -109,7 +109,7 @@ FTP的默认文件夹是 ``C:\kunlun-data\tftpboot`` .
 
 测试代码开发方案
 -----------------
-用户的代码存放于 ``C:\kunlun-data\product`` 或是 ``C:\kunlun-data\develop`` 下.
+用户的代码存放于 ``C:\kunlun-data\kunlun_scripts`` 或是 ``C:\kunlun-data\develop`` 下.
 
 给开发者建议：
 
