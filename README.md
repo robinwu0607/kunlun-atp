@@ -2,7 +2,7 @@
 
 ### 当前版本
 
-#### v23.4.0
+#### v23.5.0
 
 安装文件下载地址： https://gitee.com/robinwu0607/kunlun-atp/releases
 
