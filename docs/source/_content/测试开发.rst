@@ -294,3 +294,45 @@ FTP的默认文件夹是 ``C:\kunlun-data\tftpboot`` .
 导入其他pip依赖包
 ^^^^^^^^^^^^^^^^^^^^^
 直接使用 ``pip install`` 安装对应依赖包即可.
+
+命令行kunlun run
+^^^^^^^^^^^^^^^^^^
+使用命令行执行测试用例, 方便在测试程序发布前, 快速单独验证测试代码, 及时发现代码问题::
+
+    Usage: kunlun run [prodcut] [case] [--param] [--key value] [--develop] [--help]
+
+``kunlun run --help`` 可以查看帮助信息.
+``kunlun run [prodcut] [case] --param --key value`` 可以注入参数到测试用例。
+``kunlun run [prodcut] [case] --develop`` 可以调用开发模式下的测试用例。
+
+以项目 ``demo`` 为例, 首先需要在项目下创建文件夹 ``testcase``, 得到 ``demo/testcase/``.
+在 ``demo/testcase/`` 文件夹下创建 ``.py`` 文件, 文件中创建 ``class TestCase(lib.TestCase)`` 类, 需要继承 ``lib.TestCase`` .
+
+运行中， 平台会调用 ``setup()``, 再调用 ``run()``, 无论结果是PASS还是FAIL, 最后调用 ``teardown()``, 测试用例如下::
+    
+    from kunlun import lib
+    from .. import pcba
+
+    # 获取事件日志接口
+    log = lib.get_event_logger()
+
+
+    class TestCase(lib.TestCase):
+        """This is the Test Case document."""
+
+        def __init__(self) -> None:
+            super().__init__()
+
+        def setup(self):
+            print("it is setup")
+
+        def teardown(self):
+            print("it is teardown")
+
+        def run(self):
+            log.info("Test Case Demo")
+            print("Test Case Demo2")
+            print(self.kw)
+            pcba.run_test1()
+
+
