@@ -296,7 +296,7 @@ FTP的默认文件夹是 ``C:\kunlun-data\tftpboot`` .
 直接使用 ``pip install`` 安装对应依赖包即可.
 
 命令行kunlun run
-^^^^^^^^^^^^^^^^^^
+-------------------
 使用命令行执行测试用例, 方便在测试程序发布前, 快速单独验证测试代码, 及时发现代码问题::
 
     Usage: kunlun run [prodcut] [case] [--param] [--key value] [--develop] [--help]
@@ -306,6 +306,12 @@ FTP的默认文件夹是 ``C:\kunlun-data\tftpboot`` .
 ``kunlun run [prodcut] [case] --develop`` 可以调用开发模式下的测试用例。
 
 以项目 ``demo`` 为例, 首先需要在项目下创建文件夹 ``testcase``, 得到 ``demo/testcase/``.
+
+TestCase的两种写法: 1). 使用class类结构. 2). 使用函数结构
+
+class类结构式测试用例
+^^^^^^^^^^^^^^^^^^^^^^^
+
 在 ``demo/testcase/`` 文件夹下创建 ``.py`` 文件, 文件中创建 ``class TestCase(lib.TestCase)`` 类, 需要继承 ``lib.TestCase`` .
 
 运行中， 平台会调用 ``setup()``, 再调用 ``run()``, 无论结果是PASS还是FAIL, 最后调用 ``teardown()``, 测试用例如下::
@@ -335,4 +341,64 @@ FTP的默认文件夹是 ``C:\kunlun-data\tftpboot`` .
             print(self.kw)
             pcba.run_test1()
 
+
+需要说明的是, 方法 ``setup()`` , ``run()`` 与 ``teardown()`` 都不能定义入参.
+
+函数结构式测试用例
+^^^^^^^^^^^^^^^^^^
+在 ``demo/testcase/`` 文件夹下创建 ``.py`` 文件.
+
+运行中， 平台会调用 ``setup()`` (如果有), 再调用 ``run()`` , 无论结果是PASS还是FAIL, 最后调用 ``teardown()`` (如果有), 测试用例如下::
+    
+    """this is function based test case demo2 document"""
+    from kunlun import lib
+
+    # 获取事件日志接口
+    log = lib.get_event_logger()
+
+
+    def setup():
+        print("this is setup")
+
+
+    def teardown():
+        print("this is teardown")
+
+
+    def run():
+        """this is run doc"""
+        print("this is run")
+        print(lib.kw)
+
+需要说明的是: 函数 ``setup()`` , ``run()`` 与 ``teardown()`` 都不能定义入参.
+
+图形化编程 Graphical Programming
+----------------------------------
+尝试引入图形化编程来简化测试开发, 当前图形化编程只能完成简易的测试开发, 后续再慢慢完善.
+
+.. image:: ../_static/测试开发/gp-menu.png
+
+通过点击菜单进入对应图形化编程界面.
+
+用户可以在以下地址下载测试程序示例.
+
+``https://gitee.com/robinwu0607/kunlun_scripts``
+
+Configs Editor
+^^^^^^^^^^^^^^^^^^
+Configs Editor用来定制测试界面, 文件保存在 ``configs`` 中.
+
+.. image:: ../_static/测试开发/gp-configs.png
+
+TestCase Editor
+^^^^^^^^^^^^^^^^^^
+TestCase Editor用来开发测试用例, 文件保存在 ``demo/testcase`` 中。
+
+.. image:: ../_static/测试开发/gp-testcase.png
+
+Sequence Editor
+^^^^^^^^^^^^^^^^^^
+Sequence Editor用来开发测试序列, 文件保存在 ``demo/sequence`` 中。
+
+.. image:: ../_static/测试开发/gp-sequence.png
 

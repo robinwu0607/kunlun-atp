@@ -1,10 +1,14 @@
 变更记录
 ============
+v23.5.0
+1. 增加图像化编程, 包括configs测试界面开发, sequence测试序列开发, 测试用例开发。
+2. 修复一些问题
+
 v23.4.0
 -----------
 1. 用户代码默认文件夹从 ``product`` 更改为 ``kunlun_scripts``, 开发模式文件夹保持不变为 ``develop`` .
 2. ``send()`` 中增加回调函数 ``send(on_timeout=None)``, 若无回调函数, ``send()`` 超时将 ``raie Exception()`` .
-3. 新增 ``kunlun run [project] [testcase] [--param] [--key value]`` , 可以用命令行直接跑测试用例了.
+3. 新增 ``kunlun run [project] [testcase] [--param] [--key value]`` , 可以用命令行直接跑测试用例, 详细参考文档.
 4. 修复一些问题
 
 v23.3.0

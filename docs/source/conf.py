@@ -21,7 +21,7 @@ copyright = '2023, robinwu'
 author = 'robinwu'
 
 # The full version, including alpha/beta/rc tags
-release = 'v23.3.0'
+release = 'v23.5.0'
 
 # -- General configuration ---------------------------------------------------
 

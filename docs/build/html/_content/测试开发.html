@@ -56,7 +56,17 @@
 <li class="toctree-l3"><a class="reference internal" href="#id6">小型项目快速开发</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">大型项目测试编排</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pip">导入其他pip依赖包</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#kunlun-run">命令行kunlun run</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kunlun-run">命令行kunlun run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class">class类结构式测试用例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">函数结构式测试用例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#graphical-programming">图形化编程 Graphical Programming</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configs-editor">Configs Editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testcase-editor">TestCase Editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sequence-editor">Sequence Editor</a></li>
 </ul>
 </li>
 </ul>
@@ -372,8 +382,9 @@
 <h3>导入其他pip依赖包<a class="headerlink" href="#pip" title="Permalink to this heading"></a></h3>
 <p>直接使用 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> 安装对应依赖包即可.</p>
 </section>
+</section>
 <section id="kunlun-run">
-<h3>命令行kunlun run<a class="headerlink" href="#kunlun-run" title="Permalink to this heading"></a></h3>
+<h2>命令行kunlun run<a class="headerlink" href="#kunlun-run" title="Permalink to this heading"></a></h2>
 <p>使用命令行执行测试用例, 方便在测试程序发布前, 快速单独验证测试代码, 及时发现代码问题:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">kunlun</span> <span class="n">run</span> <span class="p">[</span><span class="n">prodcut</span><span class="p">]</span> <span class="p">[</span><span class="n">case</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">param</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">key</span> <span class="n">value</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">develop</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">help</span><span class="p">]</span>
 </pre></div>
@@ -381,8 +392,11 @@
 <p><code class="docutils literal notranslate"><span class="pre">kunlun</span> <span class="pre">run</span> <span class="pre">--help</span></code> 可以查看帮助信息.
 <code class="docutils literal notranslate"><span class="pre">kunlun</span> <span class="pre">run</span> <span class="pre">[prodcut]</span> <span class="pre">[case]</span> <span class="pre">--param</span> <span class="pre">--key</span> <span class="pre">value</span></code> 可以注入参数到测试用例。
 <code class="docutils literal notranslate"><span class="pre">kunlun</span> <span class="pre">run</span> <span class="pre">[prodcut]</span> <span class="pre">[case]</span> <span class="pre">--develop</span></code> 可以调用开发模式下的测试用例。</p>
-<p>以项目 <code class="docutils literal notranslate"><span class="pre">demo</span></code> 为例, 首先需要在项目下创建文件夹 <code class="docutils literal notranslate"><span class="pre">testcase</span></code>, 得到 <code class="docutils literal notranslate"><span class="pre">demo/testcase/</span></code>.
-在 <code class="docutils literal notranslate"><span class="pre">demo/testcase/</span></code> 文件夹下创建 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 文件, 文件中创建 <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">TestCase(lib.TestCase)</span></code> 类, 需要继承 <code class="docutils literal notranslate"><span class="pre">lib.TestCase</span></code> .</p>
+<p>以项目 <code class="docutils literal notranslate"><span class="pre">demo</span></code> 为例, 首先需要在项目下创建文件夹 <code class="docutils literal notranslate"><span class="pre">testcase</span></code>, 得到 <code class="docutils literal notranslate"><span class="pre">demo/testcase/</span></code>.</p>
+<p>TestCase的两种写法: 1). 使用class类结构. 2). 使用函数结构</p>
+<section id="class">
+<h3>class类结构式测试用例<a class="headerlink" href="#class" title="Permalink to this heading"></a></h3>
+<p>在 <code class="docutils literal notranslate"><span class="pre">demo/testcase/</span></code> 文件夹下创建 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 文件, 文件中创建 <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">TestCase(lib.TestCase)</span></code> 类, 需要继承 <code class="docutils literal notranslate"><span class="pre">lib.TestCase</span></code> .</p>
 <p>运行中， 平台会调用 <code class="docutils literal notranslate"><span class="pre">setup()</span></code>, 再调用 <code class="docutils literal notranslate"><span class="pre">run()</span></code>, 无论结果是PASS还是FAIL, 最后调用 <code class="docutils literal notranslate"><span class="pre">teardown()</span></code>, 测试用例如下:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kunlun</span> <span class="kn">import</span> <span class="n">lib</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">pcba</span>
@@ -410,6 +424,57 @@
         <span class="n">pcba</span><span class="o">.</span><span class="n">run_test1</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>需要说明的是, 方法 <code class="docutils literal notranslate"><span class="pre">setup()</span></code> , <code class="docutils literal notranslate"><span class="pre">run()</span></code> 与 <code class="docutils literal notranslate"><span class="pre">teardown()</span></code> 都不能定义入参.</p>
+</section>
+<section id="id8">
+<h3>函数结构式测试用例<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<p>在 <code class="docutils literal notranslate"><span class="pre">demo/testcase/</span></code> 文件夹下创建 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 文件.</p>
+<p>运行中， 平台会调用 <code class="docutils literal notranslate"><span class="pre">setup()</span></code> (如果有), 再调用 <code class="docutils literal notranslate"><span class="pre">run()</span></code> , 无论结果是PASS还是FAIL, 最后调用 <code class="docutils literal notranslate"><span class="pre">teardown()</span></code> (如果有), 测试用例如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;this is function based test case demo2 document&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">kunlun</span> <span class="kn">import</span> <span class="n">lib</span>
+
+<span class="c1"># 获取事件日志接口</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_event_logger</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is setup&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">teardown</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is teardown&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;this is run doc&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is run&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">kw</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>需要说明的是: 函数 <code class="docutils literal notranslate"><span class="pre">setup()</span></code> , <code class="docutils literal notranslate"><span class="pre">run()</span></code> 与 <code class="docutils literal notranslate"><span class="pre">teardown()</span></code> 都不能定义入参.</p>
+</section>
+</section>
+<section id="graphical-programming">
+<h2>图形化编程 Graphical Programming<a class="headerlink" href="#graphical-programming" title="Permalink to this heading"></a></h2>
+<p>尝试引入图形化编程来简化测试开发, 当前图形化编程只能完成简易的测试开发, 后续再慢慢完善.</p>
+<img alt="../_images/gp-menu.png" src="../_images/gp-menu.png" />
+<p>通过点击菜单进入对应图形化编程界面.</p>
+<p>用户可以在以下地址下载测试程序示例.</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://gitee.com/robinwu0607/kunlun_scripts</span></code></p>
+<section id="configs-editor">
+<h3>Configs Editor<a class="headerlink" href="#configs-editor" title="Permalink to this heading"></a></h3>
+<p>Configs Editor用来定制测试界面, 文件保存在 <code class="docutils literal notranslate"><span class="pre">configs</span></code> 中.</p>
+<img alt="../_images/gp-configs.png" src="../_images/gp-configs.png" />
+</section>
+<section id="testcase-editor">
+<h3>TestCase Editor<a class="headerlink" href="#testcase-editor" title="Permalink to this heading"></a></h3>
+<p>TestCase Editor用来开发测试用例, 文件保存在 <code class="docutils literal notranslate"><span class="pre">demo/testcase</span></code> 中。</p>
+<img alt="../_images/gp-testcase.png" src="../_images/gp-testcase.png" />
+</section>
+<section id="sequence-editor">
+<h3>Sequence Editor<a class="headerlink" href="#sequence-editor" title="Permalink to this heading"></a></h3>
+<p>Sequence Editor用来开发测试序列, 文件保存在 <code class="docutils literal notranslate"><span class="pre">demo/sequence</span></code> 中。</p>
+<img alt="../_images/gp-sequence.png" src="../_images/gp-sequence.png" />
 </section>
 </section>
 </section>
